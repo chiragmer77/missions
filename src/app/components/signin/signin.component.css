@@ -1,0 +1,34 @@
+.img-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+.img-bp-logo {
+    width: 84px;
+    height: 58px;
+    top: 50px;
+    margin: 0px;
+    left: 38px;
+    /* align-items: center; */
+    /* display: flex; */
+}
+.img-bp-logo-rectangle {
+    width: 250px;
+    height: 94px;
+    left: -90px;
+    border-radius: 102px;
+    top: 32px;
+}
+.signin-lable {
+    font-size: 32px;
+    font-family: Fira sans-serif;
+    font-weight: 600;
+    line-height: 38.4px;
+}
+.signin-field {
+    /* width: 334px; */
+    height: 50px;
+    border-radius: 6px;
+    border: 1px solid #D7D7D7;
+}
