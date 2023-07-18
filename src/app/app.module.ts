@@ -6,8 +6,11 @@ import { AppComponent } from './app.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { LoginComponent } from './modules/authentication/authentication/login/login.component';
-import { ForgotPasswordComponent } from './modules/authentication/forgot-password/forgot-password.component';
-import { ResetPasswordComponent } from './modules/authentication/reset-password/reset-password.component';
+import { ForgotPasswordComponent } from './modules/authentication/authentication/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './modules/authentication/authentication/reset-password/reset-password.component';
+import { TestComponent } from './shared/components/test/test.component';
+import { TestDirective } from './shared/directives/test.directive';
+import { TestPipe } from './shared/pipe/test.pipe';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { ResetPasswordComponent } from './modules/authentication/reset-password/
     SigninComponent,
     LoginComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    TestComponent,
+    TestDirective,
+    TestPipe
   ],
   imports: [
     BrowserModule,
