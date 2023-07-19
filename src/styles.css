@@ -1,1 +1,72 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  font-family: "Fira Sans", sans-serif;
+}
+input,
+input::placeholder {
+  font-size: 13px;
+}
+
+/* Login page start */
+.main_login {
+  float: left;
+  width: 100%;
+}
+.height-vh {
+  height: 100vh;
+}
+.l_logo {
+  width: 100%;
+  float: left;
+}
+.l_logo a {
+  float: left;
+  width: 100%;
+}
+.l_logo img {
+  width: 130px;
+  margin: 30px 0 0;
+}
+.login_bg {
+  background: url("./assets/Images/login.png") no-repeat;
+  background-size: cover;
+  position: relative;
+  z-index: 1;
+}
+.login_bg:after {
+  position: absolute;
+  content: "";
+  background-color: rgba(0, 68, 170, 0.77);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+}
+.l_text_center {
+  width: 40%;
+}
+.l_text_center h2 {
+  color: white;
+  font-weight: 600;
+}
+.l_text_center p {
+  font-size: 18px;
+  line-height: 28px;
+  text-align: center;
+  color: white;
+  font-weight: 400;
+}
+.form_sign h2 {
+  font-weight: 600;
+}
+.forgot_psw a {
+  font-size: 14px;
+  color: #0044aa;
+  font-weight: 600;
+}
+.form_sign p {
+  color: #53575c;
+  font-size: 14px;
+  margin-bottom: 30px;
+}

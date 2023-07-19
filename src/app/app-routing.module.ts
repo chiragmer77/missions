@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SigninComponent } from './components/signin/signin.component';
 
 const routes: Routes = [
   {
-    path:'', redirectTo: '/', pathMatch: 'full'
+    path: 'auth', loadChildren: () => import('./modules/authentication/authentication/authentication.module').then(m => m.AuthenticationModule),
+    data: { preload: true, delay: true },
   },
-  
   {
-    path: '', component: SigninComponent
-  }
+    path: '',
+    redirectTo: 'auth', pathMatch: 'full',
+  },
 ];
 
 @NgModule({
