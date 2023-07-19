@@ -5,8 +5,25 @@ body {
 input,
 input::placeholder {
   font-size: 13px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #868686 !important;
 }
-
+.form-control {
+  height: 50px;
+  border: 1px solid #d7d7d7;
+}
+.form-control:focus {
+  box-shadow: none !important;
+  border-color: initial !important;
+}
+.error-message span {
+  font-size: 13px;
+  color: red;
+  margin-left: 12px;
+}
 /* Login page start */
 .main_login {
   float: left;
@@ -64,9 +81,19 @@ input::placeholder {
   font-size: 14px;
   color: #0044aa;
   font-weight: 600;
+  text-decoration: none;
 }
 .form_sign p {
   color: #53575c;
   font-size: 14px;
   margin-bottom: 30px;
+}
+.auth-buttons {
+  background: #0044aa !important;
+  height: 50px !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  line-height: 35px !important;
+  letter-spacing: 0em !important;
+  text-align: center !important;
 }

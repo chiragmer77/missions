@@ -9,6 +9,7 @@ import { ResetPasswordComponent } from './modules/authentication/authentication/
 import { TestComponent } from './shared/components/test/test.component';
 import { TestDirective } from './shared/directives/test.directive';
 import { TestPipe } from './shared/pipe/test.pipe';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TestPipe } from './shared/pipe/test.pipe';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

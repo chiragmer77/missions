@@ -24,21 +24,42 @@
                     <div class="w-100 d-flex align-items-center justify-content-center h-100">
                         <div class="form_sign">
                             <h2>Sign in</h2>
-                            <form action="#">
+                            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                                 <div class="mb-3 mt-3">
-                                    <input type="email" class="form-control" id="email" placeholder="Enter email"
-                                        name="email">
+                                    <input type="email" formControlName="email" class="form-control" id="email"
+                                        placeholder="Enter email" name="email">
+                                    <div class="error-message"
+                                        *ngIf="loginForm.controls.email.invalid && (loginForm.controls.email.dirty || loginForm.controls.email.touched)">
+                                        <span *ngIf="loginForm.controls.email.errors?.required">
+                                            Email is required.
+                                        </span>
+                                        <span *ngIf="loginForm.controls.email.errors?.email">
+                                            Invalid email format.
+                                        </span>
+                                    </div>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="password" class="form-control" id="pwd" placeholder="Enter password"
-                                        name="pswd">
+                                    <input type="password" formControlName="password" class="form-control" id="pwd"
+                                        placeholder="Enter password" name="pswd">
+                                    <div class="error-message"
+                                        *ngIf="loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched)">
+                                        <span *ngIf="loginForm.controls.password.errors?.required">
+                                            Password is required.
+                                        </span>
+                                        <span *ngIf="loginForm.controls.password.errors?.minlength">
+                                            Password should be at least {{
+                                            loginForm.controls.password.errors.minlength.requiredLength }} characters
+                                            long.
+                                        </span>
+                                    </div>
                                 </div>
                                 <div class="forgot_psw text-end mb-3">
                                     <a routerLink="/auth/forgot-password">Forgot Password?</a>
                                 </div>
-                                <a class="btn btn-primary col-xl-12">Sign in</a>
+                                <button class="btn btn-primary col-xl-12 auth-buttons"
+                                    [disabled]="loginForm.invalid">Sign
+                                    in</button>
                             </form>
-
                         </div>
                     </div>
                 </div>
