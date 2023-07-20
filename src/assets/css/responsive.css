@@ -1,9 +1,23 @@
-@media screen and (max-width:767px){
-
-    .main_login.height-vh {height: auto;}
-    .height-vh{height: auto;}
-    .main_login.height-vh .login_bg.h-100 {height: auto !important;}
-    .l_text_center {width: 80%;}
-    .l_text_center h2{margin-top: 30px;}
-    .login_form.h-100 {padding: 30px;}
+@media screen and (max-width: 767px) {
+  .main_login.height-vh {
+    height: auto;
+  }
+  .height-vh {
+    height: auto;
+  }
+  .main_login.height-vh .login_bg.h-100 {
+    height: auto !important;
+  }
+  .l_text_center {
+    width: 80%;
+  }
+  .l_text_center h2 {
+    margin-top: 30px;
+  }
+  .login_form.h-100 {
+    padding: 30px;
+  }
+  .form_sign {
+    width: auto;
+  }
 }

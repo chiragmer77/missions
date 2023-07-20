@@ -13,7 +13,8 @@ input::placeholder {
 }
 .form-control {
   height: 50px;
-  border: 1px solid #d7d7d7;
+  border: 1px solid #d7d7d7 !important;
+  border-radius: 6px !important;
 }
 .form-control:focus {
   box-shadow: none !important;
@@ -25,6 +26,9 @@ input::placeholder {
   margin-left: 12px;
 }
 /* Login page start */
+.form_sign {
+  width: 60%;
+}
 .main_login {
   float: left;
   width: 100%;
@@ -66,6 +70,7 @@ input::placeholder {
 .l_text_center h2 {
   color: white;
   font-weight: 600;
+  text-align: center;
 }
 .l_text_center p {
   font-size: 18px;
