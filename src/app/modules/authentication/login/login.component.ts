@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,9 @@ export class LoginComponent {
 
   loginForm: FormGroup | any;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({

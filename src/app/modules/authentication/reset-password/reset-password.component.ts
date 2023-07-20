@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ConfirmedValidator } from './confirmed';
 
 @Component({
   selector: 'app-reset-password',
@@ -16,7 +17,7 @@ export class ResetPasswordComponent {
     this.resetPasswordForm = this.fb.group({
       newPassword: ['', [Validators.required, Validators.minLength(6)]],
       reenterPassword: ['', Validators.required]
-    }, { validator: this.passwordMatchValidator });
+    }, { validator: ConfirmedValidator('newPassword', 'reenterPassword') });
 
 
   }
