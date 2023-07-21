@@ -1,0 +1,72 @@
+<app-header></app-header>
+<div class="l-navbar" [ngClass]="{'show': isClassAdded}" id="nav-bar">
+    <nav class="nav">
+        <div>
+            <a href="#" class="nav_logo" id="logo_dashboard" [ngClass]="{'nav-logo-small': !isClassAdded}">
+                <img *ngIf="isClassAdded" src="./assets/Images/logo_dashboard.png" class='bx bx-layer nav_logo-icon' />
+                <img *ngIf="!isClassAdded" src="./assets/Images/logo/logoBP 1.png" class="logo-small" />
+            </a>
+            <div class="nav_list sidenavMenusresponsive" [ngClass]="{'sidenavMenus': !isClassAdded}">
+                <a href="#" class="nav_link">
+                    <img src="./assets/icons/layout.png" />
+                    <span class="nav_name active">
+                        Dashboard
+                    </span>
+                </a>
+                <a href="#" class="nav_link">
+                    <img src="./assets/icons/layers.png" />
+                    <span class="nav_name">
+                        Mission
+                    </span>
+                </a>
+                <a href="#" class="nav_link">
+                    <img src="./assets/icons/users.png" />
+                    <span class="nav_name">
+                        Members
+                    </span>
+                </a>
+                <a href="#" class="nav_link">
+                    <img src="./assets/icons/client1.png" />
+                    <span class="nav_name">
+                        Clients
+                    </span>
+                </a>
+                <a href="#" class="nav_link">
+                    <img src="./assets/icons/calendar.png" />
+                    <span class="nav_name">Gant chart/Calendar
+                    </span>
+                </a>
+                <a href="#" class="nav_link">
+                    <img src="./assets/icons/file-text.png" />
+                    <span class="nav_name">
+                        Documents
+                    </span>
+                </a>
+                <a href="#" class="nav_link">
+                    <img src="./assets/icons/activity.png" />
+                    <span class="nav_name">
+                        Analytics
+                    </span>
+                </a>
+                <div class="exit_arrow" [ngClass]="{'exit-arrow-side-nav-open': isClassAdded}">
+                    <a (click)="toggleClass()">
+                        <img *ngIf="isClassAdded" src="./assets/icons/arrow-left-circle.png" />
+                        <img *ngIf="!isClassAdded" src="./assets/icons/arrow-left-circle-left.png" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="main-panel">
+    <div class="main-content" [ngClass]="{'sidenavChange': !isClassAdded}">
+        <div class="content-overlay">
+            <div class="content-wrapper py-3 px-4">
+                <div>
+                    <h4>Main Components</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

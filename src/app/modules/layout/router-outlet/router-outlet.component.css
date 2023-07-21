@@ -1,0 +1,22 @@
+.sidenavChange {
+  margin-left: 114px !important;
+}
+.nav-logo-small {
+  padding: 10px !important;
+}
+.sidenavMenus span {
+  display: none;
+}
+
+.sidenavMenus img {
+  margin-left: 15px;
+}
+.exit_arrow {
+  position: absolute;
+  left: 23px;
+  bottom: 20px;
+}
+
+.exit-arrow-side-nav-open {
+  left: 15rem !important;
+}

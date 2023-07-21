@@ -20,4 +20,19 @@
   .form_sign {
     width: auto;
   }
+  .auth-buttons {
+    width: 100%;
+  }
+  .main-content {
+    margin-left: 114px !important;
+  }
+  .sidenavMenusresponsive span {
+    display: none;
+  }
+  .sidenavMenusresponsive img {
+    margin-left: 15px;
+  }
+  .nav_logo .nav_logo-icon {
+    display: none;
+  }
 }

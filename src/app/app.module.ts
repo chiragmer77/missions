@@ -11,7 +11,9 @@ import { TestDirective } from './shared/directives/test.directive';
 import { TestPipe } from './shared/pipe/test.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Import BrowserAnimationsModule
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent } from './modules/layout/header/header.component';
+import { RouterOutletComponent } from './modules/layout/router-outlet/router-outlet.component'; // Import BrowserAnimationsModule
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
     ResetPasswordComponent,
     TestComponent,
     TestDirective,
-    TestPipe
+    TestPipe,
+    HeaderComponent,
+    RouterOutletComponent
   ],
   imports: [
     BrowserModule,
