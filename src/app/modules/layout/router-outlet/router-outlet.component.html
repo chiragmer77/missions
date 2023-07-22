@@ -3,8 +3,8 @@
     <nav class="nav">
         <div>
             <a href="#" class="nav_logo" id="logo_dashboard" [ngClass]="{'nav-logo-small': !isClassAdded}">
-                <img *ngIf="isClassAdded" src="./assets/Images/logo_dashboard.png" class='bx bx-layer nav_logo-icon' />
-                <img *ngIf="!isClassAdded" src="./assets/Images/logo/logoBP 1.png" class="logo-small" />
+                <img src="./assets/Images/logo_dashboard.png" #bigLogo class='bx bx-layer nav_logo-icon' />
+                <img src="./assets/Images/logo/logoBP 1.png" #smallLogo class="small-logo logo-small" />
             </a>
             <div class="nav_list sidenavMenusresponsive" [ngClass]="{'sidenavMenus': !isClassAdded}">
                 <a href="#" class="nav_link">
@@ -50,8 +50,8 @@
                 </a>
                 <div class="exit_arrow" [ngClass]="{'exit-arrow-side-nav-open': isClassAdded}">
                     <a (click)="toggleClass()">
-                        <img *ngIf="isClassAdded" src="./assets/icons/arrow-left-circle.png" />
-                        <img *ngIf="!isClassAdded" src="./assets/icons/arrow-left-circle-left.png" />
+                        <img #leftArrow class="right-arrow" src="./assets/icons/arrow-left-circle.png" />
+                        <img #rightArrow class="left-arrow" src="./assets/icons/arrow-left-circle-left.png" />
                     </a>
                 </div>
             </div>
@@ -63,9 +63,7 @@
     <div class="main-content" [ngClass]="{'sidenavChange': !isClassAdded}">
         <div class="content-overlay">
             <div class="content-wrapper py-3 px-4">
-                <div>
-                    <h4>Main Components</h4>
-                </div>
+                <router-outlet></router-outlet>
             </div>
         </div>
     </div>

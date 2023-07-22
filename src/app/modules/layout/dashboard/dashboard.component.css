@@ -1,0 +1,73 @@
+/* dashboard css start*/
+.mission_card {
+  border: 1px solid #d7d7d7;
+  box-shadow: 1px 1px 11px #d7d7d7;
+  border-radius: 6px;
+  padding: 15px;
+}
+.m_count.tm_icon {
+  background: url("../images/m_layers.png");
+  background-repeat: no-repeat;
+  background-position: center right;
+}
+.m_count.cm_icon {
+  background: url("../images/cm_layers.png");
+  background-repeat: no-repeat;
+  background-position: center right;
+}
+.m_count.om_icon {
+  background: url("../images/om_layers.png");
+  background-repeat: no-repeat;
+  background-position: center right;
+}
+.m_count.hs_icon {
+  background: url("../images/clock.png");
+  background-repeat: no-repeat;
+  background-position: center right;
+}
+.m_count h3 {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 33.6px;
+}
+.m_count p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 16.44px;
+  font-weight: 400;
+}
+.hours_heading h3 {
+  position: relative;
+  font-size: 20px;
+  margin: 0 0 20px 0;
+  font-weight: 600;
+}
+/* .hours_heading h3:before {content: "\eada";font-weight: 100;position: absolute;color: #868686;right: 5px;font-family: 'boxicons';font-size: 24px;top:0px;} */
+.hours_member_block,
+.hours_chart_block,
+.recent_mission_block {
+  padding: 25px;
+}
+.hours_heading .table > :not(caption) > * > * {
+  padding: 0.71rem;
+}
+.recent_mission_block .table > :not(caption) > * > * {
+  padding: 1rem;
+}
+/*.recent_mission_block table td:nth-child(2) {margin: 5PX 0;border-radius: 50px;padding: 20px;color: #10BE2C;background: rgba(16,190,44,0.2);width: 100px;line-height: 4px;text-align: center;height: 20px;}*/
+.del_icon {
+  color: #d71111;
+  font-size: 24px;
+  margin-left: 10px;
+}
+.edt_icon {
+  color: #0044aa;
+  font-size: 24px;
+}
+.hours_heading .filter_icon i {
+  font-weight: 100;
+  color: #868686;
+  font-family: "boxicons";
+  font-size: 24px;
+  cursor: pointer;
+}

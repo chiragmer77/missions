@@ -35,4 +35,11 @@
   .nav_logo .nav_logo-icon {
     display: none;
   }
+  .nav_logo {
+    padding-left: 15px !important;
+  }
+
+  .right-arrow {
+    display: none;
+  }
 }

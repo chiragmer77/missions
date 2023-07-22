@@ -279,6 +279,16 @@ a {
   .show {
     width: calc(var(--nav-width) + 188px);
   }
+
+  .logo-small {
+    display: none;
+  }
+  .left-arrow {
+    display: none;
+  }
+  .exit-arrow-side-nav-open {
+    left: 15rem !important;
+  }
 }
 
 /* Main content */

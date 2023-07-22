@@ -1,11 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RouterOutletComponent } from './router-outlet/router-outlet.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: RouterOutletComponent
+    component: RouterOutletComponent,
+    children: [
+      {
+        path: '', redirectTo: 'dashboard', pathMatch: 'full',
+      },
+      {
+        path: 'dashboard',
+        component: DashboardComponent
+      }
+    ]
   }
 ];
 
