@@ -6,22 +6,22 @@
   padding: 15px;
 }
 .m_count.tm_icon {
-  background: url("../images/m_layers.png");
+  background: url("../../../../assets/Images/m_layers.png");
   background-repeat: no-repeat;
   background-position: center right;
 }
 .m_count.cm_icon {
-  background: url("../images/cm_layers.png");
+  background: url("../../../../assets/Images/cm_layers.png");
   background-repeat: no-repeat;
   background-position: center right;
 }
 .m_count.om_icon {
-  background: url("../images/om_layers.png");
+  background: url("../../../../assets/Images/om_layers.png");
   background-repeat: no-repeat;
   background-position: center right;
 }
 .m_count.hs_icon {
-  background: url("../images/clock.png");
+  background: url("../../../../assets/Images/clock.png");
   background-repeat: no-repeat;
   background-position: center right;
 }
