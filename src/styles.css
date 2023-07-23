@@ -304,3 +304,16 @@ a {
   min-height: calc(100vh - 4.5rem);
   background-color: #fff;
 }
+
+/*  All screens heading  */
+.screen-heading {
+  padding: 10px 0px 15px 0px;
+}
+.screen-heading h3 {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #000000;
+}

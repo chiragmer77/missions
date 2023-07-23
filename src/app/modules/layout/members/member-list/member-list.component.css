@@ -3,16 +3,16 @@ ul {
   margin-block-end: 0px;
 }
 .list-icon {
-    display: inline-block;
-    background-color: #F0F0F0;
-    padding: 5px;
-    border-radius: 50%;
+  display: inline-block;
+  background-color: #f0f0f0;
+  padding: 5px;
+  border-radius: 50%;
 }
 .btn-add-member {
-    background-color: #0044AA;
-    color: #fff;
+  background-color: #0044aa;
+  color: #fff;
 }
 .navbar-header-lable {
-    font-size: 24px;
-    font-weight: 600;
+  font-size: 24px;
+  font-weight: 600;
 }

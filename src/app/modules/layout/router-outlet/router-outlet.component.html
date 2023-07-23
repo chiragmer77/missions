@@ -7,19 +7,19 @@
                 <img src="./assets/Images/logo/logoBP 1.png" #smallLogo class="small-logo logo-small" />
             </a>
             <div class="nav_list sidenavMenusresponsive" [ngClass]="{'sidenavMenus': !isClassAdded}">
-                <a href="#" class="nav_link">
+                <a [routerLink]="['/dashboard/dashboard']" class="nav_link">
                     <img src="./assets/icons/layout.png" />
                     <span class="nav_name active">
                         Dashboard
                     </span>
                 </a>
-                <a  class="nav_link">
+                <a class="nav_link">
                     <img src="./assets/icons/layers.png" />
                     <span class="nav_name">
                         Mission
                     </span>
                 </a>
-                <a  [routerLink]="['/dashboard/member-list']" class="nav_link">
+                <a [routerLink]="['/dashboard/member-list']" class="nav_link">
                     <img src="./assets/icons/users.png" />
                     <span class="nav_name">
                         Members
