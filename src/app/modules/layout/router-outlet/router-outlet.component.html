@@ -2,54 +2,57 @@
 <div class="l-navbar" [ngClass]="{'show': isClassAdded}" id="nav-bar">
     <nav class="nav">
         <div>
-            <a href="#" class="nav_logo" id="logo_dashboard" [ngClass]="{'nav-logo-small': !isClassAdded}">
+            <a class="nav_logo pe-auto" id="logo_dashboard" [ngClass]="{'nav-logo-small': !isClassAdded}">
                 <img src="./assets/Images/logo_dashboard.png" #bigLogo class='bx bx-layer nav_logo-icon' />
                 <img src="./assets/Images/logo/logoBP 1.png" #smallLogo class="small-logo logo-small" />
             </a>
             <div class="nav_list sidenavMenusresponsive" [ngClass]="{'sidenavMenus': !isClassAdded}">
-                <a [routerLink]="['/dashboard/dashboard']" class="nav_link">
+                <a [routerLink]="['/dashboard/dashboard']" class="nav_link pe-auto">
                     <img src="./assets/icons/layout.png" />
+                    <!-- <i class="bi bi-window-sidebar"></i> -->
                     <span class="nav_name active">
                         Dashboard
                     </span>
                 </a>
-                <a class="nav_link">
+                <a class="nav_link pe-auto" [routerLink]="['/dashboard/member-list']">
                     <img src="./assets/icons/layers.png" />
+                    <!-- <i class="bi bi-stack"></i> -->
                     <span class="nav_name">
                         Mission
                     </span>
                 </a>
-                <a [routerLink]="['/dashboard/member-list']" class="nav_link">
+                <a [routerLink]="['/dashboard/member-list']" class="nav_link pe-auto">
                     <img src="./assets/icons/users.png" />
+                    <!-- <i class="bi bi-people"></i> -->
                     <span class="nav_name">
                         Members
                     </span>
                 </a>
-                <a href="#" class="nav_link">
+                <a class="nav_link pe-auto" [routerLink]="['/dashboard/member-list']">
                     <img src="./assets/icons/client1.png" />
                     <span class="nav_name">
                         Clients
                     </span>
                 </a>
-                <a href="#" class="nav_link">
+                <a class="nav_link pe-auto" [routerLink]="['/dashboard/member-list']">
                     <img src="./assets/icons/calendar.png" />
                     <span class="nav_name">Gant chart/Calendar
                     </span>
                 </a>
-                <a href="#" class="nav_link">
+                <a class="nav_link pe-auto" [routerLink]="['/dashboard/member-list']">
                     <img src="./assets/icons/file-text.png" />
                     <span class="nav_name">
                         Documents
                     </span>
                 </a>
-                <a href="#" class="nav_link">
+                <a class="nav_link pe-auto" [routerLink]="['/dashboard/member-list']">
                     <img src="./assets/icons/activity.png" />
                     <span class="nav_name">
                         Analytics
                     </span>
                 </a>
                 <div class="exit_arrow" [ngClass]="{'exit-arrow-side-nav-open': isClassAdded}">
-                    <a (click)="toggleClass()">
+                    <a (click)="toggleClass()" class="pointer">
                         <img #leftArrow class="right-arrow" src="./assets/icons/arrow-left-circle.png" />
                         <img #rightArrow class="left-arrow" src="./assets/icons/arrow-left-circle-left.png" />
                     </a>
