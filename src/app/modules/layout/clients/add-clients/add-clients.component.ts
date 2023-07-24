@@ -18,7 +18,7 @@ export class AddClientsComponent {
 
     this.myForm = this.formBuilder.group({
       companyName: ['', Validators.required],
-      Address: ['', Validators.required],
+      address: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       telephone: ['', Validators.required],
       personContact: ['', Validators.required]
@@ -26,7 +26,6 @@ export class AddClientsComponent {
 
     // Open
     $('#sideFormOpen').on('click', () => {
-      this.myForm.reset();
       $('.sideFormFields').toggleClass('ShowFields');
     });
     // close
