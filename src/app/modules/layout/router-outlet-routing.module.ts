@@ -4,6 +4,7 @@ import { RouterOutletComponent } from './router-outlet/router-outlet.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { DocumentComponent } from './documents/document/document.component';
+import { ClientsComponent } from './clients/clients.component';
 
 const routes: Routes = [
   {
@@ -24,9 +25,17 @@ const routes: Routes = [
       {
         path: 'document',
         component: DocumentComponent
-      }
+      },
+      {
+        path: 'clients',
+        component: ClientsComponent
+      },
+      {
+        path: 'missions', loadChildren: () => import('./missions/missions-routing.module').then(m => m.MissionsRoutingModule),
+      },
     ]
-  }
+  },
+
 ];
 
 @NgModule({

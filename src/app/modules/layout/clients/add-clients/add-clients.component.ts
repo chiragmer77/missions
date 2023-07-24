@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 declare var $: any;
 
-@Component({
-  selector: 'app-create-member',
-  templateUrl: './create-member.component.html',
-  styleUrls: ['./create-member.component.css']
-})
-export class CreateMemberComponent implements OnInit {
 
+@Component({
+  selector: 'app-add-clients',
+  templateUrl: './add-clients.component.html',
+  styleUrls: ['./add-clients.component.css']
+})
+export class AddClientsComponent {
   myForm: FormGroup | any;
 
   constructor(private formBuilder: FormBuilder) { }
@@ -17,12 +17,11 @@ export class CreateMemberComponent implements OnInit {
   ngOnInit(): void {
 
     this.myForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      companyName: ['', Validators.required],
+      Address: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       telephone: ['', Validators.required],
-      function: ['', Validators.required],
-      hourlyRate: ['', Validators.required]
+      personContact: ['', Validators.required]
     });
 
     // Open

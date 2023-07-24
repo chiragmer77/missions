@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../environments/environments';
+import { environment } from 'src/environments/environments';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,12 @@ export class ApiService {
   public get(endpoint: string): Observable<any> {
     return this.http.get(`${environment.apiUrl}/${endpoint}`);
   }
+
+  // Get Method
+  public getWithParams(endpoint: string, params: any): Observable<any> {
+    return this.http.get(`${environment.apiUrl}/${endpoint}?${params}`);
+  }
+
 
   // Post Method
   public post(endpoint: string, data: any): Observable<any> {

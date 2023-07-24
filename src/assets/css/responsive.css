@@ -43,3 +43,10 @@
     display: none;
   }
 }
+
+/* Css code for flter responsive */
+@media (max-width: 574px) {
+  .sideFormFields {
+    width: 100%;
+  }
+}
