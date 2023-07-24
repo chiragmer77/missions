@@ -1,64 +1,3 @@
-<!-- <div class="div">
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid p-0">
-          <a class="navbar-brand navbar-header-lable" href="#">Members
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="navbar-nav me-auto mb-2 mb-lg-0">
-            </div>
-            <ul class="m-2">
-                <li class="list-icon"><a href="#"><img src="../../../../../assets/Images/search.png" width="24px" height="24px" alt="">
-                </a></li>
-                <li><a href="#"><i class="icon-5x icon-camera"></i></a></li>
-                <li><a href="#"><i class="icon-5x icon-camera"></i></a></li>
-            </ul> 
-            <button class="btn btn-add-member" type="submit">Add Member</button>
-          </div>
-        </div>
-      </nav>
-    <table class="table">
-        <thead class="table-light">
-                <tr>
-                  <th scope="col">First Name</th>
-                  <th scope="col">Last Name</th>
-                  <th scope="col">Telephone</th>
-                  <th scope="col">Email Address</th>
-                  <th scope="col">Function</th>
-                  <th scope="col">Hourly Rate</th>
-                </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>+91 987459654</td>
-                <td>example@gmail.com</td>
-                <td>UI/UX Designer</td>
-                <td>$99.00 <span style="float: right;"> <i class="bi bi-three-dots-vertical"></i></span></td>
-              </tr>
-              <tr>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>+91 978564125</td>
-                <td>example@gmail.com</td>
-                <td>QA Engineer</td>
-                <td>$97.00</td>
-              </tr>
-              <tr>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>+91 789654825</td>
-                <td>example@gmail.com</td>
-                <td>UI/UX Designer</td>
-                <td>$7.00</td>
-              </tr>
-        </tbody>
-      </table>
-</div> -->
-
 <div class="Container p-0">
   <div class="row p-0">
     <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
@@ -66,67 +5,82 @@
         <div class="hours_heading table-responsive">
           <div class="screen-heading">
             <h3 class="float-start">
-              Membars
+              Members
             </h3>
-            <a class="text-right float-end filter_icon"><img src="./assets/icons/filter.png"></a>
-
+            <div class="div text-right float-end ">
+              <a class="text-right filter_icon list-icon m-2"><img src="../../../../../assets/Images/search.png"></a>
+              <button class="btn btn-color ms-2" type="button"  data-bs-toggle="modal"
+              data-bs-target="#exampleModal">Add Member</button>
+          
+            </div>
           </div>
 
           <table class="table mb-0">
             <thead class="table-light">
               <tr>
-                <th>Mission</th>
-                <th>Status</th>
-                <th>No of Members</th>
-                <th colspan="2">Date Created</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Telephone</th>
+                <th scope="col">Email Address</th>
+                <th scope="col">Function</th>
+                <th scope="col">Hourly Rate</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Need a logo design for a tech startup company</td>
-                <td><span class="badge bg-success text-uppercase">Active</span></td>
-                <td>100</td>
-                <td>08/10/2022</td>
-                <td>
-                  <img src="./assets/icons/edit.png">
-                  <img src="./assets/icons/trash-2.png">
-                </td>
-              </tr>
-              <tr>
-                <td>Need a logo design for a tech startup company</td>
-                <td><span class="badge bg-success text-uppercase">Active</span></td>
-                <td>70</td>
-                <td>08/10/2022</td>
-                <td>
-                  <img src="./assets/icons/edit.png">
-                  <img src="./assets/icons/trash-2.png">
-                </td>
-
-              </tr>
-              <tr>
-                <td>Need a logo design for a tech startup company</td>
-                <td><span class="badge bg-danger text-uppercase">Inactive</span></td>
-                <td>55</td>
-                <td>08/10/2022</td>
-                <td><img src="./assets/icons/edit.png">
-                  <img src="./assets/icons/trash-2.png">
-                </td>
-
-              </tr>
-              <tr>
-                <td>Need a logo design for a tech startup company</td>
-                <td><span class="badge bg-success text-uppercase">Active</span></td>
-                <td>96</td>
-                <td>08/10/2022</td>
-                <td><img src="./assets/icons/edit.png">
-                  <img src="./assets/icons/trash-2.png">
-                </td>
-
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>+91 987459654</td>
+                <td>example@gmail.com</td>
+                <td>UI/UX Designer</td>
+                <td>$99.00 <span style="float: right;"> <i class="bi bi-three-dots-vertical"></i></span></td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
     </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header modal-color">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Add Member</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <div class="div">
+                  <div class="w-75 mb-3">
+                    <input class="form-control" type="text" placeholder="First Name" aria-label="default input example">
+                  </div>
+                  <div class="w-75 mb-3">
+                    <input class="form-control" type="text" placeholder="Last Name" aria-label="default input example">
+                  </div>
+                  <div class="w-75 mb-3">
+                    <input class="form-control" type="text" placeholder="Email Address" aria-label="default input example">
+                  </div>
+                  <div class="w-75 mb-5">
+                    <input class="form-control" type="text" placeholder="Telephone" aria-label="default input example">
+                  </div>
+                  <div class="w-75 mb-3">
+                    <select class="form-select" aria-label="Default select example">
+                      <option selected>Function</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                    </div>
+                    <div class="input-group w-75">
+                      <input type="text" class="form-control" placeholder="Dollar" aria-label="Dollar amount (with dot and two decimal places)">
+                      <span class="input-group-text input-color">$/hr</span>
+                    </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+          </div>
+      </div>
   </div>
 </div>
