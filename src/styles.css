@@ -22,6 +22,7 @@ a {
   height: 50px;
   border: 1px solid #d7d7d7 !important;
   border-radius: 6px !important;
+  appearance: auto !important;
 }
 textarea {
   height: auto !important;
@@ -34,6 +35,43 @@ textarea {
   font-size: 13px;
   color: red;
   margin-left: 12px;
+}
+
+.bi {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.action-menus .dropdown-menu {
+  width: 177px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 24px 0px #00000021;
+  background-color: white;
+}
+
+.action-menus ul {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 38px;
+  letter-spacing: 0em;
+  text-align: left;
+  cursor: pointer;
+}
+
+.action-menus .dropdown-menu .update {
+  color: #53575c;
+}
+
+.action-menus .dropdown-menu .delete {
+  color: #d71111 !important;
+}
+
+tbody tr {
+  vertical-align: middle;
 }
 
 /* Side Form Fields */
@@ -54,7 +92,14 @@ textarea {
 }
 
 .sideFormFields .card-footer {
-  padding-bottom: 80px;
+  position: fixed;
+  width: 100%;
+  bottom: 80px;
+}
+
+.sideFormFields .card-body {
+  height: calc(100% - 54px);
+  overflow: auto;
 }
 
 .sideFormFields .card-header {
@@ -156,6 +201,15 @@ textarea {
   letter-spacing: 0em !important;
   text-align: center !important;
 }
+.auth-buttons-danger {
+  background: #d71111 !important;
+  height: 50px !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  line-height: 35px !important;
+  letter-spacing: 0em !important;
+  text-align: center !important;
+}
 
 .auth-cancel-outline {
   border: 1px solid #0044aa !important;
@@ -241,13 +295,13 @@ a {
   border-right: 1px solid #d3d3d3;
 }
 
-.nav {
+/* .nav {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
-}
+} */
 
 .nav_logo,
 .nav_link {
@@ -296,7 +350,7 @@ a {
   font-size: 1.25rem;
 }
 
-.show {
+.show-sidebar {
   left: 0;
 }
 
@@ -341,7 +395,7 @@ a {
     padding: 1rem 1rem 0 0;
   }
 
-  .show {
+  .show-sidebar {
     width: calc(var(--nav-width) + 188px);
   }
 

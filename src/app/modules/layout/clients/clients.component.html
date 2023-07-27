@@ -1,5 +1,5 @@
 <!--Container Main start-->
-<div class="height-100 p-3">
+<div class="p-3">
     <div class="top_header float-start w-100">
         <div class="screen-heading">
             <h3 class="float-start">
@@ -9,7 +9,7 @@
                 <ul>
                     <li><a href="#" class="m_slider"><i class="bi bi-search"></i></a></li>
                     <li>
-                        <app-add-clients></app-add-clients>
+                        <app-add-clients (onClose)="handleChildComponentClose()"></app-add-clients>
                         <!-- <a href="#" class="cr_mission">
 							<button class="btn btn-primary auth-buttons">
 								Add
@@ -36,81 +36,42 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>+91 987459654</td>
-                        <td>example@gmail.com</td>
-                        <td>UI/UX Designer</td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn" type="button" data-bs-toggle="tooltip" data-bs-placement="left"
-                                    title="Tooltip on left">
-                                    <i class="bi bi-eye"></i>
-                                </button>
-                                <button class="btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="bi bi-three-dots-vertical"></i>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
+                    <tr *ngFor="let data of clientsLists">
+                        <td>{{data.name}}</td>
+                        <td>{{data.address}}</td>
+                        <td>{{data.contact}}</td>
+                        <td>{{data.email}}</td>
+                        <td>22</td>
+                        <td class="action-menus">
+                            <button class="btn" type="submit" data-bs-toggle="tooltip" data-bs-placement="left"
+                                title="Tooltip on left">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                            <i class="bi bi-three-dots-vertical" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                aria-expanded="false"></i>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li>
+                                    <a class="dropdown-item update" (click)="editDetails(data)">
+                                        Update Details
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item delete" (click)="delete(data)">
+                                        Delete Client
+                                    </a>
+                                </li>
+                            </ul>
                         </td>
                     </tr>
                 </tbody>
             </table>
+            <div class="no-records-found mt-5 text-center" *ngIf="clientsLists.length == 0">
+                <span>No Records Found ! </span>
+            </div>
         </div>
     </div>
 </div>
 <!--Container Main end-->
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header modal-color">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Member</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="div">
-                    <div class="w-75 mb-3">
-                        <input class="form-control" type="text" placeholder="First Name"
-                            aria-label="default input example">
-                    </div>
-                    <div class="w-75 mb-3">
-                        <input class="form-control" type="text" placeholder="Last Name"
-                            aria-label="default input example">
-                    </div>
-                    <div class="w-75 mb-3">
-                        <input class="form-control" type="text" placeholder="Email Address"
-                            aria-label="default input example">
-                    </div>
-                    <div class="w-75 mb-5">
-                        <input class="form-control" type="text" placeholder="Telephone"
-                            aria-label="default input example">
-                    </div>
-                    <div class="w-75 mb-3">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Function</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
-                    <div class="input-group w-75">
-                        <input type="text" class="form-control" placeholder="Dollar"
-                            aria-label="Dollar amount (with dot and two decimal places)">
-                        <span class="input-group-text input-color">$/hr</span>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
+<app-confirmation-modal (onClose)="onCloseConfirmationModal($event)" [isOpen]="isConfirmationModalOpen"
+    [title]="modalTitle" [message]="modalMessage"></app-confirmation-modal>

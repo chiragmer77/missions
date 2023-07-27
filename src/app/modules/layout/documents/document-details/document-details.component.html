@@ -1,8 +1,8 @@
 <!--Filter Code-->
-<div class="sideFormFields card mb-3">
+<div class="sideFormFields card mb-3" [ngClass]="{'ShowFields' : isSidebarOpenClose}">
     <div class="card-header">
         <span> Document Details </span>
-        <button class="btn" aria-label="Close" id="sidebarClose">
+        <button class="btn" aria-label="Close" (click)="sidebarOpenClose()">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="card-footer text-end">
-        <button id="sidebarCloseButton" class="btn btn-primary auth-buttons" type="submit">
+        <button (click)="sidebarOpenClose()" class="btn btn-primary auth-buttons" type="submit">
             Close
         </button>
     </div>
@@ -28,7 +28,7 @@
         <p class="document-heading">
             Need a logo design for a tech startup
         </p>
-        <li id="sideFormOpen">
+        <li (click)="sidebarOpenClose()">
             <div class="row">
                 <div class="col-xl-4 col-md-4 col-sm-6 col-xs-12 m_task_details">
                     <h4>

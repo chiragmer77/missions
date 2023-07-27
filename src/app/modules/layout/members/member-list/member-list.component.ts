@@ -18,6 +18,7 @@ export class MemberListComponent implements OnInit {
     OrderBy: ''
   }
 
+  memberLists: any = [];
   constructor(
     private apiService: ApiService
   ) { }
@@ -29,10 +30,9 @@ export class MemberListComponent implements OnInit {
 
   /** Get Member lists */
   getMemberLists() {
-    this.apiService.getWithParams('AppClient',
+    this.apiService.getWithParams('Member',
       `IsHideCount=${this.pagePayload.IsHideCount}&Search=${this.pagePayload.Search}&IsDescending=${this.pagePayload.IsDescending}&Page=${this.pagePayload.Page}&PageSize=${this.pagePayload.PageSize}`).subscribe((response) => {
-        // Process the API response here
-        console.log(response)
+        this.memberLists = response.data;
       });
   }
 

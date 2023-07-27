@@ -16,3 +16,6 @@
   left: 23px;
   bottom: 20px;
 }
+.content-wrapper {
+  padding-right: 0px !important;
+}

@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class MissionsListComponent {
 
+  /** Child component close */
+  handleChildComponentClose() {
+    // This method will be called when the child component is closed
+  }
+
 }

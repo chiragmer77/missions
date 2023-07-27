@@ -9,20 +9,6 @@ declare var $: any;
 export class DocumentComponent {
 
   ngOnInit(): void {
-
-    // Open
-    $('#sideFormOpen').on('click', () => {
-      $('.sideFormFields').toggleClass('ShowFields');
-    });
-    // close
-    $('#sidebarClose').on('click', () => {
-      $('.sideFormFields').toggleClass('ShowFields');
-    });
-    // Close button
-    $('#sidebarCloseButton').on('click', () => {
-      $('.sideFormFields').toggleClass('ShowFields');
-    });
-
   }
 
 }

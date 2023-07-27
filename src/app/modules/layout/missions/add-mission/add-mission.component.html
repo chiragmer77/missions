@@ -1,0 +1,112 @@
+<a class="cr_mission">
+    <button class="btn btn-primary auth-buttons" (click)="sidebarOpenClose()">
+        Client
+    </button>
+</a>
+<!--Filter Code-->
+<div class="sideFormFields card mb-3" [ngClass]="{'ShowFields' : isSidebarOpenClose}">
+    <div class="card-header">
+        <span> {{isEditing == true ? 'Edit Mission' : 'Create New Mission'}} </span>
+        <button class="btn" aria-label="Close" (click)="sidebarOpenClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form [formGroup]="myForm" (ngSubmit)="onFormSubmit()">
+        <div class="card-body">
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-md-10 mb-4">
+                        <input type="text" placeholder="Title of Project" class="form-control" id="title"
+                            formControlName="title" required>
+                        <h6 class="error-message">
+                            <span *ngIf="myForm.get('title').invalid && myForm.get('title').touched"
+                                class="text-danger">
+                                Title of Project is required
+                            </span>
+                        </h6>
+                    </div>
+                    <div class="col-md-10 mb-4">
+                        <textarea class="form-control" placeholder="Description" rows="5" cols="33"
+                            aria-label="With textarea" formControlName="description" required>
+                        </textarea>
+                        <h6 class="error-message">
+                            <span *ngIf="myForm.get('description').invalid && myForm.get('description').touched"
+                                class="text-danger">
+                                Description is required
+                            </span>
+                        </h6>
+                    </div>
+                    <div class="col-md-10 mb-4">
+                        <select class="form-control" placeholder="Client" id="clientId" formControlName="clientId"
+                            required>
+                            <option value="" disabled>Select a Client</option>
+                            <option *ngFor="let data of clientList" value="{{data.id}}">{{data.name}}</option>
+                        </select>
+                        <h6 class="error-message">
+                            <span *ngIf="myForm.get('clientId').invalid && myForm.get('clientId').touched"
+                                class="text-danger">Client is required</span>
+                        </h6>
+                    </div>
+                    <div class="col-md-10 mb-4">
+                        <select class="form-control" placeholder="Team Lead" id="teamLeadId"
+                            formControlName="teamLeadId" required>
+                            <option value="" disabled>Select a Team Lead</option>
+                            <option *ngFor="let data of memberList" value="{{data.id}}">{{data.name}}</option>
+                        </select>
+                        <h6 class="error-message">
+                            <span *ngIf="myForm.get('teamLeadId').invalid && myForm.get('teamLeadId').touched"
+                                class="text-danger">Team Lead is required</span>
+                        </h6>
+                    </div>
+                    <div class="col-md-10 mb-4">
+                        <div class="input-group">
+                            <input type="number" placeholder="Budget" class="form-control" id="budget"
+                                formControlName="budget" required>
+                            <span class="input-group-text" id="basic-addon2">$/hr</span>
+                        </div>
+
+                        <h6 class="error-message">
+                            <span *ngIf="myForm.get('budget').invalid && myForm.get('budget').touched"
+                                class="text-danger">Budget is required</span>
+                        </h6>
+                    </div>
+
+                    <div class="col-md-10 mb-4">
+                        <div class="input-group" id="datepicker">
+                            <input type="text" onfocus="(this.type='date')" placeholder="Start Date"
+                                formControlName="startDate" class="form-control" id="date" />
+                        </div>
+                        <h6 class="error-message">
+                            <span *ngIf="myForm.get('startDate').invalid && myForm.get('startDate').touched"
+                                class="text-danger">
+                                Start Date is required
+                            </span>
+                        </h6>
+                    </div>
+                    <div class="col-md-10 mb-4">
+                        <div class="input-group" id="datepicker">
+                            <input type="text" onfocus="(this.type='date')" placeholder="End Date"
+                                formControlName="endDate" class="form-control" id="date" />
+                        </div>
+                        <h6 class="error-message">
+                            <span *ngIf="myForm.get('endDate').invalid && myForm.get('endDate').touched"
+                                class="text-danger">
+                                End Date is required
+                            </span>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-footer text-end">
+            <button (click)="sidebarOpenClose()" class="btn btn-outline-primary auth-cancel-outline">
+                Cancel
+            </button>
+            <button class="btn btn-primary auth-buttons" type="submit">
+                {{isEditing == true ? 'Edit Project' : 'Create Project'}}
+            </button>
+        </div>
+    </form>
+
+</div>

@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClientsComponent } from './clients/clients.component';
 import { AddClientsComponent } from './clients/add-clients/add-clients.component';
 import { DocumentDetailsComponent } from './documents/document-details/document-details.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { DocumentDetailsComponent } from './documents/document-details/document-
     RouterOutletRoutingModule,
     HttpClientModule,
     FormsModule,
+    SharedModule,
     ReactiveFormsModule
   ], schemas: [
     CUSTOM_ELEMENTS_SCHEMA

@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="l-navbar" [ngClass]="{'show': isClassAdded}" id="nav-bar">
+<div class="l-navbar" [ngClass]="{'show-sidebar': isClassAdded}" id="nav-bar">
     <nav class="nav">
         <div>
             <a class="nav_logo pe-auto" id="logo_dashboard" [ngClass]="{'nav-logo-small': !isClassAdded}">
@@ -34,23 +34,23 @@
                         Clients
                     </span>
                 </a>
-                <a class="nav_link pe-auto" [routerLink]="['/dashboard/member-list']">
+                <!-- <a class="nav_link pe-auto" [routerLink]="['/dashboard/member-list']">
                     <img src="./assets/icons/calendar.png" />
                     <span class="nav_name" routerLinkActive="active">Gant chart/Calendar
                     </span>
-                </a>
+                </a> -->
                 <a class="nav_link pe-auto" [routerLink]="['/dashboard/document']">
                     <img src="./assets/icons/file-text.png" />
                     <span class="nav_name" routerLinkActive="active">
                         Documents
                     </span>
                 </a>
-                <a class="nav_link pe-auto" [routerLink]="['/dashboard/member-list']">
+                <!-- <a class="nav_link pe-auto" [routerLink]="['/dashboard/member-list']">
                     <img src="./assets/icons/activity.png" />
                     <span class="nav_name" routerLinkActive="active">
                         Analytics
                     </span>
-                </a>
+                </a> -->
                 <div class="exit_arrow" [ngClass]="{'exit-arrow-side-nav-open': isClassAdded}">
                     <a (click)="toggleClass()" class="pointer">
                         <img #leftArrow class="right-arrow" src="./assets/icons/arrow-left-circle.png" />
@@ -65,8 +65,9 @@
 <div class="main-panel">
     <div class="main-content" [ngClass]="{'sidenavChange': !isClassAdded}">
         <div class="content-overlay">
-            <div class="content-wrapper py-3 px-4">
+            <div class="content-wrapper py-3 px-3">
                 <router-outlet></router-outlet>
+                <ngx-spinner type="ball-scale-multiple" [fullScreen]="false" size="medium"></ngx-spinner>
             </div>
         </div>
     </div>

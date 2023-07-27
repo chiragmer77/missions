@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./document-details.component.css']
 })
 export class DocumentDetailsComponent {
+  isSidebarOpenClose: boolean = false;
 
+
+  // sidebar open close
+  sidebarOpenClose() {
+    this.isSidebarOpenClose = !this.isSidebarOpenClose;
+  }
 }

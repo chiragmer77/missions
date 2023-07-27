@@ -1,5 +1,5 @@
 <!--Container Main start-->
-<div class="height-100 p-3">
+<div class="p-3">
 	<div class="top_header float-start w-100">
 		<div class="screen-heading">
 			<h3 class="float-start">
@@ -37,8 +37,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>Mark</td>
+					<tr *ngFor="let data of memberLists">
+						<td>{{data.name}}</td>
 						<td>Otto</td>
 						<td>+91 987459654</td>
 						<td>example@gmail.com</td>
@@ -60,6 +60,9 @@
 					</tr>
 				</tbody>
 			</table>
+			<div class="no-records-found mt-5 text-center" *ngIf="memberLists.length == 0">
+				<span>No Records Found ! </span>
+			</div>
 		</div>
 	</div>
 </div>

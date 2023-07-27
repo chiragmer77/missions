@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +16,8 @@ import { HeaderComponent } from './modules/layout/header/header.component';
 import { RouterOutletComponent } from './modules/layout/router-outlet/router-outlet.component'; // Import BrowserAnimationsModule
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './core/interceptor/api.interceptor';
+import { MissionsModule } from './modules/layout/missions/missions.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { ApiInterceptor } from './core/interceptor/api.interceptor';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    MissionsModule,
+    NgxSpinnerModule,
   ],
   providers: [
     {
@@ -45,6 +49,7 @@ import { ApiInterceptor } from './core/interceptor/api.interceptor';
       multi: true,
     },
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

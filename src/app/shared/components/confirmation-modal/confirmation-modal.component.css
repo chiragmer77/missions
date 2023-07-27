@@ -1,0 +1,22 @@
+.modal-title {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #d71111;
+}
+
+.modal-header {
+  height: 71px;
+  border-radius: 10px 10px 0px 0px;
+  background: #e6ebf1;
+}
+.modal-body {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #000000;
+}
