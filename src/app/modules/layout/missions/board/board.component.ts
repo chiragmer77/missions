@@ -10,17 +10,6 @@ import { SharedService } from 'src/app/shared/services/shared.service';
   styleUrls: ['./board.component.css']
 })
 export class BoardComponent {
-  statuses: string[] = ['To-do', 'In-progress', 'Complete', 'Block'];
-
-  items = [
-    { name: "Apple", type: "fruit" },
-    { name: "Carrot", type: "vegetable" },
-    { name: "Orange", type: "fruit" }
-  ];
-
-  droppedItems = [
-    { name: "Tomato", type: "vegetable" }
-  ];
   projectTasksLists: any = [];
   pagePayload: any = {
     IsHideCount: true,
@@ -31,6 +20,10 @@ export class BoardComponent {
     OrderBy: ''
   }
   projectObj: any;
+  todoList: any = [];
+  inProgressList: any = [];
+  completeList: any = [];
+  blockedList: any = [];
 
   constructor(
     private apiService: ApiService,
@@ -54,32 +47,52 @@ export class BoardComponent {
     this.apiService.getWithParams('ProjectTask',
       `ProjectId=${this.projectObj.id}&IsHideCount=${this.pagePayload.IsHideCount}&Search=${this.pagePayload.Search}&IsDescending=${this.pagePayload.IsDescending}&Page=${this.pagePayload.Page}&PageSize=${this.pagePayload.PageSize}`).subscribe((response) => {
         this.projectTasksLists = response.data;
+        // Filter tasks based on status
+        this.todoList = this.projectTasksLists.filter((task: any) => task.status === 1);
+        this.inProgressList = this.projectTasksLists.filter((task: any) => task.status === 2);
+        this.completeList = this.projectTasksLists.filter((task: any) => task.status === 3);
+        this.blockedList = this.projectTasksLists.filter((task: any) => task.status === 4);
+
+        console.log(this.todoList, this.inProgressList, this.completeList, this.blockedList);
         this.spinner.hide();
       });
   }
 
-  addItem(e: any) {
-    // add to droppedItems list
-    this.droppedItems.push(e.dragData);
-    console.log(e.dragData);
-
-    // remove from original list
-    const index = this.items.indexOf(e.dragData);
-    console.log("addItem index", index);
-    if (index > -1) {
-      this.items.splice(index, 1);
-    }
+  // Remove Item 
+  removeItemTasks(event: any, type: string) {
+    console.log(event, type);
+    this.updateTaskProgress(event.dragData, type);
   }
 
-  removeItem(e: any) {
-    // add to original list
-    this.items.push(e.dragData);
+  /** Update task status */
+  updateTaskProgress(task: any, status: string) {
+    this.spinner.show();
+    let payload = {
+      id: task.id,
+      status: this.getPriorityValue(status)
+    }
+    this.apiService.put(`ProjectTask/${task.id}/status`, payload).subscribe((response) => {
+      if (response.success) {
+        this.toaster.success('Project task change Successfully!');
+        this.getProjectTasksLists();
+        this.spinner.hide();
+      }
+    });
+  }
 
-    // remove from droppedItems list
-    const index = this.droppedItems.indexOf(e.dragData);
-    console.log("removeItem index", index);
-    if (index > -1) {
-      this.droppedItems.splice(index, 1);
+  /** Get Priority */
+  private getPriorityValue(status: string): number {
+    switch (status) {
+      case 'To-Do':
+        return 1;
+      case 'In-Progress':
+        return 2;
+      case 'Complete':
+        return 3;
+      case 'Block':
+        return 4; // Change this value according to your requirements
+      default:
+        return 1;
     }
   }
 }

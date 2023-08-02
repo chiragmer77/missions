@@ -3,7 +3,7 @@
 /* Draggable*/
 
 .drag-border {
-  border: #ff525b dashed 2px;
+  border: #ff525b dashed 2px !important;
 }
 
 .drag-handle {
@@ -22,15 +22,15 @@
 /* Droppable */
 
 .drag-hint-border {
-  border: #3c763d dashed 2px;
+  border: #3c763d dashed 2px !important;
 }
 
 .drag-over-border {
-  border: #fbbc05 dashed 2px;
+  border: #fbbc05 dashed 2px !important;
 }
 
 .drag-transit {
-  border: #3500ff dashed 2px;
+  border: #3500ff dashed 2px !important;
 }
 /* trello-board.component.scss */
 .card {
@@ -123,4 +123,11 @@
 }
 .m_img_thumbnail {
   float: right;
+}
+.no-task-list-message h5 {
+  font-size: 16px;
+  font-weight: 400;
+  color: #d71111;
+  text-align: center;
+  padding: 10px;
 }

@@ -1,53 +1,31 @@
-<!-- <h3>Transfer Data via Drag Drop</h3>
-<div class="row">
-    <div class="col-sm-3">
-        <div class="panel panel-default" droppable (onDrop)="removeItem($event)">
-            <div class="panel-heading">Drop items here</div>
-            <div class="panel-body">
-                <li draggable *ngFor="let item of items" [dragData]="item" class="list-group-item">{{item.name}}
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-3">
-        <div class="panel panel-default" droppable (onDrop)="addItem($event)">
-            <div class="panel-heading">Drop Items here</div>
-            <div class="panel-body">
-                <li *ngFor="let item of droppedItems" class="list-group-item" draggable [dragData]="item">{{item.name}}
-                </li>
-            </div>
-        </div>
-    </div>
-</div> -->
-
 <div class="container-fluid mt-4">
     <div class="row board-cards">
         <div class="col-md-3">
-            <div class="card to-do-column">
+            <div class="card to-do-column" droppable (onDrop)="removeItemTasks($event,'To-Do')">
                 <div class="card-header">
                     <i class="bi bi-plus-circle"></i>
                     To-do
                 </div>
                 <div class="card-body">
-                    <div class="card p-3 task-card">
+                    <div class="card p-3 task-card" *ngFor="let todo of todoList" draggable [dragData]="todo">
                         <div class="task-card-header">
                             <p>
-                                Create a new project
+                                {{todo.title}}
                             </p>
                         </div>
                         <div class="task-card-body">
                             <p>
-                                <span class="badge bg-primary">
+                                <span class="badge bg-primary" *ngIf="todo.priority == 1">
                                     Low
                                 </span>
-                                <!-- <span class="badge bg-warning" *ngIf="data.priority == 2">
-                                Medium
-                            </span>
-                            <span class="badge bg-danger" *ngIf="data.priority == 3">
-                                High
-                            </span> -->
+                                <span class="badge bg-warning" *ngIf="todo.priority == 2">
+                                    Medium
+                                </span>
+                                <span class="badge bg-danger" *ngIf="todo.priority == 3">
+                                    High
+                                </span>
                                 <span class="task-hours-spent">
-                                    65 hours to spend
+                                    {{todo.hoursToSpend}} hours to spend
                                 </span>
                             </p>
                             <p>
@@ -55,102 +33,28 @@
                                     Client:
                                 </span>
                                 <span class="task-client-name">
-                                    Samuel Kinder
+                                    {{projectObj.client}}
                                 </span>
                             </p>
                             <p>
                                 <span class="task-date">
-                                    01/12/2022
+                                    {{todo.endDate | date : 'MM/dd/yyyy'}}
                                 </span>
                                 <span class="m_img_thumbnail"
-                                    [style.background]="sharedService.getBackgroundColor('chirag')"
-                                    data-bs-toggle="tooltip" [title]="'chirag'">
-                                    {{sharedService.getFirstLetter('chirag')}}</span>
+                                    [style.background]="sharedService.getBackgroundColor(todo.member)"
+                                    data-bs-toggle="tooltip" [title]="todo.member">
+                                    {{sharedService.getFirstLetter(todo.member)}}
+                                </span>
                             </p>
                         </div>
                     </div>
-                    <div class="card p-3 task-card">
-                        <div class="task-card-header">
-                            <p>
-                                Create a new project
-                            </p>
-                        </div>
-                        <div class="task-card-body">
-                            <p>
-                                <span class="badge bg-primary">
-                                    Low
-                                </span>
-                                <!-- <span class="badge bg-warning" *ngIf="data.priority == 2">
-                                Medium
-                            </span>
-                            <span class="badge bg-danger" *ngIf="data.priority == 3">
-                                High
-                            </span> -->
-                                <span class="task-hours-spent">
-                                    65 hours to spend
-                                </span>
-                            </p>
-                            <p>
-                                <span class="task-client">
-                                    Client:
-                                </span>
-                                <span class="task-client-name">
-                                    Samuel Kinder
-                                </span>
-                            </p>
-                            <p>
-                                <span class="task-date">
-                                    01/12/2022
-                                </span>
-                                <span class="m_img_thumbnail"
-                                    [style.background]="sharedService.getBackgroundColor('chirag')"
-                                    data-bs-toggle="tooltip" [title]="'chirag'">
-                                    {{sharedService.getFirstLetter('chirag')}}</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card p-3 task-card">
-                        <div class="task-card-header">
-                            <p>
-                                Create a new project
-                            </p>
-                        </div>
-                        <div class="task-card-body">
-                            <p>
-                                <span class="badge bg-primary">
-                                    Low
-                                </span>
-                                <!-- <span class="badge bg-warning" *ngIf="data.priority == 2">
-                                Medium
-                            </span>
-                            <span class="badge bg-danger" *ngIf="data.priority == 3">
-                                High
-                            </span> -->
-                                <span class="task-hours-spent">
-                                    65 hours to spend
-                                </span>
-                            </p>
-                            <p>
-                                <span class="task-client">
-                                    Client:
-                                </span>
-                                <span class="task-client-name">
-                                    Samuel Kinder
-                                </span>
-                            </p>
-                            <p>
-                                <span class="task-date">
-                                    01/12/2022
-                                </span>
-                                <span class="m_img_thumbnail"
-                                    [style.background]="sharedService.getBackgroundColor('chirag')"
-                                    data-bs-toggle="tooltip" [title]="'chirag'">
-                                    {{sharedService.getFirstLetter('chirag')}}</span>
-                            </p>
-                        </div>
+
+                    <div class="no-task-list-message" *ngIf="todoList.length == 0">
+                        <h5>
+                            No task added yet
+                        </h5>
                     </div>
                 </div>
-
             </div>
             <div class="card-footer column-card-footer">
                 <span> <i class="bi bi-plus-circle"></i>
@@ -159,31 +63,32 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card to-do-column in-progress">
+            <div class="card to-do-column in-progress" droppable (onDrop)="removeItemTasks($event,'In-Progress')">
                 <div class="card-header">
                     <i class="bi bi-plus-circle"></i>
                     In-Progress
                 </div>
                 <div class="card-body">
-                    <div class="card p-3 task-card">
+                    <div class="card p-3 task-card" *ngFor="let inProgress of inProgressList" draggable
+                        [dragData]="inProgress">
                         <div class="task-card-header">
                             <p>
-                                Create a new project
+                                {{inProgress.title}}
                             </p>
                         </div>
                         <div class="task-card-body">
                             <p>
-                                <span class="badge bg-primary">
+                                <span class="badge bg-primary" *ngIf="inProgress.priority == 1">
                                     Low
                                 </span>
-                                <!-- <span class="badge bg-warning" *ngIf="data.priority == 2">
-                                Medium
-                            </span>
-                            <span class="badge bg-danger" *ngIf="data.priority == 3">
-                                High
-                            </span> -->
+                                <span class="badge bg-warning" *ngIf="inProgress.priority == 2">
+                                    Medium
+                                </span>
+                                <span class="badge bg-danger" *ngIf="inProgress.priority == 3">
+                                    High
+                                </span>
                                 <span class="task-hours-spent">
-                                    65 hours to spend
+                                    {{inProgress.hoursToSpend}} hours to spend
                                 </span>
                             </p>
                             <p>
@@ -191,102 +96,28 @@
                                     Client:
                                 </span>
                                 <span class="task-client-name">
-                                    Samuel Kinder
+                                    {{projectObj.client}}
                                 </span>
                             </p>
                             <p>
                                 <span class="task-date">
-                                    01/12/2022
+                                    {{inProgress.endDate | date : 'MM/dd/yyyy'}}
                                 </span>
                                 <span class="m_img_thumbnail"
-                                    [style.background]="sharedService.getBackgroundColor('chirag')"
-                                    data-bs-toggle="tooltip" [title]="'chirag'">
-                                    {{sharedService.getFirstLetter('chirag')}}</span>
+                                    [style.background]="sharedService.getBackgroundColor(inProgress.member)"
+                                    data-bs-toggle="tooltip" [title]="inProgress.member">
+                                    {{sharedService.getFirstLetter(inProgress.member)}}
+                                </span>
                             </p>
                         </div>
                     </div>
-                    <div class="card p-3 task-card">
-                        <div class="task-card-header">
-                            <p>
-                                Create a new project
-                            </p>
-                        </div>
-                        <div class="task-card-body">
-                            <p>
-                                <span class="badge bg-primary">
-                                    Low
-                                </span>
-                                <!-- <span class="badge bg-warning" *ngIf="data.priority == 2">
-                                Medium
-                            </span>
-                            <span class="badge bg-danger" *ngIf="data.priority == 3">
-                                High
-                            </span> -->
-                                <span class="task-hours-spent">
-                                    65 hours to spend
-                                </span>
-                            </p>
-                            <p>
-                                <span class="task-client">
-                                    Client:
-                                </span>
-                                <span class="task-client-name">
-                                    Samuel Kinder
-                                </span>
-                            </p>
-                            <p>
-                                <span class="task-date">
-                                    01/12/2022
-                                </span>
-                                <span class="m_img_thumbnail"
-                                    [style.background]="sharedService.getBackgroundColor('chirag')"
-                                    data-bs-toggle="tooltip" [title]="'chirag'">
-                                    {{sharedService.getFirstLetter('chirag')}}</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card p-3 task-card">
-                        <div class="task-card-header">
-                            <p>
-                                Create a new project
-                            </p>
-                        </div>
-                        <div class="task-card-body">
-                            <p>
-                                <span class="badge bg-primary">
-                                    Low
-                                </span>
-                                <!-- <span class="badge bg-warning" *ngIf="data.priority == 2">
-                                Medium
-                            </span>
-                            <span class="badge bg-danger" *ngIf="data.priority == 3">
-                                High
-                            </span> -->
-                                <span class="task-hours-spent">
-                                    65 hours to spend
-                                </span>
-                            </p>
-                            <p>
-                                <span class="task-client">
-                                    Client:
-                                </span>
-                                <span class="task-client-name">
-                                    Samuel Kinder
-                                </span>
-                            </p>
-                            <p>
-                                <span class="task-date">
-                                    01/12/2022
-                                </span>
-                                <span class="m_img_thumbnail"
-                                    [style.background]="sharedService.getBackgroundColor('chirag')"
-                                    data-bs-toggle="tooltip" [title]="'chirag'">
-                                    {{sharedService.getFirstLetter('chirag')}}</span>
-                            </p>
-                        </div>
+
+                    <div class="no-task-list-message" *ngIf="inProgressList.length == 0">
+                        <h5>
+                            No task added yet
+                        </h5>
                     </div>
                 </div>
-
             </div>
             <div class="card-footer column-card-footer">
                 <span> <i class="bi bi-plus-circle"></i>
@@ -295,31 +126,32 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card to-do-column">
+            <div class="card to-do-column" droppable (onDrop)="removeItemTasks($event,'Complete')">
                 <div class="card-header">
                     <i class="bi bi-plus-circle"></i>
                     Complete
                 </div>
                 <div class="card-body">
-                    <div class="card p-3 task-card">
+                    <div class="card p-3 task-card" *ngFor="let complete of completeList" draggable
+                        [dragData]="complete">
                         <div class="task-card-header">
                             <p>
-                                Create a new project
+                                {{complete.title}}
                             </p>
                         </div>
                         <div class="task-card-body">
                             <p>
-                                <span class="badge bg-primary">
+                                <span class="badge bg-primary" *ngIf="complete.priority == 1">
                                     Low
                                 </span>
-                                <!-- <span class="badge bg-warning" *ngIf="data.priority == 2">
-                                Medium
-                            </span>
-                            <span class="badge bg-danger" *ngIf="data.priority == 3">
-                                High
-                            </span> -->
+                                <span class="badge bg-warning" *ngIf="complete.priority == 2">
+                                    Medium
+                                </span>
+                                <span class="badge bg-danger" *ngIf="complete.priority == 3">
+                                    High
+                                </span>
                                 <span class="task-hours-spent">
-                                    65 hours to spend
+                                    {{complete.hoursToSpend}} hours to spend
                                 </span>
                             </p>
                             <p>
@@ -327,99 +159,26 @@
                                     Client:
                                 </span>
                                 <span class="task-client-name">
-                                    Samuel Kinder
+                                    {{projectObj.client}}
                                 </span>
                             </p>
                             <p>
                                 <span class="task-date">
-                                    01/12/2022
+                                    {{complete.endDate | date : 'MM/dd/yyyy'}}
                                 </span>
                                 <span class="m_img_thumbnail"
-                                    [style.background]="sharedService.getBackgroundColor('chirag')"
-                                    data-bs-toggle="tooltip" [title]="'chirag'">
-                                    {{sharedService.getFirstLetter('chirag')}}</span>
+                                    [style.background]="sharedService.getBackgroundColor(complete.member)"
+                                    data-bs-toggle="tooltip" [title]="complete.member">
+                                    {{sharedService.getFirstLetter(complete.member)}}
+                                </span>
                             </p>
                         </div>
                     </div>
-                    <div class="card p-3 task-card">
-                        <div class="task-card-header">
-                            <p>
-                                Create a new project
-                            </p>
-                        </div>
-                        <div class="task-card-body">
-                            <p>
-                                <span class="badge bg-primary">
-                                    Low
-                                </span>
-                                <!-- <span class="badge bg-warning" *ngIf="data.priority == 2">
-                                Medium
-                            </span>
-                            <span class="badge bg-danger" *ngIf="data.priority == 3">
-                                High
-                            </span> -->
-                                <span class="task-hours-spent">
-                                    65 hours to spend
-                                </span>
-                            </p>
-                            <p>
-                                <span class="task-client">
-                                    Client:
-                                </span>
-                                <span class="task-client-name">
-                                    Samuel Kinder
-                                </span>
-                            </p>
-                            <p>
-                                <span class="task-date">
-                                    01/12/2022
-                                </span>
-                                <span class="m_img_thumbnail"
-                                    [style.background]="sharedService.getBackgroundColor('chirag')"
-                                    data-bs-toggle="tooltip" [title]="'chirag'">
-                                    {{sharedService.getFirstLetter('chirag')}}</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card p-3 task-card">
-                        <div class="task-card-header">
-                            <p>
-                                Create a new project
-                            </p>
-                        </div>
-                        <div class="task-card-body">
-                            <p>
-                                <span class="badge bg-primary">
-                                    Low
-                                </span>
-                                <!-- <span class="badge bg-warning" *ngIf="data.priority == 2">
-                                Medium
-                            </span>
-                            <span class="badge bg-danger" *ngIf="data.priority == 3">
-                                High
-                            </span> -->
-                                <span class="task-hours-spent">
-                                    65 hours to spend
-                                </span>
-                            </p>
-                            <p>
-                                <span class="task-client">
-                                    Client:
-                                </span>
-                                <span class="task-client-name">
-                                    Samuel Kinder
-                                </span>
-                            </p>
-                            <p>
-                                <span class="task-date">
-                                    01/12/2022
-                                </span>
-                                <span class="m_img_thumbnail"
-                                    [style.background]="sharedService.getBackgroundColor('chirag')"
-                                    data-bs-toggle="tooltip" [title]="'chirag'">
-                                    {{sharedService.getFirstLetter('chirag')}}</span>
-                            </p>
-                        </div>
+
+                    <div class="no-task-list-message" *ngIf="completeList.length == 0">
+                        <h5>
+                            No task added yet
+                        </h5>
                     </div>
                 </div>
 
@@ -431,31 +190,31 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card to-do-column in-progress">
+            <div class="card to-do-column in-progress" droppable (onDrop)="removeItemTasks($event,'Block')">
                 <div class="card-header">
                     <i class="bi bi-plus-circle"></i>
                     Block
                 </div>
                 <div class="card-body">
-                    <div class="card p-3 task-card">
+                    <div class="card p-3 task-card" *ngFor="let block of blockedList" draggable [dragData]="block">
                         <div class="task-card-header">
                             <p>
-                                Create a new project
+                                {{block.title}}
                             </p>
                         </div>
                         <div class="task-card-body">
                             <p>
-                                <span class="badge bg-primary">
+                                <span class="badge bg-primary" *ngIf="block.priority == 1">
                                     Low
                                 </span>
-                                <!-- <span class="badge bg-warning" *ngIf="data.priority == 2">
-                                Medium
-                            </span>
-                            <span class="badge bg-danger" *ngIf="data.priority == 3">
-                                High
-                            </span> -->
+                                <span class="badge bg-warning" *ngIf="block.priority == 2">
+                                    Medium
+                                </span>
+                                <span class="badge bg-danger" *ngIf="block.priority == 3">
+                                    High
+                                </span>
                                 <span class="task-hours-spent">
-                                    65 hours to spend
+                                    {{block.hoursToSpend}} hours to spend
                                 </span>
                             </p>
                             <p>
@@ -463,99 +222,26 @@
                                     Client:
                                 </span>
                                 <span class="task-client-name">
-                                    Samuel Kinder
+                                    {{projectObj.client}}
                                 </span>
                             </p>
                             <p>
                                 <span class="task-date">
-                                    01/12/2022
+                                    {{block.endDate | date : 'MM/dd/yyyy'}}
                                 </span>
                                 <span class="m_img_thumbnail"
-                                    [style.background]="sharedService.getBackgroundColor('chirag')"
-                                    data-bs-toggle="tooltip" [title]="'chirag'">
-                                    {{sharedService.getFirstLetter('chirag')}}</span>
+                                    [style.background]="sharedService.getBackgroundColor(block.member)"
+                                    data-bs-toggle="tooltip" [title]="block.member">
+                                    {{sharedService.getFirstLetter(block.member)}}
+                                </span>
                             </p>
                         </div>
                     </div>
-                    <div class="card p-3 task-card">
-                        <div class="task-card-header">
-                            <p>
-                                Create a new project
-                            </p>
-                        </div>
-                        <div class="task-card-body">
-                            <p>
-                                <span class="badge bg-primary">
-                                    Low
-                                </span>
-                                <!-- <span class="badge bg-warning" *ngIf="data.priority == 2">
-                                Medium
-                            </span>
-                            <span class="badge bg-danger" *ngIf="data.priority == 3">
-                                High
-                            </span> -->
-                                <span class="task-hours-spent">
-                                    65 hours to spend
-                                </span>
-                            </p>
-                            <p>
-                                <span class="task-client">
-                                    Client:
-                                </span>
-                                <span class="task-client-name">
-                                    Samuel Kinder
-                                </span>
-                            </p>
-                            <p>
-                                <span class="task-date">
-                                    01/12/2022
-                                </span>
-                                <span class="m_img_thumbnail"
-                                    [style.background]="sharedService.getBackgroundColor('chirag')"
-                                    data-bs-toggle="tooltip" [title]="'chirag'">
-                                    {{sharedService.getFirstLetter('chirag')}}</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card p-3 task-card">
-                        <div class="task-card-header">
-                            <p>
-                                Create a new project
-                            </p>
-                        </div>
-                        <div class="task-card-body">
-                            <p>
-                                <span class="badge bg-primary">
-                                    Low
-                                </span>
-                                <!-- <span class="badge bg-warning" *ngIf="data.priority == 2">
-                                Medium
-                            </span>
-                            <span class="badge bg-danger" *ngIf="data.priority == 3">
-                                High
-                            </span> -->
-                                <span class="task-hours-spent">
-                                    65 hours to spend
-                                </span>
-                            </p>
-                            <p>
-                                <span class="task-client">
-                                    Client:
-                                </span>
-                                <span class="task-client-name">
-                                    Samuel Kinder
-                                </span>
-                            </p>
-                            <p>
-                                <span class="task-date">
-                                    01/12/2022
-                                </span>
-                                <span class="m_img_thumbnail"
-                                    [style.background]="sharedService.getBackgroundColor('chirag')"
-                                    data-bs-toggle="tooltip" [title]="'chirag'">
-                                    {{sharedService.getFirstLetter('chirag')}}</span>
-                            </p>
-                        </div>
+
+                    <div class="no-task-list-message" *ngIf="blockedList.length == 0">
+                        <h5>
+                            No task added yet
+                        </h5>
                     </div>
                 </div>
 
