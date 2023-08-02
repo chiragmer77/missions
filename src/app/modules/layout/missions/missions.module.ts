@@ -14,6 +14,12 @@ import { AddComponent } from './tasks/add/add.component';
 import { BoardComponent } from './board/board.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { RoleComponent } from './role/role.component';
+import { DetailComponent } from './tasks/detail/detail.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { AttechmentsComponent } from './attechments/attechments.component';
+import { NgxFileDropModule } from 'ngx-file-drop';
+import { NgDragDropModule } from 'ng-drag-drop';
 
 
 @NgModule({
@@ -26,7 +32,9 @@ import { RoleComponent } from './role/role.component';
     AddComponent,
     BoardComponent,
     TimelineComponent,
-    RoleComponent
+    RoleComponent,
+    DetailComponent,
+    AttechmentsComponent
   ],
   exports: [],
   imports: [
@@ -35,7 +43,11 @@ import { RoleComponent } from './role/role.component';
     MissionsRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    ToastrModule
+    ToastrModule,
+    NgxPaginationModule,
+    SharedModule,
+    NgxFileDropModule,
+    NgDragDropModule.forRoot()
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

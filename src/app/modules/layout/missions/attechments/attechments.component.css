@@ -1,0 +1,35 @@
+.bi-plus-circle {
+  font-size: 30px;
+  color: #0044aa;
+  vertical-align: middle;
+}
+
+.download-content,
+.drop-file-section {
+  padding: 24px;
+  text-align: center;
+}
+
+.drop-file-section {
+  background: #ffffff;
+  border: 1px dashed #cccccc;
+  border-radius: 5px;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.drop-file-section h6 {
+  font-size: 16px;
+  font-weight: 400;
+  color: #000;
+  margin-top: 16px;
+  margin-bottom: 4px;
+}
+
+.drop-file-section span {
+  font-size: 14px;
+  font-weight: 400;
+  color: #696969;
+}

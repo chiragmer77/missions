@@ -1,0 +1,54 @@
+<!--Container Main start-->
+<div class="p-3">
+    <div class="top_header float-start w-100">
+        <div class="screen-heading">
+            <h3 class="float-start">
+                Designation
+            </h3>
+            <div class="top_action float-end">
+                <ul>
+                    <li>
+                        <app-add (onClose)="handleChildComponentClose()"></app-add>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="Container p-0">
+        <div class="row p-0">
+            <table class="table mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of designationList | paginate: { itemsPerPage: 10, currentPage: p }">
+                        <td>{{data.name}}</td>
+                        <td class="action-menus">
+                            <button type="submit" class="btn" (click)="editDetails(data)">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button type="button" class="btn" (click)="delete(data)">
+                                <i class="bi bi-trash3"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-end mt-4">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+
+            <div class="no-records-found mt-5 text-center" *ngIf="designationList.length == 0">
+                <span>No Records Found ! </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Container Main end-->
+
+<app-confirmation-modal (onClose)="onCloseConfirmationModal($event)" [isOpen]="isConfirmationModalOpen"
+    [title]="modalTitle" [message]="modalMessage"></app-confirmation-modal>

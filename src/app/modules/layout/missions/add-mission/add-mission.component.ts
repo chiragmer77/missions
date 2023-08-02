@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output, Renderer2 } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -20,7 +21,8 @@ export class AddMissionComponent {
     private formBuilder: FormBuilder,
     private apiService: ApiService,
     private toaster: ToastrService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private spinner: NgxSpinnerService,
   ) { }
 
 
@@ -30,7 +32,7 @@ export class AddMissionComponent {
       title: ['', Validators.required],
       description: ['', Validators.required],
       clientId: ['', Validators.required],
-      teamLeadId: ['0', Validators.required],
+      teamLeadId: ['', Validators.required],
       budget: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required]
@@ -49,6 +51,7 @@ export class AddMissionComponent {
 
   onFormSubmit() {
     if (this.myForm!.valid) {
+      this.spinner.show();
       this.myForm!.value.budget = this.myForm!.value.budget.toString();
       var payload: any = this.myForm.value;
       if (this.isEditing) {
@@ -57,19 +60,25 @@ export class AddMissionComponent {
             this.toaster.success('Mission Edit Successfully!')
             // Emit the event when the child component is closed
             this.onClose.emit();
+            this.spinner.hide();
+            this.resetForm(); // Reset the form after successful add or update
+
           }
         });
       } else {
+        console.log(payload);
         delete payload.id;
         this.apiService.post('Project', payload).subscribe((response) => {
           if (response.success) {
             this.toaster.success('Mission Created Successfully!')
             // Emit the event when the child component is closed
             this.onClose.emit();
+            this.spinner.hide();
+            this.resetForm(); // Reset the form after successful add or update
+
           }
         });
       }
-      this.resetForm(); // Reset the form after successful add or update
     }
   }
 
@@ -77,6 +86,7 @@ export class AddMissionComponent {
   resetForm() {
     this.myForm.reset();
     this.isEditing = false;
+    this.sidebarOpenClose();
   }
 
   handleEventInChild(data: any) {

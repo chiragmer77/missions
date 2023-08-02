@@ -1,0 +1,40 @@
+.bi {
+  vertical-align: middle;
+  color: #0044aa;
+}
+.top_action h6 {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #0044aa;
+  cursor: pointer;
+}
+
+/* Add a fixed height to the container-main to fill the viewport */
+.container-main {
+  min-height: calc(
+    100vh - 70px
+  ); /* 70px is the height of the sticky-buttons container */
+}
+
+/* Style for the sticky-buttons container */
+.sticky-buttons {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 15px;
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid #dbdbdb;
+}
+
+/* Optional: Add some space between the buttons */
+.sticky-buttons button {
+  margin-left: 5px;
+}
+.bi-trash3 {
+  color: red;
+}

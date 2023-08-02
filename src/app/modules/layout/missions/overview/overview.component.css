@@ -1,0 +1,165 @@
+.description h5 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #000000;
+}
+.description p {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #53575c;
+}
+.project-role-list {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.user-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-details h5 {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #000000;
+  margin-bottom: 0;
+}
+
+.user-details h6 {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #53575c;
+}
+
+.attachments-lists span {
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #53575c;
+  background: #f6f6f6;
+  padding: 16px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.right-side-section {
+  border-radius: 23px 0px 0px 23px;
+  background: #f4f4f4;
+  height: 100vh;
+}
+.description-md-4 h6 {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #000000;
+}
+
+.description-md-4 p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #53575c;
+}
+.last-updated-name {
+  margin-top: 5px;
+  font-size: 14px !important;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.last-updated-name span {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.bi-arrow-left-circle,
+.bi-plus-circle {
+  font-size: 30px;
+  color: #0044aa;
+  vertical-align: middle;
+}
+
+.startdate-enddate h5 {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.startdate-enddate span {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  color: #53575c;
+}
+
+.bi-calendar-date {
+  font-size: 35px;
+  margin-right: 10px;
+}
+.latest-activity h6 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  color: #000000;
+}
+
+.comment-section {
+  margin-top: 20px;
+}
+
+.comment {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.comment-description {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #53575c;
+}
+
+.user-image-activity {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.m_img_thumbnail {
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+}

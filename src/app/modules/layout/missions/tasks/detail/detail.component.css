@@ -1,0 +1,147 @@
+.bi {
+  vertical-align: middle;
+  color: #0044aa;
+}
+.top_action h6 {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #0044aa;
+  cursor: pointer;
+}
+
+.description h5 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #000000;
+}
+.description p {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #53575c;
+}
+.project-role-list {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.attachments-lists span {
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #53575c;
+  background: #f6f6f6;
+  padding: 16px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.right-side-section {
+  border-radius: 23px 0px 0px 23px;
+  background: #f4f4f4;
+  height: 100vh;
+}
+.description-md-4 h6 {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #000000;
+}
+
+.description-md-4 p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #53575c;
+}
+.last-updated-name {
+  margin-top: 5px;
+  font-size: 14px !important;
+  font-weight: 400;
+}
+
+.last-updated-name span {
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+}
+.bi-arrow-left-circle,
+.bi-plus-circle {
+  font-size: 30px;
+  color: #0044aa;
+  vertical-align: middle;
+}
+
+.comment-section {
+  margin-top: 20px;
+}
+
+.comment {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.user-name {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #000000;
+}
+
+.time {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #b5b5b5;
+}
+
+.comment-description {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-top: 5px;
+  color: #53575c;
+}
+
+.lables p {
+  font-size: 16px;
+  font-weight: 400;
+  color: #000000;
+  line-height: 50px;
+}
+
+.values p {
+  font-size: 18px;
+  font-weight: 400;
+  color: #000000;
+  line-height: 50px;
+}

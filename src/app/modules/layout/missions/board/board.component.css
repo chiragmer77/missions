@@ -1,0 +1,126 @@
+/* Add application styles & imports to this file! */
+
+/* Draggable*/
+
+.drag-border {
+  border: #ff525b dashed 2px;
+}
+
+.drag-handle {
+  cursor: move; /* fallback if grab cursor is unsupported */
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
+/* Droppable */
+
+.drag-hint-border {
+  border: #3c763d dashed 2px;
+}
+
+.drag-over-border {
+  border: #fbbc05 dashed 2px;
+}
+
+.drag-transit {
+  border: #3500ff dashed 2px;
+}
+/* trello-board.component.scss */
+.card {
+  margin-bottom: 20px;
+  border: 0;
+}
+
+.in-progress {
+  background: #c072722b !important;
+}
+
+.to-do-column {
+  border-radius: 10px;
+  opacity: 0.1px !important;
+  background: #2d8ce42b;
+}
+.to-do-column .card-body {
+  max-height: calc(100vh - 450px);
+  overflow-y: scroll;
+}
+.to-do-column .card-header .bi-plus-circle {
+  float: right;
+  vertical-align: middle;
+}
+.to-do-column .card-header {
+  font-size: 24px;
+  font-weight: 500;
+  color: #53575c;
+  border-bottom: 1px solid #cedae7 !important;
+  background: none;
+  margin: 10px;
+}
+.column-card-footer {
+  border-radius: 10px;
+  background: #2d8ce42b;
+  padding: 10px;
+  text-align: center;
+}
+.column-card-footer span {
+  font-size: 16px;
+  font-weight: 400;
+  color: #0044aa;
+}
+.column-card-footer .bi-plus-circle {
+  font-size: 15px;
+}
+
+.task-card-header p {
+  font-size: 16px;
+  font-weight: 400;
+  color: #000000;
+  line-height: 19.2px;
+}
+.badge {
+  border-radius: 32px;
+}
+.bg-warning {
+  background: #d08411 !important;
+}
+.bg-primary {
+  background: #2d8ce4 !important;
+}
+.bg-danger {
+  background: #d71111 !important;
+}
+.task-card {
+  background: white !important;
+  border-radius: 8px;
+  border: 0;
+}
+.task-hours-spent {
+  font-size: 16px;
+  font-weight: 400;
+  color: #53575c;
+}
+.task-client {
+  font-size: 16px;
+  font-weight: 400;
+  color: #53575c;
+}
+.task-client-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #53575c;
+}
+.task-date {
+  font-size: 16px;
+  font-weight: 400;
+  color: #53575c;
+}
+.m_img_thumbnail {
+  float: right;
+}

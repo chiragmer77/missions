@@ -1,1 +1,124 @@
-<p>add works!</p>
+<a class="cr_mission">
+    <button class="btn btn-primary auth-buttons" (click)="sidebarOpenClose()">
+        Add Task
+    </button>
+</a>
+<!--Filter Code-->
+<div class="sideFormFields card mb-3" [ngClass]="{'ShowFields' : isSidebarOpenClose}">
+    <div class="card-header">
+        <span> {{isEditing == true ? 'Edit' : 'Add'}} Task </span>
+        <button class="btn" aria-label="Close" (click)="sidebarOpenClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form [formGroup]="myForm" (ngSubmit)="onFormSubmit()">
+        <div class="card-body">
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <select class="form-control" placeholder="Category" id="projectTaskCategoryId"
+                            formControlName="projectTaskCategoryId" required>
+                            <option value="" disabled>Select Category</option>
+                            <option *ngFor="let data of categoryList" value="{{data.id}}">{{data.name}}</option>
+                        </select>
+                        <h6 class="error-message">
+                            <span
+                                *ngIf="myForm.get('projectTaskCategoryId').invalid && myForm.get('projectTaskCategoryId').touched"
+                                class="text-danger">
+                                Category is required
+                            </span>
+                        </h6>
+                    </div>
+                    <div class="col-md-12 mb-4">
+                        <input type="text" placeholder="Title" class="form-control" formControlName="title" required>
+                        <h6 class="error-message">
+                            <span *ngIf="myForm.get('title').invalid && myForm.get('title').touched"
+                                class="text-danger">Title is required</span>
+                        </h6>
+                    </div>
+
+                    <div class="col-md-12 mb-4">
+                        <textarea class="form-control" placeholder="Description" rows="5" cols="33"
+                            formControlName="description" required></textarea>
+                        <h6 class="error-message">
+                            <span *ngIf="myForm.get('description').invalid && myForm.get('description').touched"
+                                class="text-danger">Description is required</span>
+                        </h6>
+                    </div>
+
+                    <div class="col-md-12 mb-4">
+                        <select class="form-control" placeholder="Assignee" formControlName="memberId" required>
+                            <option value="" disabled>Assignee</option>
+                            <option *ngFor="let data of memberList" value="{{data.id}}">{{data.name}}</option>
+                            <!-- Add options for members here -->
+                        </select>
+                        <h6 class="error-message">
+                            <span *ngIf="myForm.get('memberId').invalid && myForm.get('memberId').touched"
+                                class="text-danger">
+                                Assignee is required
+                            </span>
+                        </h6>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <input type="number" placeholder="Hours to Spend" class="form-control"
+                            formControlName="hoursToSpend" required>
+                        <h6 class="error-message">
+                            <span *ngIf="myForm.get('hoursToSpend').invalid && myForm.get('hoursToSpend').touched"
+                                class="text-danger">Hours to Spend is required</span>
+                        </h6>
+                    </div>
+
+                    <div class="col-md-12 mb-4">
+                        <select class="form-control" placeholder="Priority" formControlName="priority" required>
+                            <option [value]="" disabled>Select Priority</option>
+                            <option [value]="1">Low</option>
+                            <option [value]="2">Medium</option>
+                            <option [value]="3">High</option>
+                            <!-- Add options for priority here -->
+                        </select>
+                        <h6 class="error-message">
+                            <span *ngIf="myForm.get('priority').invalid && myForm.get('priority').touched"
+                                class="text-danger">Priority is required</span>
+                        </h6>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-12 mb-4">
+                        <input type="text" onfocus="(this.type='date')" placeholder="End Date" class="form-control"
+                            formControlName="endDate" required>
+                        <h6 class="error-message">
+                            <span *ngIf="myForm.get('endDate').invalid && myForm.get('endDate').touched"
+                                class="text-danger">End Date is required</span>
+                        </h6>
+                    </div>
+                    <div class="col-md-12 mb-4">
+                        <select class="form-control" placeholder="Status" formControlName="status" required>
+                            <option [value]="" disabled>Select Status</option>
+                            <option [value]="1">Not-Started</option>
+                            <option [value]="2">In-Progress</option>
+                            <option [value]="3">Completed</option>
+                            <option [value]="4">Blocked</option>
+                            <!-- Add options for status here -->
+                        </select>
+                        <h6 class="error-message">
+                            <span *ngIf="myForm.get('status').invalid && myForm.get('status').touched"
+                                class="text-danger">Status is required</span>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-end">
+            <button (click)="sidebarOpenClose()" class="btn btn-outline-primary auth-cancel-outline">
+                Cancel
+            </button>
+            <button class="btn btn-primary auth-buttons" type="submit">
+                {{ isEditing == true ? 'Edit' : 'Add' }} Task
+            </button>
+        </div>
+    </form>
+</div>

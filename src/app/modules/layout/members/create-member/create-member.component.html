@@ -4,9 +4,9 @@
     </button>
 </a>
 <!--Filter Code-->
-<div class="sideFormFields card mb-3" [ngClass]="{'ShowFields' : isSidebarOpenClose}">
+<div class="sideFormFields card mb-3 " [ngClass]="{'ShowFields' : isSidebarOpenClose}">
     <div class="card-header">
-        <span> Add Member </span>
+        <span> {{isEditing == true ? 'Edit' : 'Add'}} Member </span>
         <button class="btn" aria-label="Close" (click)="sidebarOpenClose()">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -15,7 +15,7 @@
         <div class="card-body">
             <div class="container mt-3">
                 <div class="row">
-                    <div class="col-md-10 mb-4">
+                    <div class="col-md-12 mb-4">
                         <input type="text" placeholder="First Name" class="form-control" id="firstName"
                             formControlName="firstName" required>
                         <h6 class="error-message">
@@ -23,7 +23,7 @@
                                 class="text-danger">First Name is required</span>
                         </h6>
                     </div>
-                    <div class="col-md-10 mb-4">
+                    <div class="col-md-12 mb-4">
                         <input type="text" placeholder="Last Name" class="form-control" id="lastName"
                             formControlName="lastName" required>
                         <h6 class="error-message">
@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-10 mb-4">
+                    <div class="col-md-12 mb-4">
                         <input type="email" placeholder="Email Address" class="form-control" id="email"
                             formControlName="email" required>
                         <h6 class="error-message">
@@ -42,20 +42,59 @@
                                 Valid Email Address is required</span>
                         </h6>
                     </div>
-                    <div class="col-md-10 mb-4">
+                    <div class="col-md-12 mb-4">
                         <input type="tel" placeholder="Telephone" class="form-control" id="phoneNumber"
-                            formControlName="phoneNumber" required>
+                            formControlName="phoneNumber" required />
                         <h6 class="error-message">
-                            <span *ngIf="myForm.get('phoneNumber').invalid && myForm.get('phoneNumber').touched"
-                                class="text-danger">Telephone is required</span>
+                            <span
+                                *ngIf="myForm.get('phoneNumber').errors?.required && myForm.get('phoneNumber').touched"
+                                class="text-danger">
+                                Telephone is required
+                            </span>
+                            <span *ngIf="myForm.get('phoneNumber').errors?.minlength" class="text-danger">
+                                Telephone must be at least 10 characters long
+                            </span>
+                            <span *ngIf="myForm.get('phoneNumber').errors?.maxlength" class="text-danger">
+                                Telephone must not exceed 10 characters
+                            </span>
+                        </h6>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <input type="password" placeholder="Password" class="form-control" id="password"
+                            formControlName="password" required>
+                        <h6 class="error-message">
+                            <span *ngIf="myForm.get('password').invalid && myForm.get('password').touched"
+                                class="text-danger">
+                                Password is required
+                            </span>
+                            <span *ngIf="myForm.get('password').errors?.pattern" class="text-danger">
+                                Password must be at least 8 characters long and contain at least one uppercase letter,
+                                one lowercase letter, one digit, and one special character (e.g., !@#$%^&*)
+                            </span>
+                        </h6>
+                    </div>
+                    <div class="col-md-12 mb-4">
+                        <input type="password" placeholder="Confirm Password" class="form-control"
+                            id="ConfirmedPassword" formControlName="ConfirmedPassword" required>
+                        <h6 class="error-message"
+                            *ngIf="myForm.get('ConfirmedPassword').invalid && (myForm.get('ConfirmedPassword').dirty || myForm.get('ConfirmedPassword').touched)">
+                            <span *ngIf="myForm.get('ConfirmedPassword').errors?.required" class="text-danger">Confirm
+                                Password is required</span>
+                            <span *ngIf="myForm.controls['ConfirmedPassword'].hasError('confirmedValidator')">Passwords
+                                do not
+                                match.
+                            </span>
                         </h6>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-10 mb-4">
+                    <div class="col-md-12 mb-4">
                         <select class="form-control" placeholder="Function" id="designationId"
                             formControlName="designationId" required>
-                            <option value="" disabled>Select a function</option>
+                            <option value="" disabled selected>Select a function</option>
                             <option *ngFor="let data of functionList" value="{{data.id}}">{{data.name}}</option>
                         </select>
                         <h6 class="error-message">
@@ -63,7 +102,19 @@
                                 class="text-danger">Function is required</span>
                         </h6>
                     </div>
-                    <div class="col-md-10 mb-4">
+
+                    <div class="col-md-12 mb-4">
+                        <select class="form-control" placeholder="Role" id="role" formControlName="role" required>
+                            <option value="" disabled selected>Select a Role</option>
+                            <option *ngFor="let data of memberRole" value="{{data.id}}">{{data.name}}</option>
+                        </select>
+                        <h6 class="error-message">
+                            <span *ngIf="myForm.get('role').invalid && myForm.get('role').touched"
+                                class="text-danger">Role is required</span>
+                        </h6>
+                    </div>
+
+                    <div class="col-md-12 mb-4">
                         <div class="input-group">
                             <input type="number" placeholder="Hourly Rate" class="form-control" id="hourlyRate"
                                 formControlName="hourlyRate" required>
@@ -80,11 +131,11 @@
 
         </div>
         <div class="card-footer text-end">
-            <button (click)="sidebarOpenClose()" class="btn btn-outline-primary auth-cancel-outline">
+            <button (click)="sidebarOpenClose()" type="button" class="btn btn-outline-primary auth-cancel-outline">
                 Cancel
             </button>
             <button class="btn btn-primary auth-buttons" type="submit">
-                Add Member
+                {{isEditing == true ? 'Edit' : 'Add'}} Member
             </button>
         </div>
     </form>

@@ -7,14 +7,19 @@ import {
   HttpErrorResponse
 } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
 
-  private readonly authToken = 'eyJhbGciOiJSU0EtT0FFUCIsImVuYyI6IkEyNTZDQkMtSFM1MTIiLCJraWQiOiIwNzJGRjQ0N0Y5RkI0RUZDMzMzMzg5QzNBNUFERUY2MUZCNzM4QkJGIiwidHlwIjoiYXQrand0In0.EuHpmX2oc55x0cHiXHs7adNZy4H-mbmAeBwuTXmGYzXITfcw2YjEafj4fpxyYPe13Ci72bVUyQMyQZo39c_Hw6OPQEAyT8BejAmpt52C1YXNJZYhxVVb-w0C4CYlozeXdBJK2yV1ScsaYNyx-4RXsHrwTulLUgOnzNZcW6A1fhGePXYFxEr_PRxDOqHO7HuDC9g0BIcr3k5WoVbRvnnT4Au3z-U_fc3R0ihj1yTMRZD5cTV-XhBTKv5fJMk2LHXxe5i9DYVtAo8saNn_KhLF8I0mEinCTZy5IPeMJlKp7AyNQ3zCkC0jWouedUdJjOIWm6Y4lM0Zcw9AnnGn-7riBQ.oTdHHR8XgebfKeaIy6tg3g.JkRsSQnXmnZteySW2C1jhS2jzpzSOcuz_lOXQU7COJTm47B1jlHS3XigFU2pX2mrpxKAUIGx-tmz2sWIPQPPc7Biqk9JD60J-DeRsPvY0GBHSmtJbj_73eBfIy_YuUEds7z340l9OEYlyIaiguuUCO-pcHJDNOqjk9fpv6VZAUlsbzWq6SYfFNxiQxyKLUkdi9LP0zZl_f6C4jOTRPliXDr4AwlEkdbLqXdmO5hQjkIHNI_9888OlStiMFHzRov2_JMsfhoFuKw5d9vHf2e7_f0fZrd0OpoAyACFY3Mnmmxna-nqJo9tnn5oit5ZrAqXbh31EE08cmkdJx80PuRkWyAk4gDtMlZ3K4-uUm3f03yuej7Z_HGxnMDrzQzRz-G33M9KTzaFe7xwHTyul81TJl9wvsALy_9Ab9KxoxI3jl5LVkYOkOYn5p8ilYEcAA807mXWhzW9X0GcmIsg9dx8CpgMfYMpOYnhkPNCbL_ZTDi1T-WsjzMWyz41WZlznRA_gM4KQGDWbJBDrKRZgbgjSWE9cM5Qk4t_tAvdOv9E3Q_gD9j91FkMOvnFxyOdVY4-9KmQB3j8KZesRdiM6mW3seUY5ACTmBAClISor9hYvbEHBco98on6MdxK0NSVz4tZyRTg5hsImjB1nSEXLmw8D-P43hFhxOV6DkIxfmO8fqO26Ih5bKhCWPHJrEG9sRrDEGtyk_G_fLruq7XogfjQWwZ8XVzH1VT2Jc9hwrWlBl6ShcyPPBOw-326zfxIb4TvDGqr21s65QHclYAusfLK7-WQTY-p02m2-jjxxEeCpsB-2JK977r4mFp7QmgKz44Lx-V6l7lH-v9BYyNLvJ8pg1EnMnRH2gcmTE2fPv-z_YNFi-rtpTuW88DCMJhWZZr1rpooi3QHueTdqfXGn-UMyrTu_OFaCm1wG02cwalTJUJp69lkzwhdppslYVvu9M929Rrkix-8aJiEJNqdfhGlR0sfAZsassxm1rzL3Gde5bCHdEARgEtCmtWvkZW13TLeKrE8AHdlZFOjarHZBpAUH7vrtx9KqkGHwjjaK4g9UoHDN2gUSir6Ku3fgqClW-k_j-zuE53xdsMalwOSpH8ScijT5zH069RnkM8ihyYghrjVWhDc3ROteAfpQhHXE0ZeLE3KnuYHFlufv0bt8pHAUJZ_FeH3fs4rETPgbPipYCG4dWJw8e_Oj-Qa2G1gvBcR4WR6y_1iKDoGAnttRPTSXxeH7080Hbbj5VG43PHCR7UYA7xORc0jMWZKoaHppePwJ8VHK1gS6ly-7_xvUugTXdpH2Efyd7BahDWjPugv4gGcLoWWRIArf6OtyR2zPqTeeLRiImm7TfdC5iCv1zJ8EA.H17galtXTQ6T8mmu9bER1sqix7lmQdaRxgxc3tuAXo8'; // Replace this with your actual authorization token
+  private readonly authToken = 'eyJhbGciOiJSU0EtT0FFUCIsImVuYyI6IkEyNTZDQkMtSFM1MTIiLCJraWQiOiIwNzJGRjQ0N0Y5RkI0RUZDMzMzMzg5QzNBNUFERUY2MUZCNzM4QkJGIiwidHlwIjoiYXQrand0In0.hrHIXu_DXhMu6lMcSAX8FMTuVi25fdi8uerbosbaSKJNlJCFDxWGqipbBG_3FLM1nkCN1bE_SZH4mXLhP9t09CX3k0yw6XT4ELFIEV6WAhoU4i5Fo-g-rJe3I-rCKac-SbotbXRpgEpabB2qRgAi7TpsPp8l2ZRQzByGKQy01DgKWyMTOMtLvNqXxqDGTm6RinEbBMVn56R542604ZR7qXm7ZrPOwAoxV8RQSU8cycPqmzV8rsuUiPLyy9cydRAZmwTVwYPdVDFKk3bj-1e1Q94DAKUD8HRLihoLWOJvrIjJLUPyqBq66N0-RUCLIncvKXgfXMpiyXkfoCErIO-P1A.0vhU6Y5L3N9trX0mOENlCg.AYayCzyJmu7Qb40fWUyRsp_BMNW4EkTj2R2uWQ7VIRx0C1mNKx0jT75eFb7MiqjDcfHzYYASiBa7fYSNKNqiltLllkF0iSNYpB1XmxNPmLlLqTBWthYZO738JiQ29DzaiIjaO83PAew6rg3kdUeL3IYbF7lVVL6e7MbxdR6d_Qp1BzFOzVBzD1k_VUg6ZQnFJXwct3SkFybtyzvIfqHhWuTEVRgSb1uOJqbEj-2qCZSMy6pUzt82dXtPteSMIhVjo7pvS8Q_ZagqAnAO5ZbvjvBOjh2X5hGy_zIFlqp7d2GhCNTk99iDsmXFoCna2XZKFKucZPJspW1lWqZQ_L8ccIuaMs8xN-sE3c93vqKfrYm4vlmDbpXjj2dK_2GWs1Pp49O3R0zvSSTDDXnhECrnECgK5-7vlh_tm7d25aca3azevi3r0ocWy-m_juu3F74hESCy08Hl4lIo1ckhNCatZ5BiRxEGTT-SXEhxRyZ-02Qx7q1WUrm5aofVqkY13v_ysNx7OeNYN_6PMHU_bmYuJ2QWkwB1kxxoo1UMjxQ_iWPCGaSXEAq9NsH-k0CBcy83y40JrLqOV4IZdouayMOVnGUAIWeKbcnCiCCqoGmyPGg6AEhzB-IoWUQlKDMoGgd1E4-kIETWkg0nHgdRXQRe0mL4ku4nlfp4iVKRlBT2wjIpWukcLYZwzCmTVXMG4Q7iwotCWb3PZLflw3aloC--gHXY1p4bsrsfhqNALRrpXyHqi1SDwi4U88XQeufTRUUAjJUbHN7kpPoQTFGFfv2mCIVHoz3uAUJsjN4VkPKKI6gJ73yAETbbln4KJ8_U8UdueYeEIwK2_JRP3MWUOVVrJoCdJerpHbXv8Gd0taV029OUFXqSxVlMRN0Tjtj_bKax3Whhplku6DeZ6IV3q8mREM_rgyRAfQxeKoJMuV-P1LcGhF7IpKxWU9TG5_EGw1ZfLzW4QZsZlwcYHSNJalgjDtW_aAxDrr6OuKTooRwwLTTB393Uyx9eEXxNDH_1Zd-pzwSjwIdPe9zTaGf_ejHnQg2NjeAjeE_ThrHC2HE69GjZEARd-7qGpt3kLYGphoZLuvGzm9gVmWlTo1lkt_lAi7r-mDjKjiJa6wL0WaOTPFMFhAFY8iF7wJ14hsoyzxU8jwj3rxUC4KmP1J00-bRcgj93ZWvpKqRMU9Wuz7uCQcYpQ4UefE4qbi1OJsiDJqsDSqEma5Y55zant_OBDGa_qcIejSXrUvfqrAJE__10xM6YGT-RJI-jkP-ulMdhTa5CVq5tZQrWBLvJR17Np_Hrb6Qr-N8zKUub-7BVwYueXWP67N8vO5ZgE8oCgwHC9XqFklnJ8uUrQGWvjw0NRdA0eg.IZ6T9g8dtDJlEQ2t9IkE-xN7Gz2oJ14qwOnsaLIO_Rc'; // Replace this with your actual authorization token
 
 
-  constructor() { }
+  constructor(
+    private toaster: ToastrService,
+    private spinner: NgxSpinnerService
+  ) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
@@ -28,14 +33,21 @@ export class ApiInterceptor implements HttpInterceptor {
     // Handle the request and catch any errors
     return next.handle(authRequest).pipe(
       catchError((error: HttpErrorResponse) => {
+        console.log(error)
+
+        this.spinner.hide();
         // Handle different types of errors here
         if (error.error instanceof ErrorEvent) {
           // A client-side error occurred
+          this.toaster.error(error.message)
+
           console.error('Client-side error:', error.error.message);
         } else {
           // A server-side error occurred
+          this.toaster.error(`Server-side error: Status - ${error.status}, Message - ${error.error.message}`)
           console.error(`Server-side error: Status - ${error.status}, Message - ${error.message}`);
         }
+        // this.toaster.error(error.message)
 
         // Pass the error along to the calling code
         return throwError('Something went wrong. Please try again later.');

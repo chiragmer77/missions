@@ -42,13 +42,12 @@ export class AddClientsComponent {
   sidebarOpenClose() {
     this.isSidebarOpenClose = !this.isSidebarOpenClose;
     this.isSidebarOpenClose == true ? this.renderer.setStyle(document.body, 'overflow', 'hidden') : this.renderer.setStyle(document.body, 'overflow', 'auto')
-    this.resetForm(); // Reset the form after successful add or update
+    //this.resetForm(); // Reset the form after successful add or update
   }
 
   onFormSubmit() {
     // Trigger validation for all form controls
     this.markFormGroupAsTouched(this.myForm);
-
     if (this.myForm!.valid) {
       this.spinner.show();
       this.myForm!.value.contact = this.myForm!.value.contact.toString();
@@ -62,6 +61,7 @@ export class AddClientsComponent {
             // Emit the event when the child component is closed
             this.onClose.emit();
             this.spinner.hide();
+            this.resetForm(); // Reset the form after successful add or update
           }
         });
       } else {
@@ -74,10 +74,10 @@ export class AddClientsComponent {
             // Emit the event when the child component is closed
             this.onClose.emit();
             this.spinner.hide();
+            this.resetForm(); // Reset the form after successful add or update
           }
         });
       }
-      this.resetForm(); // Reset the form after successful add or update
 
     }
   }
@@ -86,7 +86,6 @@ export class AddClientsComponent {
   private markFormGroupAsTouched(formGroup: FormGroup) {
     Object.values(formGroup.controls).forEach(control => {
       control.markAsTouched();
-
       if (control instanceof FormGroup) {
         this.markFormGroupAsTouched(control);
       }
@@ -97,6 +96,7 @@ export class AddClientsComponent {
   resetForm() {
     this.myForm.reset();
     this.isEditing = false;
+    this.sidebarOpenClose();
   }
 
   handleEventInChild(data: any) {

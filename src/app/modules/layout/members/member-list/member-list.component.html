@@ -9,13 +9,7 @@
 				<ul>
 					<li><a href="#" class="m_slider"><i class="bi bi-search"></i></a></li>
 					<li>
-						<app-create-member></app-create-member>
-						<!-- <a href="#" class="cr_mission">
-							<button class="btn btn-primary auth-buttons">
-								Add
-								Member
-							</button>
-						</a> -->
+						<app-create-member (onClose)="handleChildComponentClose()"></app-create-member>
 					</li>
 				</ul>
 			</div>
@@ -38,24 +32,32 @@
 				</thead>
 				<tbody>
 					<tr *ngFor="let data of memberLists">
-						<td>{{data.name}}</td>
-						<td>Otto</td>
-						<td>+91 987459654</td>
-						<td>example@gmail.com</td>
-						<td>UI/UX Designer</td>
-						<td>$99.00 </td>
-						<td>
-							<div class="dropdown">
-								<button class="btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-									aria-expanded="false">
-									<i class="bi bi-three-dots-vertical"></i>
-								</button>
-								<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-									<li><a class="dropdown-item" href="#">Action</a></li>
-									<li><a class="dropdown-item" href="#">Another action</a></li>
-									<li><a class="dropdown-item" href="#">Something else here</a></li>
-								</ul>
-							</div>
+						<td>{{data.firstName}}</td>
+						<td>{{data.lastName}}</td>
+						<td>{{data.phoneNumber}}</td>
+						<td>{{data.email}}</td>
+						<td>{{data.designation}}</td>
+						<td>${{data.hourlyRate}} </td>
+						<td class="action-menus">
+							<i class="bi bi-three-dots-vertical" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+								aria-expanded="false"></i>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+								<li (click)="editDetails(data)">
+									<a class="dropdown-item update">
+										Update Details
+									</a>
+								</li>
+								<li (click)="delete(data)">
+									<a class="dropdown-item delete">
+										Delete Member
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item delete">
+										Block Member
+									</a>
+								</li>
+							</ul>
 						</td>
 					</tr>
 				</tbody>
@@ -68,50 +70,6 @@
 </div>
 <!--Container Main end-->
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header modal-color">
-				<h1 class="modal-title fs-5" id="exampleModalLabel">Add Member</h1>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				<div class="div">
-					<div class="w-75 mb-3">
-						<input class="form-control" type="text" placeholder="First Name"
-							aria-label="default input example">
-					</div>
-					<div class="w-75 mb-3">
-						<input class="form-control" type="text" placeholder="Last Name"
-							aria-label="default input example">
-					</div>
-					<div class="w-75 mb-3">
-						<input class="form-control" type="text" placeholder="Email Address"
-							aria-label="default input example">
-					</div>
-					<div class="w-75 mb-5">
-						<input class="form-control" type="text" placeholder="Telephone"
-							aria-label="default input example">
-					</div>
-					<div class="w-75 mb-3">
-						<select class="form-select" aria-label="Default select example">
-							<option selected>Function</option>
-							<option value="1">One</option>
-							<option value="2">Two</option>
-							<option value="3">Three</option>
-						</select>
-					</div>
-					<div class="input-group w-75">
-						<input type="text" class="form-control" placeholder="Dollar"
-							aria-label="Dollar amount (with dot and two decimal places)">
-						<span class="input-group-text input-color">$/hr</span>
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-			</div>
-		</div>
-	</div>
-</div>
+
+<app-confirmation-modal (onClose)="onCloseConfirmationModal($event)" [isOpen]="isConfirmationModalOpen"
+	[title]="modalTitle" [message]="modalMessage"></app-confirmation-modal>

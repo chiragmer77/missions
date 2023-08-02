@@ -13,6 +13,11 @@ import { ClientsComponent } from './clients/clients.component';
 import { AddClientsComponent } from './clients/add-clients/add-clients.component';
 import { DocumentDetailsComponent } from './documents/document-details/document-details.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { DesignationComponent } from './designation/designation.component';
+import { CategoryComponent } from './category/category.component';
+import { AddDesignatinComponent } from './designation/add/add.component';
+import { AddCategoryComponent } from './category/add/add.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -23,15 +28,19 @@ import { SharedModule } from 'src/app/shared/shared.module';
     DocumentComponent,
     ClientsComponent,
     AddClientsComponent,
-    DocumentDetailsComponent
-  ],
+    DocumentDetailsComponent,
+    DesignationComponent,
+    CategoryComponent,
+    AddDesignatinComponent,
+    AddCategoryComponent],
   imports: [
     CommonModule,
     RouterOutletRoutingModule,
     HttpClientModule,
     FormsModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ], schemas: [
     CUSTOM_ELEMENTS_SCHEMA
   ],

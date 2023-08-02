@@ -7,50 +7,62 @@
                 <img src="./assets/Images/logo/logoBP 1.png" #smallLogo class="small-logo logo-small" />
             </a>
             <div class="nav_list sidenavMenusresponsive" [ngClass]="{'sidenavMenus': !isClassAdded}">
-                <a [routerLink]="['/dashboard/dashboard']" class="nav_link pe-auto">
-                    <img src="./assets/icons/layout.png" />
-                    <!-- <i class="bi bi-window-sidebar"></i> -->
-                    <span class="nav_name" routerLinkActive="active">
+                <a [routerLink]="['/dashboard/dashboard']" class="nav_link pe-auto" routerLinkActive="active">
+                    <i class="bi bi-window-sidebar"></i>
+                    <span class="nav_name">
                         Dashboard
                     </span>
                 </a>
-                <a class="nav_link pe-auto" [routerLink]="['/dashboard/missions']">
-                    <img src="./assets/icons/layers.png" />
-                    <!-- <i class="bi bi-stack"></i> -->
-                    <span class="nav_name" routerLinkActive="active">
+                <a class="nav_link pe-auto" [routerLink]="['/dashboard/missions']" routerLinkActive="active">
+                    <i class="bi bi-stack"></i>
+                    <span class="nav_name">
                         Mission
                     </span>
                 </a>
-                <a [routerLink]="['/dashboard/member-list']" class="nav_link pe-auto">
-                    <img src="./assets/icons/users.png" />
-                    <!-- <i class="bi bi-people"></i> -->
-                    <span class="nav_name" routerLinkActive="active">
+                <a [routerLink]="['/dashboard/member-list']" class="nav_link pe-auto" routerLinkActive="active">
+                    <i class="bi bi-people"></i>
+                    <span class="nav_name">
                         Members
                     </span>
                 </a>
-                <a class="nav_link pe-auto" [routerLink]="['/dashboard/clients']">
-                    <img src="./assets/icons/client1.png" />
-                    <span class="nav_name" routerLinkActive="active">
+                <a class="nav_link pe-auto" [routerLink]="['/dashboard/clients']" routerLinkActive="active">
+                    <i class="bi bi-person-square"></i>
+                    <span class="nav_name">
                         Clients
                     </span>
                 </a>
-                <!-- <a class="nav_link pe-auto" [routerLink]="['/dashboard/member-list']">
-                    <img src="./assets/icons/calendar.png" />
-                    <span class="nav_name" routerLinkActive="active">Gant chart/Calendar
+                <a class="nav_link pe-auto" [routerLink]="['/dashboard/member-list']" routerLinkActive="active">
+                    <i class="bi bi-calendar2"></i>
+                    <span class="nav_name">
+                        Gant chart/Calendar
                     </span>
-                </a> -->
-                <a class="nav_link pe-auto" [routerLink]="['/dashboard/document']">
-                    <img src="./assets/icons/file-text.png" />
-                    <span class="nav_name" routerLinkActive="active">
+                </a>
+                <a class="nav_link pe-auto" [routerLink]="['/dashboard/document']" routerLinkActive="active">
+                    <i class="bi bi-file-earmark"></i>
+                    <span class="nav_name">
                         Documents
                     </span>
                 </a>
-                <!-- <a class="nav_link pe-auto" [routerLink]="['/dashboard/member-list']">
-                    <img src="./assets/icons/activity.png" />
-                    <span class="nav_name" routerLinkActive="active">
+
+                <a class="nav_link pe-auto" [routerLink]="['/dashboard/category']" routerLinkActive="active">
+                    <i class="bi bi-person-fill-gear"></i>
+                    <span class="nav_name">
+                        Category
+                    </span>
+                </a>
+
+                <a class="nav_link pe-auto" [routerLink]="['/dashboard/designation']" routerLinkActive="active">
+                    <i class="bi bi-grid-fill"></i>
+                    <span class="nav_name">
+                        Designation
+                    </span>
+                </a>
+                <a class="nav_link pe-auto" [routerLink]="['/dashboard/member-list']" routerLinkActive="active">
+                    <i class="bi bi-graph-down"></i>
+                    <span class="nav_name">
                         Analytics
                     </span>
-                </a> -->
+                </a>
                 <div class="exit_arrow" [ngClass]="{'exit-arrow-side-nav-open': isClassAdded}">
                     <a (click)="toggleClass()" class="pointer">
                         <img #leftArrow class="right-arrow" src="./assets/icons/arrow-left-circle.png" />

@@ -7,8 +7,8 @@
             </h3>
             <div class="top_action float-end">
                 <ul>
-                    <li><a href="#" class="m_slider"><i class="bi bi-search"></i></a></li>
-                    <li><a href="#" class="m_slider"><i class="bi bi-sliders2-vertical"></i></a></li>
+                    <li><a class="m_slider"><i class="bi bi-search"></i></a></li>
+                    <li><a class="m_slider"><i class="bi bi-sliders2-vertical"></i></a></li>
                     <li>
                         <app-add-mission (onClose)="handleChildComponentClose()"></app-add-mission>
                     </li>
@@ -21,20 +21,22 @@
         <div class="row p-0">
             <div class="mission_details">
                 <ul>
-                    <li>
+                    <li *ngFor="let data of missionList">
                         <div class="row">
-                            <div class="col-xl-4 col-md-4 col-sm-6 col-xs-12 m_task_details">
-                                <h4><a href="#">Need a logo desgined for a poltary farm </a></h4>
-                                <p>11/28/2022 08:07PM</p>
+                            <div class="col-xl-4 col-md-4 col-sm-6 col-xs-12 m_task_details"
+                                (click)="setProjectData(data)">
+                                <h4><a>{{data.title}} </a></h4>
+                                <p>{{data.startDate |date: 'M/d/yy, h:mm a'}} - {{data.endDate | date: 'M/d/yy, h:mm
+                                    a'}}</p>
                             </div>
 
                             <div class="col-xl-2 col-md-2 col-sm-3 col-xs-12 m_task_status">
-                                <h4><a href="#">In-progress</a></h4>
+                                <h4><a>In-progress</a></h4>
                                 <p>Status</p>
                             </div>
 
                             <div class="col-xl-2 col-md-2 col-sm-3 col-xs-12 m_client_name">
-                                <h4><a href="#">Samuel Bravo</a></h4>
+                                <h4><a>{{data.client}}</a></h4>
                                 <p>Client Name</p>
                             </div>
 
@@ -55,20 +57,20 @@
                             </div>
                         </div>
                     </li>
-                    <li>
+                    <!-- <li>
                         <div class="row">
                             <div class="col-xl-4 col-md-4 col-sm-6 col-xs-12 m_task_details">
-                                <h4><a href="#">Need a logo desgined for a poltary farm </a></h4>
+                                <h4><a>Need a logo desgined for a poltary farm </a></h4>
                                 <p>11/28/2022 08:07PM</p>
                             </div>
 
                             <div class="col-xl-2 col-md-2 col-sm-3 col-xs-12 m_task_status">
-                                <h4><a href="#">In-progress</a></h4>
+                                <h4><a>In-progress</a></h4>
                                 <p>Status</p>
                             </div>
 
                             <div class="col-xl-2 col-md-2 col-sm-3 col-xs-12 m_client_name">
-                                <h4><a href="#">Samuel Bravo</a></h4>
+                                <h4><a>Samuel Bravo</a></h4>
                                 <p>Client Name</p>
                             </div>
 
@@ -92,17 +94,17 @@
                     <li>
                         <div class="row">
                             <div class="col-xl-4 col-md-4 col-sm-6 col-xs-12 m_task_details">
-                                <h4><a href="#">Need a logo desgined for a poltary farm </a></h4>
+                                <h4><a>Need a logo desgined for a poltary farm </a></h4>
                                 <p>11/28/2022 08:07PM</p>
                             </div>
 
                             <div class="col-xl-2 col-md-2 col-sm-3 col-xs-12 m_task_status">
-                                <h4><a href="#">In-progress</a></h4>
+                                <h4><a>In-progress</a></h4>
                                 <p>Status</p>
                             </div>
 
                             <div class="col-xl-2 col-md-2 col-sm-3 col-xs-12 m_client_name">
-                                <h4><a href="#">Samuel Bravo</a></h4>
+                                <h4><a>Samuel Bravo</a></h4>
                                 <p>Client Name</p>
                             </div>
 
@@ -122,7 +124,7 @@
                                 <span class="m_img_thumbnail" data-bs-toggle="tooltip" title="Kishan">+3</span>
                             </div>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>

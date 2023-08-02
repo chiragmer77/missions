@@ -35,11 +35,11 @@ export class ClientsComponent {
 
 
   ngOnInit(): void {
-    this.getMemberLists();
+    this.getClientsLists();
   }
 
   /** Get Member lists */
-  getMemberLists() {
+  getClientsLists() {
     this.spinner.show();
     this.apiService.getWithParams('AppClient',
       `IsHideCount=${this.pagePayload.IsHideCount}&Search=${this.pagePayload.Search}&IsDescending=${this.pagePayload.IsDescending}&Page=${this.pagePayload.Page}&PageSize=${this.pagePayload.PageSize}`).subscribe((response) => {
@@ -51,7 +51,7 @@ export class ClientsComponent {
   /** Child component close */
   handleChildComponentClose() {
     // This method will be called when the child component is closed
-    this.getMemberLists();
+    this.getClientsLists();
   }
 
   /** Edit Client details */
@@ -72,7 +72,7 @@ export class ClientsComponent {
       this.apiService.delete(`AppClient/${this.data.id}`).subscribe((response) => {
         if (response.success) {
           this.toaster.success('Client Delete Successfully!');
-          this.getMemberLists();
+          this.getClientsLists();
         }
       });
     }

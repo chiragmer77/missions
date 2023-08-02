@@ -17,5 +17,24 @@
   bottom: 20px;
 }
 .content-wrapper {
-  padding-right: 0px !important;
+  /* padding-right: 0px !important; */
+}
+
+.nav_list i {
+  color: black !important;
+}
+
+.active i {
+  color: #0044aa !important;
+  font-weight: 600;
+}
+
+.active .nav_name {
+  color: #0044aa !important;
+  font-weight: 600;
+}
+
+.pe-auto:hover .bi {
+  color: #0044aa !important;
+  font-weight: 600;
 }

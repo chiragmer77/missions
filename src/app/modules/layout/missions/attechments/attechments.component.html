@@ -1,0 +1,60 @@
+<i class="bi bi-plus-circle" (click)="sidebarOpenClose()"></i>
+<!--Filter Code-->
+<div class="sideFormFields card mb-3" [ngClass]="{'ShowFields' : isSidebarOpenClose}">
+    <div class="card-header">
+        <span> {{isEditing == true ? 'Edit Attachments' : 'Add Attachments'}} </span>
+        <button class="btn" aria-label="Close" (click)="sidebarOpenClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form [formGroup]="myForm" (ngSubmit)="onFormSubmit()">
+        <div class="card-body">
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <input type="text" placeholder="Title of Project" class="form-control" id="title"
+                            formControlName="title" required>
+                        <h6 class="error-message">
+                            <span *ngIf="myForm.get('title').invalid && myForm.get('title').touched"
+                                class="text-danger">
+                                Title of Project is required
+                            </span>
+                        </h6>
+                    </div>
+                    <div class="col-md-12">
+                        <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"
+                            (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+                            <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                                Drop Files Here
+                                <button class="btn" type="button" (click)="openFileSelector()">Browse
+                                    Files</button>
+                            </ng-template>
+                        </ngx-file-drop>
+
+                        <ng-container *ngIf="attechments.isTrue">
+                            <div class="drop-file-section mt-4">
+                                <i [ngClass]="getFileIconClass(attechments.name)"></i>
+                                <h6 *ngIf="attechments.name">
+                                    {{attechments.name}}
+                                </h6>
+                                <a href="javascript:void(0);" class="label label-default bg-gray"
+                                    (click)="unLinkAttechment($event)">
+                                    x
+                                </a>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-end">
+            <button (click)="sidebarOpenClose()" class="btn btn-outline-primary auth-cancel-outline">
+                Cancel
+            </button>
+            <button class="btn btn-primary auth-buttons" type="submit">
+                {{isEditing == true ? 'Edit Attachments' : 'Add Attachments'}}
+            </button>
+        </div>
+    </form>
+
+</div>

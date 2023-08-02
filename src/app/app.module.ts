@@ -18,6 +18,10 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './core/interceptor/api.interceptor';
 import { MissionsModule } from './modules/layout/missions/missions.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { DatePipe } from '@angular/common';
+import { NgDragDropModule } from 'ng-drag-drop';
+
 
 
 @NgModule({
@@ -41,6 +45,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     SharedModule,
     MissionsModule,
     NgxSpinnerModule,
+    NgxPaginationModule,
+    NgDragDropModule.forRoot()
   ],
   providers: [
     {
@@ -48,6 +54,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
       useClass: ApiInterceptor,
       multi: true,
     },
+    DatePipe
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
