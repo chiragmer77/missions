@@ -7,19 +7,19 @@
             </h3>
         </div>
         <div class="top_action float-end">
-            <ul *ngIf="clickedTab != 'Overview-tab'">
+            <ul *ngIf="previousTab != 'Overview-tab'">
                 <li>
                     <span class="m_img_thumbnail blue_thumb_color" data-bs-toggle="tooltip" title="Kishan">K</span>
                     <span class="m_img_thumbnail green_thumb_color" data-bs-toggle="tooltip" title="Diya">D</span>
                     <span class="m_img_thumbnail purple_thumb_color" data-bs-toggle="tooltip" title="Madhuri">M</span>
                     <span class="m_img_thumbnail" data-bs-toggle="tooltip" title="3+">+3</span>
                 </li>
-                <li *ngIf="clickedTab != 'Timeline-tab'">
+                <li *ngIf="previousTab != 'Timeline-tab'">
                     <a href="#" class="m_slider">
                         <i class="bi bi-search"></i>
                     </a>
                 </li>
-                <li *ngIf="clickedTab != 'Timeline-tab'">
+                <li *ngIf="previousTab != 'Timeline-tab'">
                     <app-add (onClose)="handleChildComponentClose()"></app-add>
                 </li>
             </ul>
@@ -31,45 +31,53 @@
             <div class="col-md-12 mt-5">
                 <ul class="nav nav-tabs" id="myTab" #myTabs role="tablist" (click)="tabClick($event)">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" data-tab="Overview-tab" id="Overview-tab" data-bs-toggle="tab"
-                            data-bs-target="#Overview" type="button" role="tab" aria-controls="Overview"
-                            aria-selected="true">
+                        <button class="nav-link active" [ngClass]="{ 'active': previousTab === 'Overview-tab' }"
+                            data-tab="Overview-tab" id="Overview-tab" data-bs-toggle="tab" data-bs-target="#Overview"
+                            type="button" role="tab" aria-controls="Overview" aria-selected="true">
                             Overview
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" data-tab="Tasks-tab" id="Tasks-tab" data-bs-toggle="tab"
-                            data-bs-target="#Tasks" type="button" role="tab" aria-controls="Tasks"
-                            aria-selected="false">
+                        <button class="nav-link" [ngClass]="{ 'active': previousTab === 'Tasks-tab' }"
+                            data-tab="Tasks-tab" id="Tasks-tab" data-bs-toggle="tab" data-bs-target="#Tasks"
+                            type="button" role="tab" aria-controls="Tasks" aria-selected="false">
                             Tasks
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="Board-tab" data-tab="Board-tab" data-bs-toggle="tab"
-                            data-bs-target="#Board" type="button" role="tab" aria-controls="Board"
-                            aria-selected="false">
+                        <button class="nav-link" [ngClass]="{ 'active': previousTab === 'Board-tab' }" id="Board-tab"
+                            data-tab="Board-tab" data-bs-toggle="tab" data-bs-target="#Board" type="button" role="tab"
+                            aria-controls="Board" aria-selected="false">
                             Board
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="Timeline-tab" data-tab="Timeline-tab" data-bs-toggle="tab"
-                            data-bs-target="#Timeline" type="button" role="tab" aria-controls="Timeline"
-                            aria-selected="false">
+                        <button class="nav-link" [ngClass]="{ 'active': previousTab === 'Timeline-tab' }"
+                            id="Timeline-tab" data-tab="Timeline-tab" data-bs-toggle="tab" data-bs-target="#Timeline"
+                            type="button" role="tab" aria-controls="Timeline" aria-selected="false">
                             Timeline
                         </button>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="Overview" role="tabpanel" aria-labelledby="Overview-tab">
+                    <div class="tab-pane fade" *ngIf="previousTab === 'Overview-tab'"
+                        [ngClass]="{ 'show active': previousTab === 'Overview-tab' }" id="Overview" role="tabpanel"
+                        aria-labelledby="Overview-tab">
                         <app-overview [dataFromParent]="projectObj"></app-overview>
                     </div>
-                    <div class="tab-pane fade" id="Tasks" role="tabpanel" aria-labelledby="Tasks-tab">
+                    <div class="tab-pane fade" *ngIf="previousTab === 'Tasks-tab'"
+                        [ngClass]="{ 'show active': previousTab === 'Tasks-tab' }" id="Tasks" role="tabpanel"
+                        aria-labelledby="Tasks-tab">
                         <app-tasks></app-tasks>
                     </div>
-                    <div class="tab-pane fade" id="Board" role="tabpanel" aria-labelledby="Board-tab">
+                    <div class="tab-pane fade" *ngIf="previousTab === 'Board-tab'"
+                        [ngClass]="{ 'show active': previousTab === 'Board-tab' }" id="Board" role="tabpanel"
+                        aria-labelledby="Board-tab">
                         <app-board></app-board>
                     </div>
-                    <div class="tab-pane fade" id="Timeline" role="tabpanel" aria-labelledby="Timeline-tab">...</div>
+                    <div class="tab-pane fade" *ngIf="previousTab === 'Timeline-tab'"
+                        [ngClass]="{ 'show active': previousTab === 'Timeline-tab' }" id="Timeline" role="tabpanel"
+                        aria-labelledby="Timeline-tab">...</div>
 
                 </div>
 

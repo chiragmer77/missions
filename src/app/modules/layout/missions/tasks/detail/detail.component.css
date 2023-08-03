@@ -145,3 +145,15 @@
   color: #000000;
   line-height: 50px;
 }
+.badge {
+  border-radius: 32px;
+}
+.bg-warning {
+  background: #d08411 !important;
+}
+.bg-primary {
+  background: #2d8ce4 !important;
+}
+.bg-danger {
+  background: #d71111 !important;
+}

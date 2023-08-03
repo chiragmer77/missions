@@ -21,7 +21,7 @@
         <div class="row p-0">
             <div class="mission_details">
                 <ul>
-                    <li *ngFor="let data of missionList">
+                    <li *ngFor="let data of missionList | paginate: { itemsPerPage: 5, currentPage: p }">
                         <div class="row">
                             <div class="col-xl-4 col-md-4 col-sm-6 col-xs-12 m_task_details"
                                 (click)="setProjectData(data)">
@@ -126,6 +126,10 @@
                         </div>
                     </li> -->
                 </ul>
+
+            </div>
+            <div class="text-end mt-4">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
             </div>
         </div>
     </div>

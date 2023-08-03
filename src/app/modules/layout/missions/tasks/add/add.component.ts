@@ -50,7 +50,7 @@ export class AddComponent {
     });
 
     this.getListOfCategory();
-    this.getListOfMemer();
+    this.getListOfProjectRole();
   }
 
   // sidebar open close
@@ -74,6 +74,7 @@ export class AddComponent {
             // Emit the event when the child component is closed
             this.onClose.emit();
             this.spinner.hide();
+            this.resetForm(); // Reset the form after successful add or update
           }
         });
       } else {
@@ -86,10 +87,10 @@ export class AddComponent {
             this.sharedService.taskAddEvent.emit(response);
             this.onClose.emit();
             this.spinner.hide();
+            this.resetForm(); // Reset the form after successful add or update
           }
         });
       }
-      this.resetForm(); // Reset the form after successful add or update
     }
   }
 
@@ -109,6 +110,13 @@ export class AddComponent {
     this.myForm.reset();
     this.isEditing = false;
     this.sidebarOpenClose();
+    this.myForm.reset({
+      projectTaskCategoryId: '', // Set the designationId form control to an empty string
+      priority: '',
+      status: '',
+      memberId: ''
+    });
+    this.myForm.get('projectId').setValue(this.projectObj.id)
   }
 
   handleEventInChild(data: any) {
@@ -118,8 +126,8 @@ export class AddComponent {
   }
 
   // Get Member lists
-  getListOfMemer() {
-    this.apiService.get('ProjectRole/dropDown').subscribe((response) => {
+  getListOfProjectRole() {
+    this.apiService.getWithParams('ProjectRole/dropDown/', `ProjectId=${this.projectObj.id}`).subscribe((response) => {
       this.memberList = response.data;
     });
   }

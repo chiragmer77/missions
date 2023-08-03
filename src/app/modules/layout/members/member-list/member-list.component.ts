@@ -24,6 +24,7 @@ export class MemberListComponent implements OnInit {
     PageSize: 10,
     OrderBy: ''
   }
+  p: number = 1;
 
   memberLists: any = [];
   constructor(

@@ -33,8 +33,8 @@ export class AddClientsComponent {
       name: ['', Validators.required],
       address: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      telephone: ['', Validators.required],
-      contact: ['', Validators.required]
+      telephone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      contact: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
     });
   }
 

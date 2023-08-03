@@ -23,6 +23,7 @@ export class CategoryComponent {
     PageSize: 10,
     OrderBy: ''
   }
+  p: number = 1;
 
   categoryLists: any = [];
 

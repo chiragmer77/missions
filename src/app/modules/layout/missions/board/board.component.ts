@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
@@ -10,6 +10,8 @@ import { SharedService } from 'src/app/shared/services/shared.service';
   styleUrls: ['./board.component.css']
 })
 export class BoardComponent {
+  @Output() openAddTask: EventEmitter<void> = new EventEmitter<void>();
+
   projectTasksLists: any = [];
   pagePayload: any = {
     IsHideCount: true,
@@ -35,6 +37,13 @@ export class BoardComponent {
     if (storedData) {
       this.projectObj = JSON.parse(storedData);
     }
+
+    this.sharedService.taskAddEvent.subscribe((priority: any) => {
+      // Do something when priority changes
+      if (priority.success) {
+        this.getProjectTasksLists();
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -60,7 +69,6 @@ export class BoardComponent {
 
   // Remove Item 
   removeItemTasks(event: any, type: string) {
-    console.log(event, type);
     this.updateTaskProgress(event.dragData, type);
   }
 
@@ -74,7 +82,13 @@ export class BoardComponent {
     this.apiService.put(`ProjectTask/${task.id}/status`, payload).subscribe((response) => {
       if (response.success) {
         this.toaster.success('Project task change Successfully!');
-        this.getProjectTasksLists();
+        task.status = payload.status;
+        // Filter tasks based on status
+        this.todoList = this.projectTasksLists.filter((task: any) => task.status === 1);
+        this.inProgressList = this.projectTasksLists.filter((task: any) => task.status === 2);
+        this.completeList = this.projectTasksLists.filter((task: any) => task.status === 3);
+        this.blockedList = this.projectTasksLists.filter((task: any) => task.status === 4);
+        // this.getProjectTasksLists();
         this.spinner.hide();
       }
     });

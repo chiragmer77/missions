@@ -38,11 +38,17 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 mb-4">
-                        <input type="number" placeholder="Person of Contact Number" class="form-control" id="contact"
+                        <input type="tel" placeholder="Person of Contact Number" class="form-control" id="contact"
                             formControlName="contact" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('contact').invalid && myForm.get('contact').touched"
                                 class="text-danger">Person of Contact Number is required</span>
+                            <span *ngIf="myForm.get('contact').errors?.minlength" class="text-danger">
+                                Contact Number must be at least 10 characters long
+                            </span>
+                            <span *ngIf="myForm.get('contact').errors?.maxlength" class="text-danger">
+                                Contact Number must not exceed 10 characters
+                            </span>
                         </h6>
                     </div>
 
@@ -52,6 +58,12 @@
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('telephone').invalid && myForm.get('telephone').touched"
                                 class="text-danger">Telephone is required</span>
+                            <span *ngIf="myForm.get('telephone').errors?.minlength" class="text-danger">
+                                Telephone must be at least 10 characters long
+                            </span>
+                            <span *ngIf="myForm.get('telephone').errors?.maxlength" class="text-danger">
+                                Telephone must not exceed 10 characters
+                            </span>
                         </h6>
                     </div>
 

@@ -25,10 +25,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let data of categoryLists">
+                    <tr *ngFor="let data of categoryLists | paginate: { itemsPerPage: 10, currentPage: p }">
                         <td>{{data.name}}</td>
-
-
                         <td class="action-menus">
                             <button type="submit" class="btn" (click)="editDetails(data)">
                                 <i class="bi bi-pencil-square"></i>
@@ -40,6 +38,9 @@
                     </tr>
                 </tbody>
             </table>
+            <div class="text-end mt-4">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
             <div class="no-records-found mt-5 text-center" *ngIf="categoryLists.length == 0">
                 <span>No Records Found ! </span>
             </div>

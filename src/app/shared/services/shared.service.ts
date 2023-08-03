@@ -1,4 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
+import { formatDistanceToNow } from 'date-fns';
+
 
 @Injectable({
   providedIn: 'root'
@@ -73,5 +75,10 @@ export class SharedService {
       default:
         return '#808080'; // Default background color if the letter doesn't match any case (Gray)
     }
+  }
+
+  // Time ago function
+  timeAgo(date: Date | string): string {
+    return formatDistanceToNow(new Date(date), { addSuffix: true });
   }
 }

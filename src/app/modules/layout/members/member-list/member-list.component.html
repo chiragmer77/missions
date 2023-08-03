@@ -31,7 +31,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr *ngFor="let data of memberLists">
+					<tr *ngFor="let data of memberLists | paginate: { itemsPerPage: 10, currentPage: p }">
 						<td>{{data.firstName}}</td>
 						<td>{{data.lastName}}</td>
 						<td>{{data.phoneNumber}}</td>
@@ -62,6 +62,9 @@
 					</tr>
 				</tbody>
 			</table>
+			<div class="text-end mt-4">
+				<pagination-controls (pageChange)="p = $event"></pagination-controls>
+			</div>
 			<div class="no-records-found mt-5 text-center" *ngIf="memberLists.length == 0">
 				<span>No Records Found ! </span>
 			</div>

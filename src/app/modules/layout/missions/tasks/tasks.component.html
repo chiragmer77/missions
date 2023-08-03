@@ -12,8 +12,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let data of projectTasksLists">
-                    <td class="pointer" routerLink="/dashboard/missions/mission-task-details/">
+                <tr *ngFor="let data of projectTasksLists | paginate: { itemsPerPage: 5, currentPage: p }">
+                    <td class="pointer" (click)="setTaskData(data)">
                         {{data.title}}
                     </td>
                     <td>
@@ -241,6 +241,9 @@
                 </tr> -->
             </tbody>
         </table>
+        <div class="text-end mt-4">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
         <div class="no-records-found mt-5 text-center" *ngIf="projectTasksLists.length == 0">
             <span>No Records Found ! </span>
         </div>

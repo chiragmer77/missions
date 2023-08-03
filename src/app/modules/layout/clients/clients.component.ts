@@ -23,7 +23,7 @@ export class ClientsComponent {
     PageSize: 10,
     OrderBy: ''
   }
-
+  p: number = 1;
   clientsLists: any = [];
 
 

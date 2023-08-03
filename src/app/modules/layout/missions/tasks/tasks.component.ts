@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
@@ -20,12 +21,14 @@ export class TasksComponent {
   }
   projectObj: any;
   projectTasksLists: any = [];
+  p: number = 1
 
   constructor(
     private apiService: ApiService,
     private toaster: ToastrService,
     private spinner: NgxSpinnerService,
-    public sharedService: SharedService
+    public sharedService: SharedService,
+    private router: Router
   ) {
     const storedData = localStorage.getItem('projectData');
     if (storedData) {
@@ -100,6 +103,13 @@ export class TasksComponent {
       default:
         return 1;
     }
+  }
+
+  /** Set Task Data */
+  setTaskData(data: any) {
+    localStorage.setItem('taskData', JSON.stringify(data));
+    this.router.navigate(['/dashboard/missions/mission-task-details/']);
+    console.log(data);
   }
 
 }

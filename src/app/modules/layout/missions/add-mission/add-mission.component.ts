@@ -50,6 +50,8 @@ export class AddMissionComponent {
   }
 
   onFormSubmit() {
+    // Trigger validation for all form controls
+    this.markFormGroupAsTouched(this.myForm);
     if (this.myForm!.valid) {
       this.spinner.show();
       this.myForm!.value.budget = this.myForm!.value.budget.toString();
@@ -82,11 +84,25 @@ export class AddMissionComponent {
     }
   }
 
+  // Mark for check 
+  private markFormGroupAsTouched(formGroup: FormGroup) {
+    Object.values(formGroup.controls).forEach(control => {
+      control.markAsTouched();
+      if (control instanceof FormGroup) {
+        this.markFormGroupAsTouched(control);
+      }
+    });
+  }
+
   // Function to reset the form when adding new data
   resetForm() {
     this.myForm.reset();
     this.isEditing = false;
     this.sidebarOpenClose();
+    this.myForm.reset({
+      clientId: '', // Set the designationId form control to an empty string
+      teamLeadId: ''
+    });
   }
 
   handleEventInChild(data: any) {

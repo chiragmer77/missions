@@ -28,6 +28,8 @@ export class MissionsListComponent {
     OrderBy: ''
   }
   missionList: any = [];
+  p: number = 1;
+
 
   constructor(
     private apiService: ApiService,
@@ -63,6 +65,7 @@ export class MissionsListComponent {
   setProjectData(data: any) {
     localStorage.setItem('projectData', JSON.stringify(data));
     this.router.navigate(['/dashboard/missions/mission-detail/']);
+    localStorage.setItem('previousTab', 'Overview-tab');
     console.log(data);
   }
 
