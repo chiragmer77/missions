@@ -3,6 +3,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 import { AddDesignatinComponent } from './add/add.component';
+import { SharedService } from 'src/app/shared/services/shared.service';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-designation',
@@ -24,23 +26,28 @@ export class DesignationComponent {
     OrderBy: ''
   }
   p: number = 1;
-
+  isSearchVisible = false;
   designationList: any = [];
 
 
   constructor(
     private apiService: ApiService,
     private toaster: ToastrService,
-    private spinner: NgxSpinnerService
-  ) { }
+    private spinner: NgxSpinnerService,
+    private sharedService: SharedService
+  ) {
+    this.sharedService.searchSubject.pipe(debounceTime(500)).subscribe((query) => {
+      this.onSearch(query);
+    });
+  }
 
 
   ngOnInit(): void {
-    this.getMemberLists();
+    this.getDesignationList();
   }
 
   /** Get Member lists */
-  getMemberLists() {
+  getDesignationList() {
     this.spinner.show();
     this.apiService.getWithParams('Designation',
       `IsHideCount=${this.pagePayload.IsHideCount}&Search=${this.pagePayload.Search}&IsDescending=${this.pagePayload.IsDescending}&Page=${this.pagePayload.Page}&PageSize=${this.pagePayload.PageSize}`).subscribe((response) => {
@@ -52,7 +59,7 @@ export class DesignationComponent {
   /** Child component close */
   handleChildComponentClose() {
     // This method will be called when the child component is closed
-    this.getMemberLists();
+    this.getDesignationList();
   }
 
   /** Edit Client details */
@@ -73,7 +80,7 @@ export class DesignationComponent {
       this.apiService.delete(`Designation/${this.data.id}`).subscribe((response) => {
         if (response.success) {
           this.toaster.success('Designation Delete Successfully!');
-          this.getMemberLists();
+          this.getDesignationList();
         }
       });
     }
@@ -86,5 +93,25 @@ export class DesignationComponent {
     this.modalMessage = 'Are you sure you want to delete ' + data.name + ' from Designation?';
     this.data = data;
     this.isConfirmationModalOpen = !this.isConfirmationModalOpen;
+  }
+
+  /** Toggle search input */
+  toggleSearchInput() {
+    this.isSearchVisible = !this.isSearchVisible;
+  }
+
+  /** Close search input */
+  closeSearchInput() {
+    this.isSearchVisible = false;
+  }
+
+  /** search the client */
+  onSearch(query: string) {
+    this.getDesignationList();
+  }
+
+  // Call this function when the input value changes
+  updateSearchQuery() {
+    this.sharedService.searchSubject.next(this.pagePayload.Search);
   }
 }

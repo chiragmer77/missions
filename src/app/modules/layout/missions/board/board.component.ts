@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
@@ -31,7 +32,8 @@ export class BoardComponent {
     private apiService: ApiService,
     private toaster: ToastrService,
     private spinner: NgxSpinnerService,
-    public sharedService: SharedService
+    public sharedService: SharedService,
+    private router: Router
   ) {
     const storedData = localStorage.getItem('projectData');
     if (storedData) {
@@ -108,5 +110,21 @@ export class BoardComponent {
       default:
         return 1;
     }
+  }
+
+  /** Add Tasks Event */
+  addTasks() {
+    let payload: any = {
+      data: null,
+      purpose: 'Add'
+    }
+    this.sharedService.taskAddSideWindowEvent.emit(payload);
+  }
+
+  /** Set Task Data */
+  setTaskData(data: any) {
+    localStorage.setItem('taskData', JSON.stringify(data));
+    this.router.navigate(['/dashboard/missions/mission-task-details/']);
+    console.log(data);
   }
 }

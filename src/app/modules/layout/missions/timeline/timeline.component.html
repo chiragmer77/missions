@@ -1,1 +1,9 @@
-<p>timeline works!</p>
+<div class="container-fluid mt-4">
+    <div class="row board-cards">
+        <div class="card p-0">
+            <div>
+                <ng-gantt [options]="editorOptions" [data]="projectTasksLists" #editor></ng-gantt>
+            </div>
+        </div>
+    </div>
+</div>

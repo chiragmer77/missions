@@ -3,11 +3,12 @@
         <div class="col-md-3">
             <div class="card to-do-column" droppable (onDrop)="removeItemTasks($event,'To-Do')">
                 <div class="card-header">
-                    <i class="bi bi-plus-circle"></i>
+                    <i class="bi bi-plus-circle" (click)="addTasks()"></i>
                     To-do
                 </div>
                 <div class="card-body">
-                    <div class="card p-3 task-card" *ngFor="let todo of todoList" draggable [dragData]="todo">
+                    <div class="card p-3 task-card" *ngFor="let todo of todoList" draggable [dragData]="todo"
+                        (click)="setTaskData(todo)">
                         <div class="task-card-header">
                             <p>
                                 {{todo.title}}
@@ -57,7 +58,7 @@
                 </div>
             </div>
             <div class="card-footer column-card-footer pointer">
-                <span> <i class="bi bi-plus-circle"></i>
+                <span (click)="addTasks()"> <i class="bi bi-plus-circle"></i>
                     Add Task
                 </span>
             </div>
@@ -65,12 +66,12 @@
         <div class="col-md-3">
             <div class="card to-do-column in-progress" droppable (onDrop)="removeItemTasks($event,'In-Progress')">
                 <div class="card-header">
-                    <i class="bi bi-plus-circle"></i>
+                    <i class="bi bi-plus-circle" (click)="addTasks()"></i>
                     In-Progress
                 </div>
                 <div class="card-body">
                     <div class="card p-3 task-card" *ngFor="let inProgress of inProgressList" draggable
-                        [dragData]="inProgress">
+                        [dragData]="inProgress" (click)="setTaskData(inProgress)">
                         <div class="task-card-header">
                             <p>
                                 {{inProgress.title}}
@@ -120,7 +121,7 @@
                 </div>
             </div>
             <div class="card-footer column-card-footer pointer">
-                <span> <i class="bi bi-plus-circle"></i>
+                <span (click)="addTasks()"> <i class="bi bi-plus-circle"></i>
                     Add Task
                 </span>
             </div>
@@ -128,12 +129,12 @@
         <div class="col-md-3">
             <div class="card to-do-column" droppable (onDrop)="removeItemTasks($event,'Complete')">
                 <div class="card-header">
-                    <i class="bi bi-plus-circle"></i>
+                    <i class="bi bi-plus-circle" (click)="addTasks()"></i>
                     Complete
                 </div>
                 <div class="card-body">
                     <div class="card p-3 task-card" *ngFor="let complete of completeList" draggable
-                        [dragData]="complete">
+                        [dragData]="complete" (click)="setTaskData(complete)">
                         <div class="task-card-header">
                             <p>
                                 {{complete.title}}
@@ -184,7 +185,7 @@
 
             </div>
             <div class="card-footer column-card-footer pointer">
-                <span> <i class="bi bi-plus-circle"></i>
+                <span (click)="addTasks()"> <i class="bi bi-plus-circle"></i>
                     Add Task
                 </span>
             </div>
@@ -192,11 +193,12 @@
         <div class="col-md-3">
             <div class="card to-do-column in-progress" droppable (onDrop)="removeItemTasks($event,'Block')">
                 <div class="card-header">
-                    <i class="bi bi-plus-circle"></i>
+                    <i class="bi bi-plus-circle" (click)="addTasks()"></i>
                     Block
                 </div>
                 <div class="card-body">
-                    <div class="card p-3 task-card" *ngFor="let block of blockedList" draggable [dragData]="block">
+                    <div class="card p-3 task-card" *ngFor="let block of blockedList" draggable [dragData]="block"
+                        (click)="setTaskData(block)">
                         <div class="task-card-header">
                             <p>
                                 {{block.title}}
@@ -247,7 +249,7 @@
 
             </div>
             <div class="card-footer column-card-footer pointer">
-                <span> <i class="bi bi-plus-circle"></i>
+                <span (click)="addTasks()"> <i class="bi bi-plus-circle"></i>
                     Add Task
                 </span>
             </div>

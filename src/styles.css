@@ -2,6 +2,7 @@
 
 /* styles.css or styles.scss */
 @import "~bootstrap-icons/font/bootstrap-icons.css";
+@import "~jsgantt-improved/dist/jsgantt.css";
 
 body {
   font-family: "Fira Sans", sans-serif;
@@ -90,11 +91,22 @@ thead tr th {
 .bi-x {
   color: red !important;
 }
-
+.search-input {
+  vertical-align: top;
+}
+.bi-caret-up-fill {
+  color: grey;
+  font-size: 15px;
+}
+.bi-caret-down-fill {
+  color: grey;
+  font-size: 15px;
+}
 /* Styling the scrollbar track */
 /* For webkit-based browsers (Chrome, Safari, etc.) */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
   /* background: linear-gradient(0deg, #d3d3d3, #d3d3d3),
     linear-gradient(0deg, #f1f5fa, #f1f5fa); */
 }
@@ -677,13 +689,24 @@ a {
   color: #d08411;
 }
 .to-do-dot {
-  color: #2d8ce4;
+  color: #2d8ce4 !important;
 }
 .complete-dot {
-  color: #10be2c;
+  color: #10be2c !important;
 }
 .block-dot {
-  color: #d71111;
+  color: #d71111 !important;
+}
+.custom-dropdown {
+  width: 100% !important;
+  background: white !important;
+  border: 1px solid !important;
+}
+.custom-dropdown span {
+  float: left;
+}
+.dropdown-menu-custom {
+  width: 100%;
 }
 
 /** File dropa css */
@@ -698,4 +721,124 @@ a {
   flex-direction: column !important;
   gap: 10px;
   height: 100% !important;
+}
+
+/** Grant chart custom css */
+
+.gtaskname {
+  height: 50px !important;
+}
+.gtasktableh tr,
+.gcharttable tr,
+.gcharttableh tr,
+.gtasktable tr {
+  height: 50px !important;
+}
+.gtaskname {
+  font-size: auto !important;
+}
+.gadditional,
+.gres,
+.gdur,
+.gcomp,
+.gcost {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.gstartdate div,
+.gplanstartdate,
+.gplanenddate,
+.gstartdate,
+.genddate {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.gtaskname div,
+.gtaskname {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.gselector {
+  display: inline;
+}
+
+span.gformlabel:hover,
+span.gselected {
+  background-color: #198754;
+  border: #cccccc 1px solid;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+}
+.gformlabel {
+  position: relative;
+  top: 0px;
+  cursor: pointer;
+  border: #ffffff 1px solid;
+  margin-left: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-weight: bold;
+  font-size: 15px;
+}
+/* .gmainright {
+  width: 100%;
+} */
+/* .gmajorheading {
+  width: 280px !important;
+} */
+/* .gtaskcell {
+  width: 40px !important;
+}
+.gtaskcellwkend {
+  width: 40px !important;
+}
+.gminorheading {
+  width: 40px !important;
+}
+.gminorheading div {
+  width: auto !important;
+}
+.gminorheadingwkend {
+  width: 40px !important;
+}
+.gminorheadingwkend div {
+  width: auto !important;
+  font-size: 11px;
+}
+.gmajorheading div {
+  width: auto !important;
+  font-size: 14px;
+} */
+.ggroupblack,
+.gtaskblue,
+.gtaskred,
+.gtaskgreen,
+.gtaskyellow,
+.gtaskpurple,
+.gtaskpink {
+  height: 24px;
+  opacity: 0.9;
+  margin-top: -7px;
+  border-radius: 10px;
+}
+
+.gtaskbluecomplete,
+.gtaskredcomplete,
+.gtaskgreencomplete,
+.gtaskyellowcomplete,
+.gtaskpurplecomplete,
+.gtaskpinkcomplete {
+  opacity: 0.4;
+  background-color: #000000;
+  margin-top: 9px;
+  border-radius: 10px;
+}
+.ggroupblackcomplete {
+  opacity: 0.4;
+  margin-top: 9px;
+  border-radius: 10px;
 }

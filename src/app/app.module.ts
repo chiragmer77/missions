@@ -21,7 +21,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { DatePipe } from '@angular/common';
 import { NgDragDropModule } from 'ng-drag-drop';
-
+import { NgGanttEditorModule } from 'ng-gantt'
 
 
 @NgModule({
@@ -46,8 +46,8 @@ import { NgDragDropModule } from 'ng-drag-drop';
     MissionsModule,
     NgxSpinnerModule,
     NgxPaginationModule,
-    NgDragDropModule.forRoot()
-  ],
+    NgDragDropModule.forRoot(),
+    NgGanttEditorModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

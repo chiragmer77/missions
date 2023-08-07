@@ -7,8 +7,26 @@
             </h3>
             <div class="top_action float-end">
                 <ul>
-                    <li><a class="m_slider"><i class="bi bi-search"></i></a></li>
-                    <li><a class="m_slider"><i class="bi bi-sliders2-vertical"></i></a></li>
+                    <li *ngIf="isSearchVisible" class="search-input">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search..."
+                                [(ngModel)]="pagePayload.Search" (input)="updateSearchQuery()" />
+                            <span class="input-group-text" (click)="closeSearchInput()">
+                                <i class="bi bi-x"></i>
+                            </span>
+                        </div>
+                    </li>
+                    <li *ngIf="!isSearchVisible">
+                        <a class="m_slider" (click)="toggleSearchInput()">
+                            <i class="bi bi-search"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="m_slider">
+                            <i class="bi bi-sliders2-vertical">
+                            </i>
+                        </a>
+                    </li>
                     <li>
                         <app-add-mission (onClose)="handleChildComponentClose()"></app-add-mission>
                     </li>
@@ -31,7 +49,9 @@
                             </div>
 
                             <div class="col-xl-2 col-md-2 col-sm-3 col-xs-12 m_task_status">
-                                <h4><a>In-progress</a></h4>
+                                <h4 class="not-started" *ngIf="data.status === 1"><a>Not-Started</a></h4>
+                                <h4 class="in-progress" *ngIf="data.status === 2"><a>In-progress</a></h4>
+                                <h4 class="completed" *ngIf="data.status === 3"><a>Completed</a></h4>
                                 <p>Status</p>
                             </div>
 
@@ -41,19 +61,37 @@
                             </div>
 
                             <div class="col-xl-2 col-md-2 col-sm-3 col-xs-12 m_task_persons">
-                                <div class="progress mt-3" style="height:7px">
-                                    <div class="progress-bar" style="width:40%;"></div>
+                                <div class="progress mt-3">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                        role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                        [style.width.%]="(data.totalTaskCompleted / data.totalTask) * 100">
+                                        {{(data.totalTaskCompleted / data.totalTask) * 100 | number:'1.0-0'}}
+                                        {{(data.totalTaskCompleted / data.totalTask) * 100 > 0 ? '%' : ''}}
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-xl-2 col-md-2 col-sm-3 col-xs-12 m_task_progress">
-                                <span class="m_img_thumbnail blue_thumb_color" data-bs-toggle="tooltip"
-                                    title="Kishan">K</span>
-                                <span class="m_img_thumbnail green_thumb_color" data-bs-toggle="tooltip"
-                                    title="Diya">D</span>
-                                <span class="m_img_thumbnail purple_thumb_color" data-bs-toggle="tooltip"
-                                    title="Madhuri">M</span>
-                                <span class="m_img_thumbnail" data-bs-toggle="tooltip" title="3+">+3</span>
+                                <ng-container *ngIf="data.members.length > 0">
+                                    <span *ngFor="let member of data.members.slice(0, 3)" class="m_img_thumbnail"
+                                        [style.background]="sharedService.getBackgroundColor(member)"
+                                        data-bs-toggle="tooltip" [title]="member">
+                                        {{sharedService.getFirstLetter(member)}}
+                                    </span>
+                                </ng-container>
+                                <!-- Show a count of the remaining members if more than 3 -->
+                                <span *ngIf="data.members.length > 3" class="m_img_thumbnail" data-bs-toggle="tooltip"
+                                    [title]="data.members.length - 3 + ' more'">
+                                    +{{ data.members.length - 3 }}
+                                </span>
+
+                                <button type="button" class="btn float-end" (click)="deleteProject(data)">
+                                    <i class="bi bi-trash3"></i>
+                                </button>
+                                <button type="submit" class="btn float-end" (click)="editDetails(data)">
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
+
                             </div>
                         </div>
                     </li>
@@ -134,4 +172,8 @@
         </div>
     </div>
 </div>
+
+<app-confirmation-modal (onClose)="onCloseConfirmationModal($event)" [isOpen]="isConfirmationModalOpen"
+    [title]="modalTitle" [message]="modalMessage"></app-confirmation-modal>
+
 <!--Container Main end-->

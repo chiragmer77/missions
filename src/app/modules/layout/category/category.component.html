@@ -7,6 +7,20 @@
             </h3>
             <div class="top_action float-end">
                 <ul>
+                    <li *ngIf="isSearchVisible" class="search-input">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search..."
+                                [(ngModel)]="pagePayload.Search" (input)="updateSearchQuery()" />
+                            <span class="input-group-text" (click)="closeSearchInput()">
+                                <i class="bi bi-x"></i>
+                            </span>
+                        </div>
+                    </li>
+                    <li *ngIf="!isSearchVisible">
+                        <a class="m_slider" (click)="toggleSearchInput()">
+                            <i class="bi bi-search"></i>
+                        </a>
+                    </li>
                     <li>
                         <app-add-category (onClose)="handleChildComponentClose()"></app-add-category>
                     </li>
@@ -20,7 +34,14 @@
             <table class="table mb-0">
                 <thead class="table-light">
                     <tr>
-                        <th scope="col">Name</th>
+                        <th scope="col"
+                            (click)="pagePayload.IsDescending = !pagePayload.IsDescending == true ; getCategoryLists()">
+                            Name
+                            <span>
+                                <i class="bi bi-caret-up-fill" *ngIf="pagePayload.IsDescending"></i>
+                                <i class="bi bi-caret-down-fill" *ngIf="!pagePayload.IsDescending"></i>
+                            </span>
+                        </th>
                         <th scope="col"></th>
                     </tr>
                 </thead>

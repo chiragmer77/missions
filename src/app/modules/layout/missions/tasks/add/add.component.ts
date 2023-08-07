@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, Renderer2 } from '@angular/core';
+import { Component, EventEmitter, Input, Output, Renderer2 } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -11,6 +11,7 @@ import { SharedService } from 'src/app/shared/services/shared.service';
   styleUrls: ['./add.component.css']
 })
 export class AddComponent {
+  @Input() from: any;
   @Output() onClose: EventEmitter<any> = new EventEmitter<any>();
   myForm: FormGroup | any;
   isSidebarOpenClose: boolean = false;
@@ -31,6 +32,7 @@ export class AddComponent {
 
 
   ngOnInit(): void {
+    console.log(this.from)
     const storedData = localStorage.getItem('projectData');
     if (storedData) {
       this.projectObj = JSON.parse(storedData);
@@ -57,6 +59,12 @@ export class AddComponent {
   sidebarOpenClose() {
     this.isSidebarOpenClose = !this.isSidebarOpenClose;
     this.isSidebarOpenClose == true ? this.renderer.setStyle(document.body, 'overflow', 'hidden') : this.renderer.setStyle(document.body, 'overflow', 'auto')
+    if (!this.isSidebarOpenClose) {
+      this.isEditing = false;
+    }
+    if (!this.isEditing) {
+      this.resetForm();
+    }
   }
 
   onFormSubmit() {
@@ -72,8 +80,11 @@ export class AddComponent {
           if (response.success) {
             this.toaster.success('Project Task Edit Successfully!')
             // Emit the event when the child component is closed
+            this.sharedService.taskAddEvent.emit(response);
             this.onClose.emit();
             this.spinner.hide();
+            this.isSidebarOpenClose = !this.isSidebarOpenClose;
+            this.isSidebarOpenClose == true ? this.renderer.setStyle(document.body, 'overflow', 'hidden') : this.renderer.setStyle(document.body, 'overflow', 'auto');
             this.resetForm(); // Reset the form after successful add or update
           }
         });
@@ -87,6 +98,8 @@ export class AddComponent {
             this.sharedService.taskAddEvent.emit(response);
             this.onClose.emit();
             this.spinner.hide();
+            this.isSidebarOpenClose = !this.isSidebarOpenClose;
+            this.isSidebarOpenClose == true ? this.renderer.setStyle(document.body, 'overflow', 'hidden') : this.renderer.setStyle(document.body, 'overflow', 'auto');
             this.resetForm(); // Reset the form after successful add or update
           }
         });
@@ -109,7 +122,6 @@ export class AddComponent {
   resetForm() {
     this.myForm.reset();
     this.isEditing = false;
-    this.sidebarOpenClose();
     this.myForm.reset({
       projectTaskCategoryId: '', // Set the designationId form control to an empty string
       priority: '',
@@ -120,9 +132,15 @@ export class AddComponent {
   }
 
   handleEventInChild(data: any) {
-    this.sidebarOpenClose();
-    this.myForm.patchValue(data);
-    this.isEditing = true;
+    if (data.purpose === 'Add') {
+      this.sidebarOpenClose();
+    } else {
+      this.sidebarOpenClose();
+      data.data.endDate = new Date(data.data.endDate).toISOString().slice(0, 16);
+      this.myForm.patchValue(data.data);
+      this.isEditing = true;
+    }
+
   }
 
   // Get Member lists

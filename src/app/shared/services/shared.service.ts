@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { formatDistanceToNow } from 'date-fns';
+import { Subject } from 'rxjs';
 
 
 @Injectable({
@@ -7,6 +8,8 @@ import { formatDistanceToNow } from 'date-fns';
 })
 export class SharedService {
   taskAddEvent: EventEmitter<number> = new EventEmitter<number>();
+  taskAddSideWindowEvent: EventEmitter<number> = new EventEmitter<number>();
+  public searchSubject = new Subject<string>();
 
 
   constructor() { }

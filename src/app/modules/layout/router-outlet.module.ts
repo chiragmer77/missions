@@ -18,6 +18,8 @@ import { CategoryComponent } from './category/category.component';
 import { AddDesignatinComponent } from './designation/add/add.component';
 import { AddCategoryComponent } from './category/add/add.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AnalyticsComponent } from './analytics/analytics.component';
+import { GantChartComponent } from './gant-chart/gant-chart.component';
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     DesignationComponent,
     CategoryComponent,
     AddDesignatinComponent,
-    AddCategoryComponent],
+    AddCategoryComponent,
+    AnalyticsComponent,
+    GantChartComponent],
   imports: [
     CommonModule,
     RouterOutletRoutingModule,

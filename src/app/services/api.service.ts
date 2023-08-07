@@ -40,4 +40,8 @@ export class ApiService {
     return this.http.delete(`${environment.apiUrl}/${endpoint}`);
   }
 
+  // Auth connect API
+  public connectAuth(endpoint: string, data: any): Observable<any> {
+    return this.http.post(`${environment.authUrl}/${endpoint}`, data);
+  }
 }

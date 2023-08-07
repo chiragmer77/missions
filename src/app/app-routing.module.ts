@@ -11,6 +11,7 @@ const routes: Routes = [
 
   {
     path: 'dashboard', loadChildren: () => import('./modules/layout/router-outlet.module').then(m => m.RouterOutletModule),
+    canActivate: [AuthGuard]
   },
 
   {

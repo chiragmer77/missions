@@ -89,4 +89,53 @@ export class DetailComponent {
     const textareaElement = document.querySelector('.form-control') as HTMLTextAreaElement;
     textareaElement.value = '';
   }
+
+
+  /** Get Dot class */
+  getDotClass(status: string) {
+    switch (status) {
+      case 'To-Do':
+        return 'to-do-dot';
+      case 'In-Progress':
+        return 'in-progress-dot';
+      case 'Complete':
+        return 'complete-dot';
+      case 'Block':
+        return 'block-dot';
+      default:
+        return '';
+    }
+  }
+
+  /** Update task status */
+  updateTaskProgress(task: any, status: string) {
+    this.spinner.show();
+    let payload = {
+      id: task.id,
+      status: this.getPriorityValue(status)
+    }
+    this.apiService.put(`ProjectTask/${task.id}/status`, payload).subscribe((response) => {
+      if (response.success) {
+        this.toaster.success('Project task change Successfully!');
+        task.status = this.getPriorityValue(status);
+        this.spinner.hide();
+      }
+    });
+  }
+
+  /** Get Priority */
+  private getPriorityValue(status: string): number {
+    switch (status) {
+      case 'To-Do':
+        return 1;
+      case 'In-Progress':
+        return 2;
+      case 'Complete':
+        return 3;
+      case 'Block':
+        return 4; // Change this value according to your requirements
+      default:
+        return 1;
+    }
+  }
 }

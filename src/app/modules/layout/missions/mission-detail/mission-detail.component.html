@@ -9,10 +9,18 @@
         <div class="top_action float-end">
             <ul *ngIf="previousTab != 'Overview-tab'">
                 <li>
-                    <span class="m_img_thumbnail blue_thumb_color" data-bs-toggle="tooltip" title="Kishan">K</span>
-                    <span class="m_img_thumbnail green_thumb_color" data-bs-toggle="tooltip" title="Diya">D</span>
-                    <span class="m_img_thumbnail purple_thumb_color" data-bs-toggle="tooltip" title="Madhuri">M</span>
-                    <span class="m_img_thumbnail" data-bs-toggle="tooltip" title="3+">+3</span>
+                    <ng-container *ngIf="projectObj.members.length > 0">
+                        <span *ngFor="let member of projectObj.members.slice(0, 3)" class="m_img_thumbnail"
+                            [style.background]="sharedService.getBackgroundColor(member)" data-bs-toggle="tooltip"
+                            [title]="member">
+                            {{sharedService.getFirstLetter(member)}}
+                        </span>
+                    </ng-container>
+                    <!-- Show a count of the remaining members if more than 3 -->
+                    <span *ngIf="projectObj.members.length > 3" class="m_img_thumbnail" data-bs-toggle="tooltip"
+                        [title]="projectObj.members.length - 3 + ' more'">
+                        +{{ projectObj.members.length - 3 }}
+                    </span>
                 </li>
                 <li *ngIf="previousTab != 'Timeline-tab'">
                     <a href="#" class="m_slider">
@@ -20,7 +28,7 @@
                     </a>
                 </li>
                 <li *ngIf="previousTab != 'Timeline-tab'">
-                    <app-add (onClose)="handleChildComponentClose()"></app-add>
+                    <app-add (onClose)="handleChildComponentClose()" [from]="'detail'"></app-add>
                 </li>
             </ul>
         </div>
@@ -77,7 +85,9 @@
                     </div>
                     <div class="tab-pane fade" *ngIf="previousTab === 'Timeline-tab'"
                         [ngClass]="{ 'show active': previousTab === 'Timeline-tab' }" id="Timeline" role="tabpanel"
-                        aria-labelledby="Timeline-tab">...</div>
+                        aria-labelledby="Timeline-tab">
+                        <app-timeline></app-timeline>
+                    </div>
 
                 </div>
 

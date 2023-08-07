@@ -26,8 +26,14 @@ export class AuthGuard implements CanActivate {
   }
 
   private checkIfUserIsAuthenticated(): boolean {
-
-    return true;
+    // Check if the JWT token exists and is not expired
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      // Here, you can use a JWT library (e.g., jwt-decode) to decode the token and check its expiration date
+      // For simplicity, we assume that the token is valid if it exists.
+      return true;
+    }
+    return false;
   }
 
 }

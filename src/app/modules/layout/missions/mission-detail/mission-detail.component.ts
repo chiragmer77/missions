@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { AddComponent } from '../tasks/add/add.component';
 
 @Component({
   selector: 'app-mission-detail',
@@ -8,16 +9,27 @@ import { SharedService } from 'src/app/shared/services/shared.service';
   styleUrls: ['./mission-detail.component.css']
 })
 export class MissionDetailComponent {
+  @ViewChild(AddComponent) childComponent: AddComponent | undefined;
   @ViewChild('myTabs') myTabs!: ElementRef;
   previousTab: string = 'Overview-tab';
   projectObj: any;
   clickedTab: any = 'Overview-tab';
 
   constructor(
-    private sharedDataService: SharedService,
     private router: Router,
-    private cd: ChangeDetectorRef
-  ) { }
+    private cd: ChangeDetectorRef,
+    public sharedService: SharedService,
+  ) {
+
+    this.sharedService.taskAddSideWindowEvent.subscribe((priority: any) => {
+      console.log(priority)
+      // Do something when priority changes
+      if (priority.purpose) {
+        this.childComponent!.handleEventInChild(priority);
+      }
+    });
+
+  }
 
   ngOnInit(): void {
     const storedData = localStorage.getItem('projectData');

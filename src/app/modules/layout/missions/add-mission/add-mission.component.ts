@@ -16,14 +16,15 @@ export class AddMissionComponent {
   isEditing: boolean = false; // Flag to track whether it's an add or edit operation
   clientList: any = [];
   memberList: any = [];
-
+  date: any;
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
     private toaster: ToastrService,
     private renderer: Renderer2,
     private spinner: NgxSpinnerService,
-  ) { }
+  ) {
+  }
 
 
   ngOnInit(): void {
@@ -33,12 +34,20 @@ export class AddMissionComponent {
       description: ['', Validators.required],
       clientId: ['', Validators.required],
       teamLeadId: ['', Validators.required],
+      status: ['', Validators.required],
       budget: ['', Validators.required],
-      startDate: ['', Validators.required],
+      startDate: [new Date().toISOString().slice(0, 16), Validators.required],
       endDate: ['', Validators.required]
     });
     this.getClientList();
     this.getMemberList();
+  }
+
+  formatDate(date: Date): string {
+    const year = date.getFullYear();
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const day = ('0' + date.getDate()).slice(-2);
+    return `${year}-${month}-${day}`;
   }
 
   // sidebar open close
@@ -46,7 +55,12 @@ export class AddMissionComponent {
     this.isSidebarOpenClose = !this.isSidebarOpenClose;
     this.isSidebarOpenClose == true ? this.renderer.setStyle(document.body, 'overflow', 'hidden') : this.renderer.setStyle(document.body, 'overflow', 'auto');
     this.isSidebarOpenClose == true ? this.renderer.setStyle(document.body, 'background-color', 'rgba(0, 0, 0, 0.5)') : this.renderer.setStyle(document.body, 'background-color', 'auto');
-
+    if (!this.isSidebarOpenClose) {
+      this.isEditing = false;
+    }
+    if (!this.isEditing) {
+      this.resetForm();
+    }
   }
 
   onFormSubmit() {
@@ -56,13 +70,16 @@ export class AddMissionComponent {
       this.spinner.show();
       this.myForm!.value.budget = this.myForm!.value.budget.toString();
       var payload: any = this.myForm.value;
+      payload.status = parseInt(payload.status, 10);
       if (this.isEditing) {
-        this.apiService.put(`AppClient/${payload.id}`, payload).subscribe((response) => {
+        this.apiService.put(`Project/${payload.id}`, payload).subscribe((response) => {
           if (response.success) {
             this.toaster.success('Mission Edit Successfully!')
             // Emit the event when the child component is closed
             this.onClose.emit();
             this.spinner.hide();
+            this.isSidebarOpenClose = !this.isSidebarOpenClose;
+            this.isSidebarOpenClose == true ? this.renderer.setStyle(document.body, 'overflow', 'hidden') : this.renderer.setStyle(document.body, 'overflow', 'auto');
             this.resetForm(); // Reset the form after successful add or update
 
           }
@@ -76,6 +93,8 @@ export class AddMissionComponent {
             // Emit the event when the child component is closed
             this.onClose.emit();
             this.spinner.hide();
+            this.isSidebarOpenClose = !this.isSidebarOpenClose;
+            this.isSidebarOpenClose == true ? this.renderer.setStyle(document.body, 'overflow', 'hidden') : this.renderer.setStyle(document.body, 'overflow', 'auto');
             this.resetForm(); // Reset the form after successful add or update
 
           }
@@ -98,17 +117,20 @@ export class AddMissionComponent {
   resetForm() {
     this.myForm.reset();
     this.isEditing = false;
-    this.sidebarOpenClose();
     this.myForm.reset({
       clientId: '', // Set the designationId form control to an empty string
-      teamLeadId: ''
+      teamLeadId: '',
+      status: ''
     });
   }
 
+  /** Handel child event */
   handleEventInChild(data: any) {
-    this.sidebarOpenClose();
-    this.myForm.patchValue(data);
     this.isEditing = true;
+    this.sidebarOpenClose();
+    data.startDate = new Date(data.startDate).toISOString().slice(0, 16);
+    data.endDate = new Date(data.endDate).toISOString().slice(0, 16);
+    this.myForm.patchValue(data);
   }
 
   // Get Client list

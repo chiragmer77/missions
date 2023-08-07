@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { AddComponent } from './add/add.component';
 
 @Component({
   selector: 'app-tasks',
@@ -11,6 +12,10 @@ import { SharedService } from 'src/app/shared/services/shared.service';
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent {
+  isConfirmationModalOpen: boolean = false;
+  modalTitle: string = '';
+  modalMessage: string = '';
+  data: any;
   pagePayload: any = {
     IsHideCount: true,
     Search: '',
@@ -110,6 +115,39 @@ export class TasksComponent {
     localStorage.setItem('taskData', JSON.stringify(data));
     this.router.navigate(['/dashboard/missions/mission-task-details/']);
     console.log(data);
+  }
+
+  /** Delete Mission */
+  deleteTask(data: any) {
+    this.modalTitle = 'Delete Task';
+    this.modalMessage = 'Are you sure you want to delete ' + data.title + ' from Tasks?';
+    this.data = data;
+    this.isConfirmationModalOpen = !this.isConfirmationModalOpen;
+  }
+
+
+  // On Close Confirmation Modal
+  onCloseConfirmationModal(event: any) {
+    if (event) {
+      this.spinner.show();
+      this.apiService.delete(`ProjectTask/${this.data.id}`).subscribe((response) => {
+        if (response.success) {
+          this.toaster.success('Task Delete Successfully!');
+          this.getProjectTasksLists();
+          this.spinner.hide();
+        }
+      });
+    }
+    this.isConfirmationModalOpen = !this.isConfirmationModalOpen;
+  }
+
+  /** Edit Client details */
+  editDetails(data: any) {
+    let payload: any = {
+      data: data,
+      purpose: 'Edit'
+    }
+    this.sharedService.taskAddSideWindowEvent.emit(payload);
   }
 
 }

@@ -5,6 +5,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { AddMissionComponent } from '../add-mission/add-mission.component';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { Router } from '@angular/router';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-missions-list',
@@ -29,15 +30,20 @@ export class MissionsListComponent {
   }
   missionList: any = [];
   p: number = 1;
+  isSearchVisible = false;
 
 
   constructor(
     private apiService: ApiService,
     private toaster: ToastrService,
     private spinner: NgxSpinnerService,
-    private sharedService: SharedService,
+    public sharedService: SharedService,
     private router: Router
-  ) { }
+  ) {
+    this.sharedService.searchSubject.pipe(debounceTime(500)).subscribe((query) => {
+      this.onSearch(query);
+    });
+  }
 
 
   ngOnInit(): void {
@@ -67,6 +73,55 @@ export class MissionsListComponent {
     this.router.navigate(['/dashboard/missions/mission-detail/']);
     localStorage.setItem('previousTab', 'Overview-tab');
     console.log(data);
+  }
+
+  /** Delete Mission */
+  deleteProject(data: any) {
+    this.modalTitle = 'Delete Mission';
+    this.modalMessage = 'Are you sure you want to delete ' + data.title + ' from Mission?';
+    this.data = data;
+    this.isConfirmationModalOpen = !this.isConfirmationModalOpen;
+  }
+
+
+  // On Close Confirmation Modal
+  onCloseConfirmationModal(event: any) {
+    if (event) {
+      this.spinner.show();
+      this.apiService.delete(`Project/${this.data.id}`).subscribe((response) => {
+        if (response.success) {
+          this.toaster.success('Mission Delete Successfully!');
+          this.getMissionList();
+          this.spinner.hide();
+        }
+      });
+    }
+    this.isConfirmationModalOpen = !this.isConfirmationModalOpen;
+  }
+
+  /** Edit Client details */
+  editDetails(data: any) {
+    this.childComponent!.handleEventInChild(data);
+  }
+
+  /** Toggle search input */
+  toggleSearchInput() {
+    this.isSearchVisible = !this.isSearchVisible;
+  }
+
+  /** Close search input */
+  closeSearchInput() {
+    this.isSearchVisible = false;
+  }
+
+  /** search the client */
+  onSearch(query: string) {
+    this.getMissionList();
+  }
+
+  // Call this function when the input value changes
+  updateSearchQuery() {
+    this.sharedService.searchSubject.next(this.pagePayload.Search);
   }
 
 }

@@ -7,6 +7,8 @@ import { DocumentComponent } from './documents/document/document.component';
 import { ClientsComponent } from './clients/clients.component';
 import { DesignationComponent } from './designation/designation.component';
 import { CategoryComponent } from './category/category.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
+import { GantChartComponent } from './gant-chart/gant-chart.component';
 
 const routes: Routes = [
   {
@@ -39,6 +41,14 @@ const routes: Routes = [
       {
         path: 'designation',
         component: DesignationComponent
+      },
+      {
+        path: 'analytics',
+        component: AnalyticsComponent
+      },
+      {
+        path: 'gant-chart',
+        component: GantChartComponent
       },
       {
         path: 'missions', loadChildren: () => import('./missions/missions-routing.module').then(m => m.MissionsRoutingModule),

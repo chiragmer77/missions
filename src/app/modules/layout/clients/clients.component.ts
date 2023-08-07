@@ -3,6 +3,8 @@ import { ApiService } from 'src/app/services/api.service';
 import { AddClientsComponent } from './add-clients/add-clients.component';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Subject, debounceTime } from 'rxjs';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: 'app-clients',
@@ -24,14 +26,20 @@ export class ClientsComponent {
     OrderBy: ''
   }
   p: number = 1;
+  isSearchVisible = false;
   clientsLists: any = [];
 
 
   constructor(
     private apiService: ApiService,
     private toaster: ToastrService,
-    private spinner: NgxSpinnerService
-  ) { }
+    private spinner: NgxSpinnerService,
+    private sharedService: SharedService
+  ) {
+    this.sharedService.searchSubject.pipe(debounceTime(500)).subscribe((query) => {
+      this.onSearch(query);
+    });
+  }
 
 
   ngOnInit(): void {
@@ -85,5 +93,30 @@ export class ClientsComponent {
     this.modalMessage = 'Are you sure you want to delete ' + data.name + ' from clients?';
     this.data = data;
     this.isConfirmationModalOpen = !this.isConfirmationModalOpen;
+  }
+
+  /** Toggle search input */
+  toggleSearchInput() {
+    this.isSearchVisible = !this.isSearchVisible;
+  }
+
+  /** Close search input */
+  closeSearchInput() {
+    this.isSearchVisible = false;
+  }
+
+  /** search the client */
+  onSearch(query: string) {
+    this.getClientsLists();
+  }
+
+  // Call this function when the input value changes
+  updateSearchQuery() {
+    this.sharedService.searchSubject.next(this.pagePayload.Search);
+  }
+
+  /** Mission Page Redirection */
+  goToMissionPage(data: any) {
+    console.log(data)
   }
 }

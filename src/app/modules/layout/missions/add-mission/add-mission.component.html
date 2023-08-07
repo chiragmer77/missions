@@ -62,19 +62,31 @@
                         <div class="input-group">
                             <input type="number" placeholder="Budget" class="form-control" id="budget"
                                 formControlName="budget" required>
-                            <span class="input-group-text" id="basic-addon2">$/hr</span>
+                            <span class="input-group-text" id="basic-addon2">$</span>
                         </div>
-
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('budget').invalid && myForm.get('budget').touched"
                                 class="text-danger">Budget is required</span>
                         </h6>
                     </div>
+                    <div class="col-md-12 mb-4">
+                        <select class="form-control" placeholder="Status" formControlName="status" required>
+                            <option value="" disabled>Select Status</option>
+                            <option value="1">Not-Started</option>
+                            <option value="2">In-Progress</option>
+                            <option value="3">Completed</option>
+                        </select>
+                        <h6 class="error-message">
+                            <span *ngIf="myForm.get('status').invalid && myForm.get('status').touched"
+                                class="text-danger">Status is required</span>
+                        </h6>
+                    </div>
 
                     <div class="col-md-12 mb-4">
-                        <div class="input-group" id="datepicker">
-                            <input type="text" onfocus="(this.type='date')" placeholder="Start Date"
-                                formControlName="startDate" class="form-control" id="date" />
+                        <div class="input-group">
+                            <input placeholder="Start Date" [type]="isEditing ? 'datetime-local' : 'text'"
+                                onfocus="(this.type='datetime-local')" [value]="myForm.get('startDate').value"
+                                formControlName="startDate" class="form-control" />
                         </div>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('startDate').invalid && myForm.get('startDate').touched"
@@ -84,9 +96,10 @@
                         </h6>
                     </div>
                     <div class="col-md-12 mb-4">
-                        <div class="input-group" id="datepicker">
-                            <input type="text" onfocus="(this.type='date')" placeholder="End Date"
-                                formControlName="endDate" class="form-control" id="date" />
+                        <div class="input-group">
+                            <input [type]="isEditing ? 'datetime-local' : 'text'" [value]="myForm.get('endDate').value"
+                                onfocus="(this.type='datetime-local')" placeholder="End Date" formControlName="endDate"
+                                class="form-control" />
                         </div>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('endDate').invalid && myForm.get('endDate').touched"
@@ -100,7 +113,7 @@
 
         </div>
         <div class="card-footer text-end">
-            <button (click)="sidebarOpenClose()" class="btn btn-outline-primary auth-cancel-outline">
+            <button (click)="sidebarOpenClose()" type="button" class="btn btn-outline-primary auth-cancel-outline">
                 Cancel
             </button>
             <button class="btn btn-primary auth-buttons" type="submit">

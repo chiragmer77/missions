@@ -70,3 +70,7 @@ tbody h5 {
 .bg-danger {
   background: #d71111 !important;
 }
+
+.go-to-taskDetail:hover {
+  color: #2d8ce4 !important;
+}

@@ -1,4 +1,4 @@
-<a class="cr_mission">
+<a class="cr_mission" *ngIf="from == 'detail'">
     <button class="btn btn-primary auth-buttons" (click)="sidebarOpenClose()">
         Add Task
     </button>
@@ -88,7 +88,8 @@
                 <div class="row">
 
                     <div class="col-md-12 mb-4">
-                        <input type="text" onfocus="(this.type='date')" placeholder="End Date" class="form-control"
+                        <input [type]="isEditing ? 'datetime-local' : 'text'" onfocus="(this.type='datetime-local')"
+                            [value]="myForm.get('endDate').value" placeholder="End Date" class="form-control"
                             formControlName="endDate" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('endDate').invalid && myForm.get('endDate').touched"

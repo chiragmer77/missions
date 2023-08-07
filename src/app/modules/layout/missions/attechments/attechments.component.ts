@@ -16,6 +16,8 @@ export class AttechmentsComponent {
   isSidebarOpenClose: boolean = false;
   isEditing: boolean = false; // Flag to track whether it's an add or edit operation
   attechments: any = {};
+  taskData: any;
+  projectObj: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -23,13 +25,21 @@ export class AttechmentsComponent {
     private toaster: ToastrService,
     private renderer: Renderer2,
     private spinner: NgxSpinnerService,
-  ) { }
+  ) {
+    const storedData = localStorage.getItem('taskData');
+    if (storedData) {
+      this.taskData = JSON.parse(storedData);
+    }
+    const storedProjectData = localStorage.getItem('projectData');
+    if (storedProjectData) {
+      this.projectObj = JSON.parse(storedProjectData);
+    }
+  }
 
 
   ngOnInit(): void {
     this.attechments.isTrue = false;
     this.myForm = this.formBuilder.group({
-      id: [null],
       title: ['', Validators.required],
     });
   }
@@ -45,33 +55,20 @@ export class AttechmentsComponent {
   onFormSubmit() {
     if (this.myForm!.valid) {
       this.spinner.show();
-      this.myForm!.value.budget = this.myForm!.value.budget.toString();
-      var payload: any = this.myForm.value;
-      if (this.isEditing) {
-        this.apiService.put(`AppClient/${payload.id}`, payload).subscribe((response) => {
-          if (response.success) {
-            this.toaster.success('Mission Edit Successfully!')
-            // Emit the event when the child component is closed
-            this.onClose.emit();
-            this.spinner.hide();
-            this.resetForm(); // Reset the form after successful add or update
+      const formData = new FormData();
+      formData.append('ProjectId', this.projectObj.id);
+      formData.append('ProjectTaskId', this.taskData.id);
+      formData.append('Name', this.myForm.value.title);
+      this.apiService.post('ProjectDocument', formData).subscribe((response) => {
+        if (response.success) {
+          this.toaster.success('Docsument uploaded Successfully!')
+          // Emit the event when the child component is closed
+          this.onClose.emit();
+          this.spinner.hide();
+          this.resetForm(); // Reset the form after successful add or update
 
-          }
-        });
-      } else {
-        console.log(payload);
-        delete payload.id;
-        this.apiService.post('Project', payload).subscribe((response) => {
-          if (response.success) {
-            this.toaster.success('Mission Created Successfully!')
-            // Emit the event when the child component is closed
-            this.onClose.emit();
-            this.spinner.hide();
-            this.resetForm(); // Reset the form after successful add or update
-
-          }
-        });
-      }
+        }
+      });
     }
   }
 
@@ -97,8 +94,10 @@ export class AttechmentsComponent {
         const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
         fileEntry.file((file: File) => {
           console.log(file)
+          this.attechments.file = file;
           this.attechments.name = file.name;
         });
+        console.log(this.attechments.file)
       } else {
         // It was a directory (empty directories are added, otherwise only files)
         const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;

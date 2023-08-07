@@ -9,11 +9,12 @@
                     <th>Due Date</th>
                     <th>Priority</th>
                     <th>Task Progress</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let data of projectTasksLists | paginate: { itemsPerPage: 5, currentPage: p }">
-                    <td class="pointer" (click)="setTaskData(data)">
+                    <td class="pointer go-to-taskDetail" (click)="setTaskData(data)">
                         {{data.title}}
                     </td>
                     <td>
@@ -27,7 +28,7 @@
                         {{data.hoursToSpend}}
                     </td>
                     <td>
-                        {{data.endDate}}
+                        {{data.endDate | date: 'M/d/yy, h:mm a'}}
                     </td>
                     <td>
                         <span class="badge bg-primary" *ngIf="data.priority == 1">
@@ -72,35 +73,15 @@
                                     </a>
                                 </li>
                             </ul>
-
-                            <!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li>
-                                    <a class="dropdown-item">
-                                        <i class="bi bi-dot to-do-dot"></i>
-                                        To-Do
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item">
-                                        <i class="bi bi-dot in-progress-dot"></i>
-                                        In-Progress
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item">
-                                        <i class="bi bi-dot complete-dot"></i>
-                                        Complete
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item">
-                                        <i class="bi bi-dot block-dot"></i>
-                                        Block
-                                    </a>
-                                </li>
-
-                            </ul> -->
                         </div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn float-end" (click)="deleteTask(data)">
+                            <i class="bi bi-trash3"></i>
+                        </button>
+                        <button type="submit" class="btn float-end" (click)="editDetails(data)">
+                            <i class="bi bi-pencil-square"></i>
+                        </button>
                     </td>
                 </tr>
 
@@ -249,3 +230,6 @@
         </div>
     </div>
 </div>
+
+<app-confirmation-modal (onClose)="onCloseConfirmationModal($event)" [isOpen]="isConfirmationModalOpen"
+    [title]="modalTitle" [message]="modalMessage"></app-confirmation-modal>

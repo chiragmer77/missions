@@ -20,6 +20,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { AttechmentsComponent } from './attechments/attechments.component';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import { NgDragDropModule } from 'ng-drag-drop';
+import { NgGanttEditorModule } from 'ng-gantt';
 
 
 @NgModule({
@@ -47,8 +48,8 @@ import { NgDragDropModule } from 'ng-drag-drop';
     NgxPaginationModule,
     SharedModule,
     NgxFileDropModule,
-    NgDragDropModule.forRoot()
-  ],
+    NgDragDropModule.forRoot(),
+    NgGanttEditorModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class MissionsModule { }

@@ -157,3 +157,8 @@
 .bg-danger {
   background: #d71111 !important;
 }
+.bi-chevron-down {
+  font-size: 20px !important;
+  float: right;
+  margin-top: 5px;
+}

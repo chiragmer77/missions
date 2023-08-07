@@ -27,3 +27,7 @@ select:focus {
 .input-color {
   background-color: #efefef;
 }
+.go-to-mission {
+  color: #0044aa !important;
+  border-bottom: 2px solid;
+}
