@@ -10,6 +10,10 @@ export class SharedService {
   taskAddEvent: EventEmitter<number> = new EventEmitter<number>();
   taskAddSideWindowEvent: EventEmitter<number> = new EventEmitter<number>();
   public searchSubject = new Subject<string>();
+  toolTipOption: any = {
+    'placement': 'bottom',
+    'showDelay': 200
+  }
 
 
   constructor() { }

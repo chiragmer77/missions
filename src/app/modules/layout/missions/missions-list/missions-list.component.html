@@ -22,9 +22,8 @@
                         </a>
                     </li>
                     <li>
-                        <a class="m_slider">
-                            <i class="bi bi-sliders2-vertical">
-                            </i>
+                        <a class="m_slider" (click)="openFilterModal()">
+                            <i class="bi bi-sliders2-vertical"></i>
                         </a>
                     </li>
                     <li>
@@ -75,13 +74,15 @@
                                 <ng-container *ngIf="data.members.length > 0">
                                     <span *ngFor="let member of data.members.slice(0, 3)" class="m_img_thumbnail"
                                         [style.background]="sharedService.getBackgroundColor(member)"
-                                        data-bs-toggle="tooltip" [title]="member">
+                                        data-bs-toggle="tooltip" tooltip="{{member}}"
+                                        [options]="sharedService.toolTipOption">
                                         {{sharedService.getFirstLetter(member)}}
                                     </span>
                                 </ng-container>
                                 <!-- Show a count of the remaining members if more than 3 -->
                                 <span *ngIf="data.members.length > 3" class="m_img_thumbnail" data-bs-toggle="tooltip"
-                                    [title]="data.members.length - 3 + ' more'">
+                                    tooltip="{{data.members.length - 3 + ' more'}}"
+                                    [options]="sharedService.toolTipOption">
                                     +{{ data.members.length - 3 }}
                                 </span>
 
@@ -176,4 +177,5 @@
 <app-confirmation-modal (onClose)="onCloseConfirmationModal($event)" [isOpen]="isConfirmationModalOpen"
     [title]="modalTitle" [message]="modalMessage"></app-confirmation-modal>
 
+<app-popover (onClose)="onCloseFilterEvent($event)" [isOpen]="isFilterModal"></app-popover>
 <!--Container Main end-->

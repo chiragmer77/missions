@@ -49,7 +49,8 @@ import { NgGanttEditorModule } from 'ng-gantt';
     SharedModule,
     NgxFileDropModule,
     NgDragDropModule.forRoot(),
-    NgGanttEditorModule],
+    NgGanttEditorModule,
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class MissionsModule { }

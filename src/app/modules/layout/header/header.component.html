@@ -1,6 +1,22 @@
 <header class="header" id="header">
     <!-- <div class="header_toggle" style="visibility: hidden;"> <i class='bx bx-menu' id="header-toggle"></i> </div> -->
-    <div class="andrew_profile"><span>Andrew Smith </span> <img class="header_img" src="./assets/Images/andrew.png"
-            alt="">
+    <div class="andrew_profile">
+        <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <span>
+                    Andrew Smith
+                </span>
+                <img class="header_img" src="./assets/Images/andrew.png" alt="">
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li (click)="logoutUser()">
+                    <a class="dropdown-item">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
+
 </header>

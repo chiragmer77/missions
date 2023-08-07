@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-login',
@@ -10,10 +12,14 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginComponent {
 
   loginForm: FormGroup | any;
+  isLoading = false;
 
   constructor(
     private fb: FormBuilder,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private apiService: ApiService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -22,14 +28,28 @@ export class LoginComponent {
     });
   }
 
+  /** User login  */
   onSubmit() {
     if (this.loginForm!.valid) {
-      // Implement your login logic here
-      const email = this.loginForm!.value.email;
-      const password = this.loginForm!.value.password;
-      // For demonstration purposes, you can log the credentials
-      console.log('Email:', email);
-      console.log('Password:', password);
+      this.isLoading = true;
+      const payload: any = {
+        username: this.loginForm!.value.email,
+        granttype: 'password',
+        password: this.loginForm!.value.password,
+        grant_type: 'password',
+        scope: 'openid email profile offline_access roles'
+      }
+      this.apiService.connectAuth('connect/token', payload).subscribe((res: any) => {
+        // Handle the successful response here
+        localStorage.setItem('authToken', res.access_token);
+        this.isLoading = false;
+        this.router.navigateByUrl('/dashboard');
+        this.toastr.success('Login successfully');
+      },
+        (error: any) => {
+          // Handle the error here
+          this.isLoading = false;
+        })
     }
   }
 

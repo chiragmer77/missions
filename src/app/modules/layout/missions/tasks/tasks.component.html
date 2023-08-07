@@ -18,8 +18,8 @@
                         {{data.title}}
                     </td>
                     <td>
-                        <span class="m_img_thumbnail" [style.background]="sharedService.getBackgroundColor(data.member)"
-                            data-bs-toggle="tooltip" [title]="data.member">
+                        <span class="m_img_thumbnail"
+                            [style.background]="sharedService.getBackgroundColor(data.member)">
                             {{sharedService.getFirstLetter(data.member)}}
                         </span>
                         {{data.member}}

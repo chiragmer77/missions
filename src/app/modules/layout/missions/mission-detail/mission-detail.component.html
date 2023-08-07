@@ -12,18 +12,18 @@
                     <ng-container *ngIf="projectObj.members.length > 0">
                         <span *ngFor="let member of projectObj.members.slice(0, 3)" class="m_img_thumbnail"
                             [style.background]="sharedService.getBackgroundColor(member)" data-bs-toggle="tooltip"
-                            [title]="member">
+                            tooltip="{{member}}" [options]="sharedService.toolTipOption">
                             {{sharedService.getFirstLetter(member)}}
                         </span>
                     </ng-container>
                     <!-- Show a count of the remaining members if more than 3 -->
                     <span *ngIf="projectObj.members.length > 3" class="m_img_thumbnail" data-bs-toggle="tooltip"
-                        [title]="projectObj.members.length - 3 + ' more'">
+                        tooltip="{{projectObj.members.length - 3 + ' more'}}" [options]="sharedService.toolTipOption">
                         +{{ projectObj.members.length - 3 }}
                     </span>
                 </li>
                 <li *ngIf="previousTab != 'Timeline-tab'">
-                    <a href="#" class="m_slider">
+                    <a class="m_slider">
                         <i class="bi bi-search"></i>
                     </a>
                 </li>

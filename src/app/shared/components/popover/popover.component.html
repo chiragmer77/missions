@@ -1,0 +1,39 @@
+<div class="modal fade" [ngClass]="{'show': isOpen}" [style.display]="isOpen ? 'block' : 'none'">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="dropdown">
+                            <button class="btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <span>
+                                    <i class="bi bi-dot to-do-dot"></i>
+                                    To-Do
+                                </span>
+                                <i class="bi bi-chevron-down"></i>
+                            </button>
+
+                            <ul class="dropdown-menu">
+                                <li *ngFor="let status of ['To-Do', 'In-Progress', 'Complete', 'Block']">
+                                    <a class="dropdown-item">
+                                        <i class="bi bi-dot"></i>
+                                        {{ status }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button (click)="onCancel()" class="btn btn-outline-primary auth-cancel-outline">
+                    Cancel
+                </button>
+                <button (click)="onConfirm()" class="btn btn-danger auth-buttons-danger" type="submit">
+                    Update
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

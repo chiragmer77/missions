@@ -65,8 +65,7 @@
                         <div class="comment" *ngFor="let data of projectTaskCommentLists">
                             <div class="profile-photo">
                                 <span class="m_img_thumbnail"
-                                    [style.background]="sharedService.getBackgroundColor(data.user)"
-                                    data-bs-toggle="tooltip" [title]="data.user">
+                                    [style.background]="sharedService.getBackgroundColor(data.user)">
                                     {{sharedService.getFirstLetter(data.user)}}</span>
                                 <!-- <img class="user-image" src="./assets/Images/andrew.png"> -->
                             </div>

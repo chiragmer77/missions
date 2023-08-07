@@ -17,8 +17,7 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="project-role-list">
                         <span class="m_img_thumbnail"
-                            [style.background]="sharedService.getBackgroundColor(dataFromParent.teamLead)"
-                            data-bs-toggle="tooltip" [title]="dataFromParent.teamLead">
+                            [style.background]="sharedService.getBackgroundColor(dataFromParent.teamLead)">
                             {{sharedService.getFirstLetter(dataFromParent.teamLead)}}</span>
                         <div class="user-details">
                             <h5>{{dataFromParent.teamLead}}</h5>
@@ -28,8 +27,9 @@
                 </div>
                 <div class="col-md-3 col-sm-6" *ngFor="let role of projectRoleLists">
                     <div class="project-role-list">
-                        <span class="m_img_thumbnail" [style.background]="sharedService.getBackgroundColor(role.member)"
-                            data-bs-toggle="tooltip" [title]="role.member">{{ sharedService.getFirstLetter(role.member)
+                        <span class="m_img_thumbnail"
+                            [style.background]="sharedService.getBackgroundColor(role.member)">{{
+                            sharedService.getFirstLetter(role.member)
                             }}</span>
                         <div class="user-details">
                             <h5>{{role.member}}</h5>
@@ -151,8 +151,7 @@
                                 <div class="profile-photo">
                                     <!-- <img class="user-image-activity" src="./assets/Images/andrew.png"> -->
                                     <span class="m_img_thumbnail user-image-activity"
-                                        [style.background]="sharedService.getBackgroundColor(activity.user)"
-                                        data-bs-toggle="tooltip" [title]="activity.user">{{
+                                        [style.background]="sharedService.getBackgroundColor(activity.user)">{{
                                         sharedService.getFirstLetter(activity.user)
                                         }}</span>
                                 </div>

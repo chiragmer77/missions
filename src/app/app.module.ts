@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './modules/authentication/login/login.component';
 import { ForgotPasswordComponent } from './modules/authentication/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './modules/authentication/reset-password/reset-password.component';
-import { TestComponent } from './shared/components/test/test.component';
 import { TestDirective } from './shared/directives/test.directive';
 import { TestPipe } from './shared/pipe/test.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -22,6 +21,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { DatePipe } from '@angular/common';
 import { NgDragDropModule } from 'ng-drag-drop';
 import { NgGanttEditorModule } from 'ng-gantt'
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 
 @NgModule({
@@ -30,7 +30,6 @@ import { NgGanttEditorModule } from 'ng-gantt'
     LoginComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    TestComponent,
     TestDirective,
     TestPipe,
     HeaderComponent,
@@ -47,7 +46,8 @@ import { NgGanttEditorModule } from 'ng-gantt'
     NgxSpinnerModule,
     NgxPaginationModule,
     NgDragDropModule.forRoot(),
-    NgGanttEditorModule],
+    NgGanttEditorModule,
+    TooltipModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

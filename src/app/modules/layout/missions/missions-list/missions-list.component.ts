@@ -17,6 +17,7 @@ export class MissionsListComponent {
   // Mission List API
   @ViewChild(AddMissionComponent) childComponent: AddMissionComponent | undefined;
   isConfirmationModalOpen: boolean = false;
+  isFilterModal: boolean = false;
   modalTitle: string = '';
   modalMessage: string = '';
   data: any;
@@ -97,6 +98,16 @@ export class MissionsListComponent {
       });
     }
     this.isConfirmationModalOpen = !this.isConfirmationModalOpen;
+  }
+
+  /** Open filter modal */
+  openFilterModal() {
+    this.isFilterModal = !this.isFilterModal;
+  }
+
+  //** On Close Filter Event */
+  onCloseFilterEvent(event: any) {
+
   }
 
   /** Edit Client details */

@@ -43,7 +43,8 @@
                                 </span>
                                 <span class="m_img_thumbnail"
                                     [style.background]="sharedService.getBackgroundColor(todo.member)"
-                                    data-bs-toggle="tooltip" [title]="todo.member">
+                                    data-bs-toggle="tooltip" tooltip="{{todo.member}}"
+                                    [options]="sharedService.toolTipOption">
                                     {{sharedService.getFirstLetter(todo.member)}}
                                 </span>
                             </p>
@@ -106,7 +107,8 @@
                                 </span>
                                 <span class="m_img_thumbnail"
                                     [style.background]="sharedService.getBackgroundColor(inProgress.member)"
-                                    data-bs-toggle="tooltip" [title]="inProgress.member">
+                                    data-bs-toggle="tooltip" tooltip="{{inProgress.member}}"
+                                    [options]="sharedService.toolTipOption">
                                     {{sharedService.getFirstLetter(inProgress.member)}}
                                 </span>
                             </p>
@@ -169,7 +171,8 @@
                                 </span>
                                 <span class="m_img_thumbnail"
                                     [style.background]="sharedService.getBackgroundColor(complete.member)"
-                                    data-bs-toggle="tooltip" [title]="complete.member">
+                                    data-bs-toggle="tooltip" tooltip="{{complete.member}}"
+                                    [options]="sharedService.toolTipOption">
                                     {{sharedService.getFirstLetter(complete.member)}}
                                 </span>
                             </p>
@@ -233,7 +236,8 @@
                                 </span>
                                 <span class="m_img_thumbnail"
                                     [style.background]="sharedService.getBackgroundColor(block.member)"
-                                    data-bs-toggle="tooltip" [title]="block.member">
+                                    data-bs-toggle="tooltip" tooltip="{{block.member}}"
+                                    [options]="sharedService.toolTipOption">
                                     {{sharedService.getFirstLetter(block.member)}}
                                 </span>
                             </p>

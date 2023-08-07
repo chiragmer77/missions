@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,7 +8,10 @@ import { Observable } from 'rxjs';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private toaster: ToastrService
+  ) { }
 
 
   canActivate(
@@ -20,6 +24,7 @@ export class AuthGuard implements CanActivate {
     } else {
       // If the user is not authenticated, redirect them to the login page.
       this.router.navigate(['/auth/login']);
+      this.toaster.warning('This area is restricted. Please provide valid credentials to access the content.')
       return false;
     }
 

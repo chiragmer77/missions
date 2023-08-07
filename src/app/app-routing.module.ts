@@ -6,7 +6,6 @@ import { RouterOutletComponent } from './modules/layout/router-outlet/router-out
 const routes: Routes = [
   {
     path: 'auth', loadChildren: () => import('./modules/authentication/authentication.module').then(m => m.AuthenticationModule),
-    canActivate: [AuthGuard]
   },
 
   {
