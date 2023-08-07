@@ -1,24 +1,63 @@
-<div class="modal fade" [ngClass]="{'show': isOpen}" [style.display]="isOpen ? 'block' : 'none'">
-    <div class="modal-dialog modal-dialog-centered">
+<div class="modal fade" [ngClass]="{'show': isOpenFilter}" [style.display]="isOpenFilter ? 'block' : 'none'">
+    <div class="modal-dialog modal-dialog-centered filter-modal">
         <div class="modal-content">
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-12">
+                    <h5>
+                        Filter By
+                    </h5>
+                    <div class="col-md-12 mt-4">
                         <div class="dropdown">
-                            <button class="btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                            <button class="btn" type="button" width="100%" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
                                 <span>
-                                    <i class="bi bi-dot to-do-dot"></i>
-                                    To-Do
+                                    Client Name
                                 </span>
                                 <i class="bi bi-chevron-down"></i>
                             </button>
 
                             <ul class="dropdown-menu">
-                                <li *ngFor="let status of ['To-Do', 'In-Progress', 'Complete', 'Block']">
+                                <li *ngFor="let client of clientList">
                                     <a class="dropdown-item">
-                                        <i class="bi bi-dot"></i>
+                                        {{ client.name }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mt-4">
+                        <div class="dropdown">
+                            <button class="btn" type="button" width="100%" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span>
+                                    Status
+                                </span>
+                                <i class="bi bi-chevron-down"></i>
+                            </button>
+
+                            <ul class="dropdown-menu">
+                                <li *ngFor="let status of ['Not-Started','In-Progress','Completed']">
+                                    <a class="dropdown-item">
                                         {{ status }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mt-4">
+                        <div class="dropdown">
+                            <button class="btn" type="button" width="100%" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span>
+                                    Member
+                                </span>
+                                <i class="bi bi-chevron-down"></i>
+                            </button>
+
+                            <ul class="dropdown-menu">
+                                <li *ngFor="let member of memberList">
+                                    <a class="dropdown-item">
+                                        {{ member.name }}
                                     </a>
                                 </li>
                             </ul>
@@ -30,8 +69,8 @@
                 <button (click)="onCancel()" class="btn btn-outline-primary auth-cancel-outline">
                     Cancel
                 </button>
-                <button (click)="onConfirm()" class="btn btn-danger auth-buttons-danger" type="submit">
-                    Update
+                <button (click)="onConfirm()" class="btn btn-primary auth-cancel-outline">
+                    Apply Filter
                 </button>
             </div>
         </div>

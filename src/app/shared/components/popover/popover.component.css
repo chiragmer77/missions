@@ -1,0 +1,27 @@
+.dropdown {
+  border: 1px solid #d6d6d6 !important;
+  border-radius: 5px !important;
+}
+.dropdown button {
+  width: 100%;
+}
+.dropdown span {
+  float: left;
+  margin-top: 5px;
+}
+.bi-chevron-down {
+  font-size: 15px;
+  float: right;
+  margin-top: 5px;
+}
+.dropdown-menu {
+  width: 100%;
+}
+.modal-body {
+  margin: 15px;
+}
+.filter-modal {
+  position: absolute;
+  right: 120px;
+  top: -82px;
+}

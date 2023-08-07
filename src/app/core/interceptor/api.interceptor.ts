@@ -39,7 +39,6 @@ export class ApiInterceptor implements HttpInterceptor {
     } else {
       // Add authorization token to the request headers;
       const authToken = localStorage.getItem('authToken');
-      console.log(authToken)
       authRequest = request.clone({
         setHeaders: {
           Authorization: `Bearer ${authToken}`

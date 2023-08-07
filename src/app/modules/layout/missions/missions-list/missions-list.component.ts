@@ -107,7 +107,7 @@ export class MissionsListComponent {
 
   //** On Close Filter Event */
   onCloseFilterEvent(event: any) {
-
+    this.isFilterModal = false;
   }
 
   /** Edit Client details */
