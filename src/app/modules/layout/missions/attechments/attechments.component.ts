@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, Renderer2 } from '@angular/core';
+import { Component, EventEmitter, Input, Output, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxFileDropEntry } from 'ngx-file-drop';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -12,6 +12,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class AttechmentsComponent {
   @Output() onClose: EventEmitter<any> = new EventEmitter<any>();
+  @Input() from: any;
   myForm: FormGroup | any;
   isSidebarOpenClose: boolean = false;
   isEditing: boolean = false; // Flag to track whether it's an add or edit operation
@@ -40,7 +41,7 @@ export class AttechmentsComponent {
   ngOnInit(): void {
     this.attechments.isTrue = false;
     this.myForm = this.formBuilder.group({
-      title: ['', Validators.required],
+      Name: ['', Validators.required],
     });
   }
 
@@ -49,16 +50,22 @@ export class AttechmentsComponent {
     this.isSidebarOpenClose = !this.isSidebarOpenClose;
     this.isSidebarOpenClose == true ? this.renderer.setStyle(document.body, 'overflow', 'hidden') : this.renderer.setStyle(document.body, 'overflow', 'auto');
     this.isSidebarOpenClose == true ? this.renderer.setStyle(document.body, 'background-color', 'rgba(0, 0, 0, 0.5)') : this.renderer.setStyle(document.body, 'background-color', 'auto');
+    this.attechments = {};
 
   }
 
   onFormSubmit() {
-    if (this.myForm!.valid) {
+    // Trigger validation for all form controls
+    this.markFormGroupAsTouched(this.myForm);
+    if (this.myForm!.valid && this.attechments.file) {
       this.spinner.show();
       const formData = new FormData();
+      if (this.from === 'projectTask') {
+        formData.append('ProjectTaskId', this.taskData.id);
+      }
       formData.append('ProjectId', this.projectObj.id);
-      formData.append('ProjectTaskId', this.taskData.id);
-      formData.append('Name', this.myForm.value.title);
+      formData.append('Name', this.myForm.value.Name);
+      formData.append('File', this.attechments.file);
       this.apiService.post('ProjectDocument', formData).subscribe((response) => {
         if (response.success) {
           this.toaster.success('Docsument uploaded Successfully!')
@@ -138,6 +145,16 @@ export class AttechmentsComponent {
     // Add more mappings for other file types as needed
   };
 
+
+  // Mark for check 
+  private markFormGroupAsTouched(formGroup: FormGroup) {
+    Object.values(formGroup.controls).forEach(control => {
+      control.markAsTouched();
+      if (control instanceof FormGroup) {
+        this.markFormGroupAsTouched(control);
+      }
+    });
+  }
 
 }
 

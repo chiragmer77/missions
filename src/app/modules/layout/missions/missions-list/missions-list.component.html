@@ -40,26 +40,26 @@
                 <ul>
                     <li *ngFor="let data of missionList | paginate: { itemsPerPage: 5, currentPage: p }">
                         <div class="row">
-                            <div class="col-xl-4 col-md-4 col-sm-6 col-xs-12 m_task_details"
+                            <div class="col-xl-4 col-md-4 col-sm-6 col-12 m_task_details"
                                 (click)="setProjectData(data)">
                                 <h4><a>{{data.title}} </a></h4>
                                 <p>{{data.startDate |date: 'M/d/yy, h:mm a'}} - {{data.endDate | date: 'M/d/yy, h:mm
                                     a'}}</p>
                             </div>
 
-                            <div class="col-xl-2 col-md-2 col-sm-3 col-xs-12 m_task_status">
+                            <div class="col-xl-2 col-md-2 col-sm-3 col-6 m_task_status">
                                 <h4 class="not-started" *ngIf="data.status === 1"><a>Not-Started</a></h4>
                                 <h4 class="in-progress" *ngIf="data.status === 2"><a>In-progress</a></h4>
                                 <h4 class="completed" *ngIf="data.status === 3"><a>Completed</a></h4>
                                 <p>Status</p>
                             </div>
 
-                            <div class="col-xl-2 col-md-2 col-sm-3 col-xs-12 m_client_name">
+                            <div class="col-xl-2 col-md-2 col-sm-3 col-6 m_client_name">
                                 <h4><a>{{data.client}}</a></h4>
                                 <p>Client Name</p>
                             </div>
 
-                            <div class="col-xl-2 col-md-2 col-sm-3 col-xs-12 m_task_persons">
+                            <div class="col-xl-2 col-md-2 col-sm-3 col-6 m_task_persons">
                                 <div class="progress mt-3">
                                     <div class="progress-bar progress-bar-striped progress-bar-animated"
                                         role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
@@ -69,8 +69,7 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-xl-2 col-md-2 col-sm-3 col-xs-12 m_task_progress">
+                            <div class="col-xl-2 col-md-2 col-sm-3 col-6 m_task_progress">
                                 <ng-container *ngIf="data.members.length > 0">
                                     <span *ngFor="let member of data.members.slice(0, 3)" class="m_img_thumbnail"
                                         [style.background]="sharedService.getBackgroundColor(member)"
@@ -96,76 +95,7 @@
                             </div>
                         </div>
                     </li>
-                    <!-- <li>
-                        <div class="row">
-                            <div class="col-xl-4 col-md-4 col-sm-6 col-xs-12 m_task_details">
-                                <h4><a>Need a logo desgined for a poltary farm </a></h4>
-                                <p>11/28/2022 08:07PM</p>
-                            </div>
-
-                            <div class="col-xl-2 col-md-2 col-sm-3 col-xs-12 m_task_status">
-                                <h4><a>In-progress</a></h4>
-                                <p>Status</p>
-                            </div>
-
-                            <div class="col-xl-2 col-md-2 col-sm-3 col-xs-12 m_client_name">
-                                <h4><a>Samuel Bravo</a></h4>
-                                <p>Client Name</p>
-                            </div>
-
-                            <div class="col-xl-2 col-md-2 col-sm-3 col-xs-12 m_task_persons">
-                                <div class="progress mt-3" style="height:7px">
-                                    <div class="progress-bar" style="width:40%;"></div>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-2 col-md-2 col-sm-3 col-xs-12 m_task_progress">
-                                <span class="m_img_thumbnail blue_thumb_color" data-bs-toggle="tooltip"
-                                    title="Kishan">K</span>
-                                <span class="m_img_thumbnail green_thumb_color" data-bs-toggle="tooltip"
-                                    title="Kishan">D</span>
-                                <span class="m_img_thumbnail purple_thumb_color" data-bs-toggle="tooltip"
-                                    title="Kishan">M</span>
-                                <span class="m_img_thumbnail" data-bs-toggle="tooltip" title="Kishan">+3</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row">
-                            <div class="col-xl-4 col-md-4 col-sm-6 col-xs-12 m_task_details">
-                                <h4><a>Need a logo desgined for a poltary farm </a></h4>
-                                <p>11/28/2022 08:07PM</p>
-                            </div>
-
-                            <div class="col-xl-2 col-md-2 col-sm-3 col-xs-12 m_task_status">
-                                <h4><a>In-progress</a></h4>
-                                <p>Status</p>
-                            </div>
-
-                            <div class="col-xl-2 col-md-2 col-sm-3 col-xs-12 m_client_name">
-                                <h4><a>Samuel Bravo</a></h4>
-                                <p>Client Name</p>
-                            </div>
-
-                            <div class="col-xl-2 col-md-2 col-sm-3 col-xs-12 m_task_persons">
-                                <div class="progress mt-3" style="height:7px">
-                                    <div class="progress-bar" style="width:40%;"></div>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-2 col-md-2 col-sm-3 col-xs-12 m_task_progress">
-                                <span class="m_img_thumbnail blue_thumb_color" data-bs-toggle="tooltip"
-                                    title="Kishan">K</span>
-                                <span class="m_img_thumbnail green_thumb_color" data-bs-toggle="tooltip"
-                                    title="Kishan">D</span>
-                                <span class="m_img_thumbnail purple_thumb_color" data-bs-toggle="tooltip"
-                                    title="Kishan">M</span>
-                                <span class="m_img_thumbnail" data-bs-toggle="tooltip" title="Kishan">+3</span>
-                            </div>
-                        </div>
-                    </li> -->
                 </ul>
-
             </div>
             <div class="text-end mt-4">
                 <pagination-controls (pageChange)="p = $event"></pagination-controls>

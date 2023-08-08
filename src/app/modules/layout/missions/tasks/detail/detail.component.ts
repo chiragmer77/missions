@@ -30,6 +30,7 @@ export class DetailComponent {
     OrderBy: ''
   }
   projectTaskCommentLists: any = [];
+  projectTaskDocumentLists: any = [];
 
   constructor(
     public sharedService: SharedService,
@@ -50,6 +51,7 @@ export class DetailComponent {
     }
 
     this.getTaskCommentList();
+    this.getProjectTasksDocuments();
   }
 
   /** Get Task Comment list */
@@ -88,6 +90,17 @@ export class DetailComponent {
     // Optionally, you can clear the textarea after adding the comment
     const textareaElement = document.querySelector('.form-control') as HTMLTextAreaElement;
     textareaElement.value = '';
+  }
+
+  /** Get Project Documents */
+  getProjectTasksDocuments() {
+    this.spinner.show();
+    this.apiService.getWithParams('ProjectDocument',
+      `ProjectId=${this.projectObj.id}&taskData=${this.taskData.id}&IsHideCount=${this.pagePayload.IsHideCount}&Search=${this.pagePayload.Search}&IsDescending=${this.pagePayload.IsDescending}&Page=${this.pagePayload.Page}&PageSize=${this.pagePayload.PageSize}`).subscribe((response) => {
+        this.projectTaskDocumentLists = response.data;
+        console.log(this.projectTaskDocumentLists)
+        this.spinner.hide();
+      });
   }
 
 
@@ -137,5 +150,9 @@ export class DetailComponent {
       default:
         return 1;
     }
+  }
+
+  handleChildComponentClose() {
+    this.getProjectTasksDocuments();
   }
 }

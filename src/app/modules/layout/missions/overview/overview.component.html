@@ -42,18 +42,13 @@
             <h5 class="mt-5">
                 Attachments
                 <!-- <i class="bi bi-plus-circle"></i>  -->
-                <app-attechments (onClose)="handleChildComponentClose()"></app-attechments>
+                <app-attechments (onClose)="handleChildComponentClose()" [from]="'project'"></app-attechments>
             </h5>
             <div class="attachments-lists mt-4">
-                <span>
-                    <i class="bi bi-file-earmark"></i> Logo Brief.docx
+                <span *ngFor="let data of projectDocumentLists">
+                    <i class="bi bi-file-earmark"></i> {{data.name}}
                 </span>
-                <span>
-                    <i class="bi bi-file-earmark"></i> Logo Brief.docx
-                </span>
-                <span>
-                    <i class="bi bi-file-earmark"></i> Logo Brief.docx
-                </span>
+
             </div>
         </div>
     </div>

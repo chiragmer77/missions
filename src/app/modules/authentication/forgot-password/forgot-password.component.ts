@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class ForgotPasswordComponent {
 
   email: any = '';
+  isLoading = false;
 
 
   submitForm(form: any) {

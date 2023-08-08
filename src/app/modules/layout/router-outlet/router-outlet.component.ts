@@ -12,6 +12,7 @@ export class RouterOutletComponent {
   @ViewChild('rightArrow', { static: true }) rightArrow: ElementRef | undefined;
 
   isClassAdded: boolean = true;
+  isMenuSubmenu: boolean = true;
 
   constructor(private renderer: Renderer2) { }
 
@@ -19,9 +20,7 @@ export class RouterOutletComponent {
 
   toggleClass() {
     this.isClassAdded = !this.isClassAdded;
-
     console.log(this.isClassAdded)
-
     if (this.isClassAdded) {
       this.renderer.setStyle(this.bigLogo?.nativeElement, 'display', 'block');
       this.renderer.setStyle(this.smallLogo?.nativeElement, 'display', 'none');
@@ -33,6 +32,10 @@ export class RouterOutletComponent {
       this.renderer.setStyle(this.leftArrow?.nativeElement, 'display', 'none');
       this.renderer.setStyle(this.rightArrow?.nativeElement, 'display', 'block');
     }
+  }
+
+  menuSubmenu() {
+    this.isMenuSubmenu = !this.isMenuSubmenu;
   }
 
 }

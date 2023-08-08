@@ -713,6 +713,7 @@ a {
 .ngx-file-drop__drop-zone {
   border: 2px dotted #33333352 !important;
   border-radius: 8px !important;
+  height: 250px !important;
 }
 .ngx-file-drop__content {
   color: #0044aa !important;

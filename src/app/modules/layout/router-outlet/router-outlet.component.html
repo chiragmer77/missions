@@ -44,19 +44,31 @@
                     </span>
                 </a>
 
-                <a class="nav_link pe-auto" [routerLink]="['/dashboard/category']" routerLinkActive="active">
-                    <i class="bi bi-person-fill-gear"></i>
+                <a class="nav_link pe-auto pointer" [ngClass]="{'mb-0' : !isMenuSubmenu}" routerLinkActive="active"
+                    (click)="menuSubmenu()">
+                    <i class="bi bi-gear"></i>
                     <span class="nav_name">
-                        Category
+                        Settings
                     </span>
+                    <i *ngIf="isMenuSubmenu" class="bi bi-caret-right"></i>
+                    <i *ngIf="!isMenuSubmenu" class="bi bi-caret-down"></i>
                 </a>
 
-                <a class="nav_link pe-auto" [routerLink]="['/dashboard/designation']" routerLinkActive="active">
-                    <i class="bi bi-grid-fill"></i>
-                    <span class="nav_name">
-                        Designation
-                    </span>
-                </a>
+                <div class="setting-submenu" *ngIf="!isMenuSubmenu">
+                    <a class="nav_link pe-auto mb-0" [routerLink]="['/dashboard/category']" routerLinkActive="active">
+                        <i class="bi bi-person-fill-gear"></i>
+                        <span class="nav_name">
+                            Category
+                        </span>
+                    </a>
+
+                    <a class="nav_link pe-auto " [routerLink]="['/dashboard/designation']" routerLinkActive="active">
+                        <i class="bi bi-grid-fill"></i>
+                        <span class="nav_name">
+                            Designation
+                        </span>
+                    </a>
+                </div>
                 <a class="nav_link pe-auto" [routerLink]="['/dashboard/analytics']" routerLinkActive="active">
                     <i class="bi bi-graph-down"></i>
                     <span class="nav_name">

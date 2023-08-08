@@ -30,17 +30,12 @@
                         {{taskData.description}}
                     </p>
                     <h5 class="mt-5">
-                        Attachments <i class="bi bi-plus-circle"></i>
+                        Attachments <app-attechments (onClose)="handleChildComponentClose()"
+                            [from]="'projectTask'"></app-attechments>
                     </h5>
                     <div class="attachments-lists mt-4">
-                        <span>
-                            <i class="bi bi-file-earmark"></i> Logo Brief.docx
-                        </span>
-                        <span>
-                            <i class="bi bi-file-earmark"></i> Logo Brief.docx
-                        </span>
-                        <span>
-                            <i class="bi bi-file-earmark"></i> Logo Brief.docx
+                        <span *ngFor="let data of projectTaskDocumentLists">
+                            <i class="bi bi-file-earmark"></i> {{data.name}}
                         </span>
                     </div>
 

@@ -21,6 +21,7 @@ export class OverviewComponent {
     OrderBy: ''
   }
   activityList: any = [];
+  projectDocumentLists: any = [];
   projectObj: any;
 
   constructor(
@@ -39,10 +40,11 @@ export class OverviewComponent {
   ngOnInit(): void {
     this.getProjectRoleLists();
     this.getProjectActivity();
+    this.getProjectDocuments();
   }
 
   handleChildComponentClose() {
-
+    this.getProjectDocuments();
   }
 
   // Get Member List
@@ -60,6 +62,17 @@ export class OverviewComponent {
       `ProjectId=${this.projectObj.id}&IsHideCount=${this.pagePayload.IsHideCount}&Search=${this.pagePayload.Search}&IsDescending=${this.pagePayload.IsDescending}&Page=${this.pagePayload.Page}&PageSize=${this.pagePayload.PageSize}`).subscribe((response) => {
         this.activityList = response.data;
         console.log(this.activityList)
+        this.spinner.hide();
+      });
+  }
+
+  /** Get Project activtiy */
+  getProjectDocuments() {
+    this.spinner.show();
+    this.apiService.getWithParams('ProjectDocument',
+      `ProjectId=${this.projectObj.id}&IsHideCount=${this.pagePayload.IsHideCount}&Search=${this.pagePayload.Search}&IsDescending=${this.pagePayload.IsDescending}&Page=${this.pagePayload.Page}&PageSize=${this.pagePayload.PageSize}`).subscribe((response) => {
+        this.projectDocumentLists = response.data;
+        console.log(this.projectDocumentLists)
         this.spinner.hide();
       });
   }

@@ -38,3 +38,19 @@
   color: #0044aa !important;
   font-weight: 600;
 }
+.bi-caret-right {
+  position: absolute;
+  right: 15px;
+  font-size: 17px;
+  top: 15px;
+}
+.bi-caret-down {
+  position: absolute;
+  right: 15px;
+  font-size: 17px;
+  top: 15px;
+}
+
+.setting-submenu {
+  margin-left: 25px;
+}

@@ -12,12 +12,11 @@
             <div class="container mt-3">
                 <div class="row">
                     <div class="col-md-12 mb-4">
-                        <input type="text" placeholder="Title of Project" class="form-control" id="title"
-                            formControlName="title" required>
+                        <input type="text" placeholder="Name of Document" class="form-control" id="Name"
+                            formControlName="Name" required>
                         <h6 class="error-message">
-                            <span *ngIf="myForm.get('title').invalid && myForm.get('title').touched"
-                                class="text-danger">
-                                Title of Project is required
+                            <span *ngIf="myForm.get('Name').invalid && myForm.get('Name').touched" class="text-danger">
+                                Name is required
                             </span>
                         </h6>
                     </div>
@@ -30,6 +29,11 @@
                                     Files</button>
                             </ng-template>
                         </ngx-file-drop>
+                        <h6 class="error-message">
+                            <span *ngIf="!attechments.file" class="text-danger">
+                                File is required
+                            </span>
+                        </h6>
 
                         <ng-container *ngIf="attechments.isTrue">
                             <div class="drop-file-section mt-4">
