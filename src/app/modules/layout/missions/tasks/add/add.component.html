@@ -64,10 +64,19 @@
                 <div class="row">
                     <div class="col-md-12 mb-4">
                         <input type="number" placeholder="Hours to Spend" class="form-control"
-                            formControlName="hoursToSpend" required>
+                            formControlName="actualHours" required>
                         <h6 class="error-message">
-                            <span *ngIf="myForm.get('hoursToSpend').invalid && myForm.get('hoursToSpend').touched"
+                            <span *ngIf="myForm.get('actualHours').invalid && myForm.get('actualHours').touched"
                                 class="text-danger">Hours to Spend is required</span>
+                        </h6>
+                    </div>
+
+                    <div class="col-md-12 mb-4">
+                        <input type="number" placeholder="Expected hours to Spend" class="form-control"
+                            formControlName="expectedHours" required>
+                        <h6 class="error-message">
+                            <span *ngIf="myForm.get('expectedHours').invalid && myForm.get('expectedHours').touched"
+                                class="text-danger">Expected hours to Spend is required</span>
                         </h6>
                     </div>
 

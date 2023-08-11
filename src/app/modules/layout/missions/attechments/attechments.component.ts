@@ -42,6 +42,7 @@ export class AttechmentsComponent {
     this.attechments.isTrue = false;
     this.myForm = this.formBuilder.group({
       Name: ['', Validators.required],
+      status: ['', Validators.required]
     });
   }
 
@@ -65,6 +66,7 @@ export class AttechmentsComponent {
       }
       formData.append('ProjectId', this.projectObj.id);
       formData.append('Name', this.myForm.value.Name);
+      formData.append('status', this.myForm.value.status);
       formData.append('File', this.attechments.file);
       this.apiService.post('ProjectDocument', formData).subscribe((response) => {
         if (response.success) {
@@ -100,11 +102,9 @@ export class AttechmentsComponent {
       if (droppedFile.fileEntry.isFile) {
         const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
         fileEntry.file((file: File) => {
-          console.log(file)
           this.attechments.file = file;
           this.attechments.name = file.name;
         });
-        console.log(this.attechments.file)
       } else {
         // It was a directory (empty directories are added, otherwise only files)
         const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;

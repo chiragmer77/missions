@@ -45,18 +45,17 @@ export class TimelineComponent {
   /** Get Project tasks lists */
   getProjectTasksLists() {
     this.spinner.show();
-    this.apiService.getWithParams('ProjectTask',
-      `ProjectId=${this.projectObj.id}&IsHideCount=${this.pagePayload.IsHideCount}&Search=${this.pagePayload.Search}&IsDescending=${this.pagePayload.IsDescending}&Page=${this.pagePayload.Page}&PageSize=${this.pagePayload.PageSize}`).subscribe((response) => {
+    this.apiService.getWithParams(`ProjectTask/${this.projectObj.id}/timeline`,
+      `id=${this.projectObj.id}`).subscribe((response) => {
         this.projectTasksLists = response.data;
         this.projectTasksLists = this.projectTasksLists.map((item: any) => {
           const newItem: any = {};
-          newItem['pID'] = item.id;
+          newItem['pID'] = item.createdDate;
           newItem['pName'] = item.title;
           newItem['pStart'] = item.createdDate;
           newItem['pEnd'] = item.endDate;
           newItem['pRes'] = item.member;
-          newItem['pComp'] = 20,
-            newItem['pClass'] = this.getRandomColor();
+          newItem['pClass'] = this.getRandomColor();
           // You can update other properties as needed, if available in the arrayData
           return newItem;
         });

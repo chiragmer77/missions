@@ -27,7 +27,7 @@
                         </a>
                     </li>
                     <li>
-                        <app-add-mission (onClose)="handleChildComponentClose()"></app-add-mission>
+                        <app-add-mission (onClose)="handleChildComponentClose()" [from]="'list'"></app-add-mission>
                     </li>
                 </ul>
             </div>
@@ -96,6 +96,9 @@
                         </div>
                     </li>
                 </ul>
+            </div>
+            <div class="no-records-found mt-5 text-center" *ngIf="missionList.length == 0">
+                <span>No Records Found ! </span>
             </div>
             <div class="text-end mt-4">
                 <pagination-controls (pageChange)="p = $event"></pagination-controls>

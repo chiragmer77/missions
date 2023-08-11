@@ -13,7 +13,7 @@ import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './modules/layout/header/header.component';
 import { RouterOutletComponent } from './modules/layout/router-outlet/router-outlet.component'; // Import BrowserAnimationsModule
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { ApiInterceptor } from './core/interceptor/api.interceptor';
 import { MissionsModule } from './modules/layout/missions/missions.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -22,6 +22,16 @@ import { DatePipe } from '@angular/common';
 import { NgDragDropModule } from 'ng-drag-drop';
 import { NgGanttEditorModule } from 'ng-gantt'
 import { TooltipModule } from 'ng2-tooltip-directive';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { RouterOutletModule } from './modules/layout/router-outlet.module';
+import { SharedService } from './shared/services/shared.service';
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
+
 
 
 @NgModule({
@@ -47,14 +57,24 @@ import { TooltipModule } from 'ng2-tooltip-directive';
     NgxPaginationModule,
     NgDragDropModule.forRoot(),
     NgGanttEditorModule,
-    TooltipModule],
+    TooltipModule,
+    RouterOutletModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiInterceptor,
       multi: true,
     },
-    DatePipe
+    DatePipe,
+    SharedService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]

@@ -5,24 +5,88 @@
             <h3 class="float-start">
                 Analytics
             </h3>
-            <div class="top_action float-end">
-                <ul>
-                    <li>
-                        <a class="m_slider">
-                            <i class="bi bi-search"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
         </div>
     </div>
 
     <div class="Container p-0">
-        <div class="row p-0">
-            <div class="col-md-12">
-                <canvas id="myChart" height="80px"></canvas>
+        <div class="row p-0 rounded-2 border">
+            <div class="hours_heading mt-3">
+                <h3 class="float-start">Total Hours Spent</h3>
+                <div class="float-end mb-2">
+                    <a class="text-right filter_icon pointer" (click)="toggleDatepicker('hours-chart')"
+                        *ngIf="!showDatepickerChart">
+                        <img src="./assets/icons/filter.png">
+                    </a>
+                    <div *ngIf="showDatepickerChart" class="datepicker-container">
+                        <input type="date" class="form-control" [(ngModel)]="fromDate" placeholder="From">
+                        <input type="date" class="form-control" [(ngModel)]="toDate" placeholder="To">
+                        <button (click)="toggleDatepicker('hours-chart')" type="button"
+                            class="btn btn-outline-primary auth-cancel-outline">
+                            Cancel
+                        </button>
+                        <button class="btn btn-primary auth-buttons" (click)="search('hours-chart')">Search</button>
+                        <p class="text-danger">{{ dateError }}</p>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <canvas id="myChart" height="80px"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="row rounded-2 border mt-5">
+            <div class="hours_heading mt-3">
+                <h3 class="float-start">Mission stats</h3>
+                <div class="float-end mb-2">
+                    <a class="text-right filter_icon pointer" (click)="toggleDatepicker('mission-stats')"
+                        *ngIf="!showDatepickerMissionStats">
+                        <img src="./assets/icons/filter.png">
+                    </a>
+                    <div *ngIf="showDatepickerMissionStats" class="datepicker-container">
+                        <input type="date" class="form-control" [(ngModel)]="fromDate" placeholder="From">
+                        <input type="date" class="form-control" [(ngModel)]="toDate" placeholder="To">
+                        <button (click)="toggleDatepicker('mission-stats')" type="button"
+                            class="btn btn-outline-primary auth-cancel-outline">
+                            Cancel
+                        </button>
+                        <button class="btn btn-primary auth-buttons" (click)="search('mission-stats')">Search</button>
+                        <p class="text-danger">{{ dateError }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 d-flex flex-column text-center mt-2">
+                <div class="chart-container flex-grow-1">
+                    <div class="no-records-found mt-5 text-center"
+                        *ngIf="missionStatsData.projectByCategory.length == 0">
+                        <span>No Records Found ! </span>
+                    </div>
+                    <canvas id="missionByFunctionChart"></canvas>
+                    <h6 class="mt-2">Mission by Function</h6>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex flex-column text-center mt-2">
+                <div class="chart-container flex-grow-1">
+                    <div class="no-records-found mt-5 text-center" *ngIf="missionStatsData.projectByMonth.length == 0">
+                        <span>No Records Found ! </span>
+                    </div>
+                    <canvas id="highNumberMissionsChart"></canvas>
+                    <h6 class="mt-2">High Number of Missions in a Month</h6>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex flex-column text-center mt-2">
+                <div class="chart-container flex-grow-1">
+                    <div class="no-records-found mt-5 text-center" *ngIf="missionStatsData.projectByClient.length == 0">
+                        <span>No Records Found ! </span>
+                    </div>
+                    <canvas id="highestPaidClientChart"></canvas>
+                    <h6 class="mt-2">Highest Paid Client</h6>
+                </div>
             </div>
         </div>
     </div>
+
+
+
 </div>
 <!--Container Main end-->

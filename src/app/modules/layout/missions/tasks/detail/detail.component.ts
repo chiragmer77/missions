@@ -31,6 +31,10 @@ export class DetailComponent {
   }
   projectTaskCommentLists: any = [];
   projectTaskDocumentLists: any = [];
+  isConfirmationModalOpen: boolean = false;
+  modalTitle: string = '';
+  modalMessage: string = '';
+  data: any;
 
   constructor(
     public sharedService: SharedService,
@@ -154,5 +158,29 @@ export class DetailComponent {
 
   handleChildComponentClose() {
     this.getProjectTasksDocuments();
+  }
+
+
+  /** Remove Document */
+  removeDocument(data: any) {
+    this.modalTitle = 'Delete Documents';
+    this.modalMessage = 'Are you sure you want to delete ' + data.name + ' from Documents?';
+    this.data = data;
+    this.isConfirmationModalOpen = !this.isConfirmationModalOpen;
+  }
+
+  // On Close Confirmation Modal
+  onCloseConfirmationModal(event: any) {
+    if (event) {
+      this.spinner.show();
+      this.apiService.delete(`ProjectDocument/${this.data.id}`).subscribe((response) => {
+        if (response.success) {
+          this.toaster.success('Documents Delete Successfully!');
+          this.spinner.hide();
+          this.getProjectTasksDocuments();
+        }
+      });
+    }
+    this.isConfirmationModalOpen = !this.isConfirmationModalOpen;
   }
 }

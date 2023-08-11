@@ -23,6 +23,11 @@ export class OverviewComponent {
   activityList: any = [];
   projectDocumentLists: any = [];
   projectObj: any;
+  isConfirmationModalOpen: boolean = false;
+  modalTitle: string = '';
+  modalMessage: string = '';
+  data: any;
+  getDownloadFileUrl: any;
 
   constructor(
     private apiService: ApiService,
@@ -61,7 +66,6 @@ export class OverviewComponent {
     this.apiService.getWithParams('Activity',
       `ProjectId=${this.projectObj.id}&IsHideCount=${this.pagePayload.IsHideCount}&Search=${this.pagePayload.Search}&IsDescending=${this.pagePayload.IsDescending}&Page=${this.pagePayload.Page}&PageSize=${this.pagePayload.PageSize}`).subscribe((response) => {
         this.activityList = response.data;
-        console.log(this.activityList)
         this.spinner.hide();
       });
   }
@@ -72,7 +76,6 @@ export class OverviewComponent {
     this.apiService.getWithParams('ProjectDocument',
       `ProjectId=${this.projectObj.id}&IsHideCount=${this.pagePayload.IsHideCount}&Search=${this.pagePayload.Search}&IsDescending=${this.pagePayload.IsDescending}&Page=${this.pagePayload.Page}&PageSize=${this.pagePayload.PageSize}`).subscribe((response) => {
         this.projectDocumentLists = response.data;
-        console.log(this.projectDocumentLists)
         this.spinner.hide();
       });
   }
@@ -123,5 +126,39 @@ export class OverviewComponent {
       default:
         return 1;
     }
+  }
+
+  /** Remove Document */
+  removeDocument(data: any) {
+    this.modalTitle = 'Delete Documents';
+    this.modalMessage = 'Are you sure you want to delete ' + data.name + ' from Documents?';
+    this.data = data;
+    this.isConfirmationModalOpen = !this.isConfirmationModalOpen;
+  }
+
+  // On Close Confirmation Modal
+  onCloseConfirmationModal(event: any) {
+    if (event) {
+      this.spinner.show();
+      this.apiService.delete(`ProjectDocument/${this.data.id}`).subscribe((response) => {
+        if (response.success) {
+          this.toaster.success('Documents Delete Successfully!');
+          this.spinner.hide();
+          this.getProjectDocuments();
+        }
+      });
+    }
+    this.isConfirmationModalOpen = !this.isConfirmationModalOpen;
+  }
+
+  /** View Documents */
+  viewDocuments(data: any) {
+    console.log(data);
+    this.apiService.get(`ProjectDocument/download/${data.id}`).subscribe((response) => {
+      if (response.success) {
+        this.getDownloadFileUrl = decodeURIComponent(response.downloadUrl);
+        console.log(this.getDownloadFileUrl);
+      }
+    });
   }
 }

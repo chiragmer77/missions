@@ -45,9 +45,16 @@
                 <app-attechments (onClose)="handleChildComponentClose()" [from]="'project'"></app-attechments>
             </h5>
             <div class="attachments-lists mt-4">
-                <span *ngFor="let data of projectDocumentLists">
-                    <i class="bi bi-file-earmark"></i> {{data.name}}
-                </span>
+                <div class="no-records-found" *ngIf="projectDocumentLists.length == 0">
+                    <span>No Attachments Found ! </span>
+                </div>
+                <ng-container *ngFor="let data of projectDocumentLists">
+                    <span>
+                        <i class="bi bi-file-earmark" (click)="viewDocuments(data)"></i> {{data.name}}
+
+                        <i class="bi bi-x-circle" tooltip="Remove" (click)="removeDocument(data)"></i>
+                    </span>
+                </ng-container>
 
             </div>
         </div>
@@ -163,3 +170,6 @@
         </div>
     </div>
 </div>
+
+<app-confirmation-modal (onClose)="onCloseConfirmationModal($event)" [isOpen]="isConfirmationModalOpen"
+    [title]="modalTitle" [message]="modalMessage"></app-confirmation-modal>

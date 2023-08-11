@@ -34,9 +34,15 @@
                             [from]="'projectTask'"></app-attechments>
                     </h5>
                     <div class="attachments-lists mt-4">
-                        <span *ngFor="let data of projectTaskDocumentLists">
-                            <i class="bi bi-file-earmark"></i> {{data.name}}
-                        </span>
+                        <div class="no-records-found" *ngIf="projectTaskDocumentLists.length == 0">
+                            <span>No Attachments Found ! </span>
+                        </div>
+                        <ng-container *ngFor="let data of projectTaskDocumentLists">
+                            <span>
+                                <i class="bi bi-file-earmark"></i> {{data.name}}
+                                <i class="bi bi-x-circle" tooltip="Remove" (click)="removeDocument(data)"></i>
+                            </span>
+                        </ng-container>
                     </div>
 
                     <h5 class="mt-5">
@@ -44,7 +50,6 @@
                     </h5>
 
                     <div class="comment-section">
-
                         <div class="comment">
                             <div class="profile-photo">
                                 <img class="user-image" src="./assets/Images/andrew.png">
@@ -144,7 +149,7 @@
                             <div class="col-md-9 values">
                                 <p>{{taskData.member}}</p>
                                 <p>{{taskData.projectTaskCategory}}</p>
-                                <p>{{taskData.hoursToSpend}}</p>
+                                <p>{{taskData.actualHours}}</p>
                                 <p>
                                     <span class="badge bg-primary" *ngIf="taskData.priority == 1">
                                         Low
@@ -166,3 +171,6 @@
     </div>
 </div>
 <!--Container Main end-->
+
+<app-confirmation-modal (onClose)="onCloseConfirmationModal($event)" [isOpen]="isConfirmationModalOpen"
+    [title]="modalTitle" [message]="modalMessage"></app-confirmation-modal>

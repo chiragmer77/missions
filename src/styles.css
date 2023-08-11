@@ -843,3 +843,17 @@ span.gselected {
   margin-top: 9px;
   border-radius: 10px;
 }
+
+.datepicker-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.bi-file-earmark {
+  vertical-align: middle;
+}
+.bi-x-circle {
+  vertical-align: top !important;
+  font-size: 15px !important;
+  color: red !important;
+}

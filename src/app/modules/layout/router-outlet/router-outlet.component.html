@@ -55,10 +55,18 @@
                 </a>
 
                 <div class="setting-submenu" *ngIf="!isMenuSubmenu">
+                    <a class="nav_link pe-auto mb-0" [routerLink]="['/dashboard/project-category']"
+                        routerLinkActive="active">
+                        <i class="bi bi-person-fill-gear"></i>
+                        <span class="nav_name">
+                            Project Category
+                        </span>
+                    </a>
+
                     <a class="nav_link pe-auto mb-0" [routerLink]="['/dashboard/category']" routerLinkActive="active">
                         <i class="bi bi-person-fill-gear"></i>
                         <span class="nav_name">
-                            Category
+                            Task Category
                         </span>
                     </a>
 

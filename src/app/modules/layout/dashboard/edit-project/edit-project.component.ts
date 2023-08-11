@@ -5,11 +5,12 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
-  selector: 'app-add-mission',
-  templateUrl: './add-mission.component.html',
-  styleUrls: ['./add-mission.component.css']
+  selector: 'app-edit-project',
+  templateUrl: './edit-project.component.html',
+  styleUrls: ['./edit-project.component.css']
 })
-export class AddMissionComponent {
+export class EditProjectComponent {
+
   @Output() onClose: EventEmitter<any> = new EventEmitter<any>();
   myForm: FormGroup | any;
   isSidebarOpenClose: boolean = false;
@@ -170,3 +171,4 @@ export class AddMissionComponent {
   }
 
 }
+

@@ -68,6 +68,7 @@ export class RoleComponent {
   }
 
   onSubmit() {
+    this.roleForm.get('projectId').setValue(this.projectObj.id);
     // Trigger validation for all form controls
     this.markFormGroupAsTouched(this.roleForm);
     if (this.roleForm.valid) {

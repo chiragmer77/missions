@@ -20,6 +20,17 @@
                             </span>
                         </h6>
                     </div>
+                    <div class="col-md-12 mb-4">
+                        <select class="form-control" placeholder="Status" formControlName="status" required>
+                            <option value="" disabled>Select Status</option>
+                            <option value="1">StepReport</option>
+                            <option value="2">FinalReport</option>
+                        </select>
+                        <h6 class="error-message">
+                            <span *ngIf="myForm.get('status').invalid && myForm.get('status').touched"
+                                class="text-danger">Status is required</span>
+                        </h6>
+                    </div>
                     <div class="col-md-12">
                         <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"
                             (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">

@@ -9,6 +9,7 @@ import { DesignationComponent } from './designation/designation.component';
 import { CategoryComponent } from './category/category.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { GantChartComponent } from './gant-chart/gant-chart.component';
+import { ProjectCategoryComponent } from './project-category/project-category.component';
 
 const routes: Routes = [
   {
@@ -49,6 +50,10 @@ const routes: Routes = [
       {
         path: 'gant-chart',
         component: GantChartComponent
+      },
+      {
+        path: 'project-category',
+        component: ProjectCategoryComponent
       },
       {
         path: 'missions', loadChildren: () => import('./missions/missions-routing.module').then(m => m.MissionsRoutingModule),
