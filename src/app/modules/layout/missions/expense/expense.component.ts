@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -7,14 +7,12 @@ import { ApiService } from 'src/app/services/api.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
-  selector: 'app-role',
-  templateUrl: './role.component.html',
-  styleUrls: ['./role.component.css']
+  selector: 'app-expense',
+  templateUrl: './expense.component.html',
+  styleUrls: ['./expense.component.css']
 })
-export class RoleComponent {
-  roleForm: FormGroup | any;
-  designationList: any = [];
-  memberList: any = [];
+export class ExpenseComponent {
+  expenseForm: FormGroup | any;
   isFormVisible: boolean = false; // Variable to track form visibility
   pagePayload: any = {
     IsHideCount: true,
@@ -24,7 +22,7 @@ export class RoleComponent {
     PageSize: 10,
     OrderBy: ''
   }
-  projectRoleList: any = [];
+  projectExpanseList: any = [];
   projectObj: any;
   isEditing: boolean = false;
 
@@ -47,39 +45,36 @@ export class RoleComponent {
     if (storedData) {
       this.projectObj = JSON.parse(storedData);
     }
-    this.roleForm = this.formBuilder.group({
+    this.expenseForm = this.formBuilder.group({
       projectId: [this.projectObj.id],
-      designation: [''],
-      memberId: ['', Validators.required],
-      hoursToSpend: ['', Validators.required],
-      hourlyRate: ['', Validators.required],
+      title: [''],
+      description: ['', Validators.required],
+      amount: ['', Validators.required],
     });
-    this.getProjectRole();
-    this.getListOfMemer();
-    this.getListOfDesignation();
+    this.getProjectExpense();
   }
 
   // Get Project Role
-  getProjectRole() {
+  getProjectExpense() {
     this.spinner.show();
-    this.apiService.getWithParams('ProjectRole',
+    this.apiService.getWithParams('ProjectExpense',
       `ProjectId=${this.projectObj.id}&IsHideCount=${this.pagePayload.IsHideCount}&Search=${this.pagePayload.Search}&IsDescending=${this.pagePayload.IsDescending}&Page=${this.pagePayload.Page}&PageSize=${this.pagePayload.PageSize}`).subscribe((response) => {
-        this.projectRoleList = response.data;
+        this.projectExpanseList = response.data;
         this.spinner.hide();
       });
   }
 
   onSubmit() {
-    this.roleForm.get('projectId').setValue(this.projectObj.id);
+    this.expenseForm.get('projectId').setValue(this.projectObj.id);
     // Trigger validation for all form controls
-    this.markFormGroupAsTouched(this.roleForm);
-    if (this.roleForm.valid) {
+    this.markFormGroupAsTouched(this.expenseForm);
+    if (this.expenseForm.valid) {
       this.spinner.show();
-      var payload: any = this.roleForm.value;
+      var payload: any = this.expenseForm.value;
       if (this.isEditing) {
-        this.apiService.put(`ProjectRole/${payload.id}`, payload).subscribe((response) => {
+        this.apiService.put(`ProjectExpense/${payload.id}`, payload).subscribe((response) => {
           if (response.success) {
-            this.toaster.success('Project Role Edit Successfully!');
+            this.toaster.success('Project Expense Edit Successfully!');
             this.spinner.hide();
             this.hideForm();
             this.resetForm(); // Reset the form after successful add or update
@@ -87,12 +82,12 @@ export class RoleComponent {
         });
       } else {
         this.spinner.show();
-        this.apiService.post('ProjectRole', payload).subscribe((response) => {
+        this.apiService.post('ProjectExpense', payload).subscribe((response) => {
           if (response.success) {
-            this.toaster.success('Project Role Created Successfully!');
+            this.toaster.success('Project Expense Created Successfully!');
             this.spinner.hide();
             this.hideForm();
-            this.getProjectRole();
+            this.getProjectExpense();
             this.resetForm(); // Reset the form after successful add or update
           }
         });
@@ -102,7 +97,7 @@ export class RoleComponent {
 
   // Function to reset the form when adding new data
   resetForm() {
-    this.roleForm.reset();
+    this.expenseForm.reset();
     this.isEditing = false;
   }
 
@@ -119,7 +114,7 @@ export class RoleComponent {
 
   onCancel() {
     this.hideForm();
-    this.roleForm.reset();
+    this.expenseForm.reset();
   }
 
   showForm() {
@@ -131,28 +126,15 @@ export class RoleComponent {
   }
 
   // Edit Role 
-  editRole() {
+  editExpanse(data: any) {
+    this.expenseForm.patchValue(data)
     this.isFormVisible = true;
-  }
-
-  // Designation get 
-  getListOfDesignation() {
-    this.apiService.get('Designation/dropDown').subscribe((response) => {
-      this.designationList = response.data;
-    });
-  }
-
-  // Get Member List
-  getListOfMemer() {
-    this.apiService.get('Member/dropDown').subscribe((response) => {
-      this.memberList = response.data;
-    });
   }
 
   // Delete
   delete(data: any) {
-    this.modalTitle = 'Delete Project Role';
-    this.modalMessage = 'Are you sure you want to delete ' + data.member + ' from Project Role?';
+    this.modalTitle = 'Delete Project Expense';
+    this.modalMessage = 'Are you sure you want to delete ' + data.title + ' from Project Expense?';
     this.data = data;
     this.isConfirmationModalOpen = !this.isConfirmationModalOpen;
   }
@@ -160,10 +142,10 @@ export class RoleComponent {
   // On Close Confirmation Modal
   onCloseConfirmationModal(event: any) {
     if (event) {
-      this.apiService.delete(`ProjectRole/${this.projectObj.id}/member/${this.data.memberId}`).subscribe((response) => {
+      this.apiService.delete(`ProjectExpense/${this.data.id}`).subscribe((response) => {
         if (response.success) {
-          this.toaster.success('Project Role Delete Successfully!');
-          this.getProjectRole();
+          this.toaster.success('Project Expense Delete Successfully!');
+          this.getProjectExpense();
         }
       });
     }

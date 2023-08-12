@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output, Renderer2 } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
@@ -24,6 +25,7 @@ export class AddMissionComponent {
     private toaster: ToastrService,
     private renderer: Renderer2,
     private spinner: NgxSpinnerService,
+    public translate: TranslateService
   ) {
   }
 

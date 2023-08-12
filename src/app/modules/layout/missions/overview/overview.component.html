@@ -2,7 +2,7 @@
     <div class="col-md-8 col-sm-12">
         <div class="description mt-4">
             <h5>
-                Description
+                {{'common.description' | translate}}
             </h5>
 
             <p>
@@ -10,7 +10,8 @@
             </p>
 
             <h5 class="mt-5">
-                Project Roles <i class="bi bi-plus-circle" routerLink="/dashboard/missions/mission-roles/"></i>
+                {{'common.projectRole' | translate}}
+                <i class="bi bi-plus-circle" routerLink="/dashboard/missions/mission-roles/"></i>
             </h5>
 
             <div class="row">
@@ -40,7 +41,7 @@
             </div>
 
             <h5 class="mt-5">
-                Attachments
+                {{'common.attachments' | translate}}
                 <!-- <i class="bi bi-plus-circle"></i>  -->
                 <app-attechments (onClose)="handleChildComponentClose()" [from]="'project'"></app-attechments>
             </h5>
@@ -50,8 +51,8 @@
                 </div>
                 <ng-container *ngFor="let data of projectDocumentLists">
                     <span>
-                        <i class="bi bi-file-earmark" (click)="viewDocuments(data)"></i> {{data.name}}
-
+                        <i class="bi bi-file-earmark"></i> {{data.name}}
+                        <i class="bi bi-eye-fill" tooltip="View" (click)="viewDocuments(data)"></i>
                         <i class="bi bi-x-circle" tooltip="Remove" (click)="removeDocument(data)"></i>
                     </span>
                 </ng-container>
@@ -63,7 +64,7 @@
         <div class="other-details m-4">
             <div class="description mt-4">
                 <h5>
-                    Description
+                    {{'common.description' | translate}}
                 </h5>
 
                 <div class="row mt-3">
@@ -97,12 +98,12 @@
                             </ul>
                         </div>
                         <p class="last-updated-name">
-                            Last Changed by: <span> {{dataFromParent.client}} </span>
+                            {{'common.lastChangedBy' | translate}}: <span> {{dataFromParent.client}} </span>
                         </p>
                     </div>
                     <div class="col-md-4 description-md-4">
                         <h6>
-                            Last Changed
+                            {{'common.lastChanged' | translate}}
                         </h6>
                         <p>
                             12/2/2022 9:21 PM
@@ -115,7 +116,7 @@
                             <i class="bi bi-calendar-date"></i>
                             <div class="startdate-enddate">
                                 <h5>{{dataFromParent.startDate |date: 'M/d/yy'}}</h5>
-                                <span> Start Date </span>
+                                <span> {{'common.startDate' | translate}} </span>
                             </div>
                         </div>
                     </div>
@@ -127,7 +128,7 @@
                             <i class="bi bi-calendar-date"></i>
                             <div class="startdate-enddate">
                                 <h5>{{dataFromParent.endDate |date: 'M/d/yy'}}</h5>
-                                <span> End Date </span>
+                                <span> {{'common.endDate' | translate}} </span>
                             </div>
                         </div>
                     </div>
@@ -137,7 +138,7 @@
                             <i class="bi bi-clock"></i>
                             <div class="startdate-enddate">
                                 <h5>103</h5>
-                                <span> Total Hours Spent </span>
+                                <span> {{'common.totalHoursSpent' | translate}} </span>
                             </div>
                         </div>
                     </div>
@@ -146,7 +147,7 @@
                 <div class="row mt-4">
                     <div class="col-md-12 latest-activity">
                         <h6>
-                            Latest activities on this project
+                            {{'common.latestActivityOnThisProject' | translate}}
                         </h6>
                         <div class="comment-section">
                             <div class="comment" *ngFor="let activity of activityList">

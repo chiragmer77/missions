@@ -1,0 +1,97 @@
+<div class="breadcrumb mt-3">
+    <div class="top_action float-end">
+        <h6 class="float-start mb-0" (click)="showForm()">
+            <i class="bi bi-plus-circle"></i> {{'common.addExpense' | translate}}
+        </h6>
+    </div>
+</div>
+
+<div class="Container container-main p-0">
+    <div class="row p-0 mt-4">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
+            <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
+                <table class="table mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>{{'common.user' | translate}}</th>
+                            <th>{{'common.title' | translate}}</th>
+                            <th>{{'common.description' | translate}}</th>
+                            <th colspan="2">{{'common.amount' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="isFormVisible">
+                            <td></td>
+                            <td>
+                                <input type="text" placeholder="{{'common.title' | translate}}" class="form-control"
+                                    id="title" formControlName="title" required>
+                                <h6 class="error-message">
+                                    <span *ngIf="expenseForm.get('title').invalid && expenseForm.get('title').touched"
+                                        class="text-danger">
+                                        {{'common.title' | translate}} is required
+                                    </span>
+                                </h6>
+                            </td>
+                            <td>
+                                <input type="text" placeholder="{{'common.description' | translate}}"
+                                    class="form-control" id="description" formControlName="description" required>
+                                <h6 class="error-message">
+                                    <span
+                                        *ngIf="expenseForm.get('description').invalid && expenseForm.get('description').touched"
+                                        class="text-danger">
+                                        {{'common.description' | translate}} is required
+                                    </span>
+                                </h6>
+                            </td>
+                            <td>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon2">$</span>
+                                    <input type="number" placeholder="{{'common.amount' | translate}}"
+                                        class="form-control" id="amount" formControlName="amount" required>
+                                </div>
+                                <h6 class="error-message">
+                                    <span *ngIf="expenseForm.get('amount').invalid && expenseForm.get('amount').touched"
+                                        class="text-danger">
+                                        {{'common.amount' | translate}} is required
+                                    </span>
+                                </h6>
+                            <td>
+                                <button type="submit" class="btn">
+                                    <i class="bi bi-check2"></i>
+                                </button>
+                                <button type="button" class="btn " (click)="onCancel()">
+                                    <i class="bi bi-x"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr *ngFor="let data of projectExpanseList">
+                            <td>
+                                <span class="m_img_thumbnail"
+                                    [style.background]="sharedService.getBackgroundColor(data.user)">
+                                    {{sharedService.getFirstLetter(data.user)}}</span>
+                                {{data.user}}
+                            </td>
+                            <td>{{data.title}}</td>
+                            <td>{{data.description}}</td>
+                            <td>10</td>
+                            <td>
+                                <button type="submit" class="btn" (click)="editExpanse(data)">
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
+                                <button type="button" class="btn" (click)="delete(data)">
+                                    <i class="bi bi-trash3"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="no-records-found mt-5 text-center" *ngIf="projectExpanseList.length == 0">
+                    <span>No Records Found ! </span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<app-confirmation-modal (onClose)="onCloseConfirmationModal($event)" [isOpen]="isConfirmationModalOpen"
+    [title]="modalTitle" [message]="modalMessage"></app-confirmation-modal>

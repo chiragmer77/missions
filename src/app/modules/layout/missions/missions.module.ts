@@ -6,7 +6,7 @@ import { MissionsListComponent } from './missions-list/missions-list.component';
 import { AddMissionComponent } from './add-mission/add-mission.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MissionDetailComponent } from './mission-detail/mission-detail.component';
 import { OverviewComponent } from './overview/overview.component';
 import { TasksComponent } from './tasks/tasks.component';
@@ -22,6 +22,10 @@ import { NgxFileDropModule } from 'ngx-file-drop';
 import { NgDragDropModule } from 'ng-drag-drop';
 import { NgGanttEditorModule } from 'ng-gantt';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpLoaderFactory } from 'src/app/app.module';
+import { ExpenseComponent } from './expense/expense.component';
+import { AddExpenseComponent } from './expense/add-expense/add-expense.component';
 
 
 @NgModule({
@@ -36,7 +40,9 @@ import { SharedService } from 'src/app/shared/services/shared.service';
     TimelineComponent,
     RoleComponent,
     DetailComponent,
-    AttechmentsComponent
+    AttechmentsComponent,
+    ExpenseComponent,
+    AddExpenseComponent
   ],
   exports: [],
   imports: [
@@ -51,6 +57,13 @@ import { SharedService } from 'src/app/shared/services/shared.service';
     NgxFileDropModule,
     NgDragDropModule.forRoot(),
     NgGanttEditorModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [SharedService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

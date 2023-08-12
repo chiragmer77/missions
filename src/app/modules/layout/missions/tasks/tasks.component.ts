@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { AddComponent } from './add/add.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-tasks',
@@ -33,7 +34,8 @@ export class TasksComponent {
     private toaster: ToastrService,
     private spinner: NgxSpinnerService,
     public sharedService: SharedService,
-    private router: Router
+    private router: Router,
+    public translate: TranslateService,
   ) {
     const storedData = localStorage.getItem('projectData');
     if (storedData) {

@@ -2,7 +2,7 @@
     <!-- <div class="header_toggle" style="visibility: hidden;"> <i class='bx bx-menu' id="header-toggle"></i> </div> -->
     <div class="andrew_profile">
         <div class="dropdown">
-            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+            <button class=" btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 <span>
                     Andrew Smith
@@ -18,5 +18,22 @@
             </ul>
         </div>
     </div>
-
+    <button class="dropdown btn dropdown-toggle" id="dropdownMenuButton2" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        <i class="bi bi-translate"></i>
+        {{language.defualtLanguage == 'en' ? 'EN' : 'FR'}}
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+        <li (click)="translate.use('en');changeLanguage('en')">
+            <a class="dropdown-item" [ngClass]="{'active':language.defualtLanguage == 'en'}">
+                English
+            </a>
+        </li>
+        <li (click)="translate.use('fr');changeLanguage('fr')">
+            <a class="dropdown-item" [ngClass]="{'active':language.defualtLanguage == 'fr'}">
+                French
+            </a>
+        </li>
+    </ul>
 </header>

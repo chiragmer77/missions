@@ -1,12 +1,12 @@
 <a class="cr_mission" *ngIf="from == 'detail'">
     <button class="btn btn-primary auth-buttons" (click)="sidebarOpenClose()">
-        Add Task
+        {{'common.addTask' | translate}}
     </button>
 </a>
 <!--Filter Code-->
 <div class="sideFormFields card mb-3" [ngClass]="{'ShowFields' : isSidebarOpenClose}">
     <div class="card-header">
-        <span> {{isEditing == true ? 'Edit' : 'Add'}} Task </span>
+        <span> {{isEditing == true ? ('common.edit' | translate) : 'common.add' | translate}} Task </span>
         <button class="btn" aria-label="Close" (click)="sidebarOpenClose()">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -18,44 +18,45 @@
                     <div class="col-md-12 mb-4">
                         <select class="form-control" placeholder="Category" id="projectTaskCategoryId"
                             formControlName="projectTaskCategoryId" required>
-                            <option value="" disabled>Select Category</option>
+                            <option value="" disabled>{{'common.selectaCategory' | translate}}</option>
                             <option *ngFor="let data of categoryList" value="{{data.id}}">{{data.name}}</option>
                         </select>
                         <h6 class="error-message">
                             <span
                                 *ngIf="myForm.get('projectTaskCategoryId').invalid && myForm.get('projectTaskCategoryId').touched"
                                 class="text-danger">
-                                Category is required
+                                {{'common.category' | translate}} is required
                             </span>
                         </h6>
                     </div>
                     <div class="col-md-12 mb-4">
-                        <input type="text" placeholder="Title" class="form-control" formControlName="title" required>
+                        <input type="text" placeholder="{{'common.title' | translate}}" class="form-control"
+                            formControlName="title" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('title').invalid && myForm.get('title').touched"
-                                class="text-danger">Title is required</span>
+                                class="text-danger">{{'common.title' | translate}} is required</span>
                         </h6>
                     </div>
 
                     <div class="col-md-12 mb-4">
-                        <textarea class="form-control" placeholder="Description" rows="5" cols="33"
-                            formControlName="description" required></textarea>
+                        <textarea class="form-control" placeholder="{{'common.description' | translate}}" rows="5"
+                            cols="33" formControlName="description" required></textarea>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('description').invalid && myForm.get('description').touched"
-                                class="text-danger">Description is required</span>
+                                class="text-danger">{{'common.description' | translate}} is required</span>
                         </h6>
                     </div>
 
                     <div class="col-md-12 mb-4">
                         <select class="form-control" placeholder="Assignee" formControlName="memberId" required>
-                            <option value="" disabled>Assignee</option>
+                            <option value="" disabled>{{'common.assignee' | translate}}</option>
                             <option *ngFor="let data of memberList" value="{{data.id}}">{{data.name}}</option>
                             <!-- Add options for members here -->
                         </select>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('memberId').invalid && myForm.get('memberId').touched"
                                 class="text-danger">
-                                Assignee is required
+                                {{'common.assignee' | translate}} is required
                             </span>
                         </h6>
                     </div>
@@ -63,26 +64,26 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 mb-4">
-                        <input type="number" placeholder="Hours to Spend" class="form-control"
+                        <input type="number" placeholder=" {{'common.hoursToSpend' | translate}}" class="form-control"
                             formControlName="actualHours" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('actualHours').invalid && myForm.get('actualHours').touched"
-                                class="text-danger">Hours to Spend is required</span>
+                                class="text-danger"> {{'common.hoursToSpend' | translate}} is required</span>
                         </h6>
                     </div>
 
                     <div class="col-md-12 mb-4">
-                        <input type="number" placeholder="Expected hours to Spend" class="form-control"
-                            formControlName="expectedHours" required>
+                        <input type="number" placeholder="{{'common.expectedHoursToSpend' | translate}}"
+                            class="form-control" formControlName="expectedHours" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('expectedHours').invalid && myForm.get('expectedHours').touched"
-                                class="text-danger">Expected hours to Spend is required</span>
+                                class="text-danger">{{'common.expectedHoursToSpend' | translate}}</span>
                         </h6>
                     </div>
 
                     <div class="col-md-12 mb-4">
                         <select class="form-control" placeholder="Priority" formControlName="priority" required>
-                            <option value="" disabled>Select Priority</option>
+                            <option value="" disabled>{{'common.selectPrioriry' | translate}}</option>
                             <option value="1">Low</option>
                             <option value="2">Medium</option>
                             <option value="3">High</option>
@@ -90,7 +91,7 @@
                         </select>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('priority').invalid && myForm.get('priority').touched"
-                                class="text-danger">Priority is required</span>
+                                class="text-danger">{{'common.priority' | translate}} is required</span>
                         </h6>
                     </div>
                 </div>
@@ -98,16 +99,16 @@
 
                     <div class="col-md-12 mb-4">
                         <input [type]="isEditing ? 'datetime-local' : 'text'" onfocus="(this.type='datetime-local')"
-                            [value]="myForm.get('endDate').value" placeholder="End Date" class="form-control"
-                            formControlName="endDate" required>
+                            [value]="myForm.get('endDate').value" placeholder="{{'common.endDate' | translate}}"
+                            class="form-control" formControlName="endDate" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('endDate').invalid && myForm.get('endDate').touched"
-                                class="text-danger">End Date is required</span>
+                                class="text-danger">{{'common.endDate' | translate}} is required</span>
                         </h6>
                     </div>
                     <div class="col-md-12 mb-4">
-                        <select class="form-control" placeholder="Status" formControlName="status" required>
-                            <option value="" disabled>Select Status</option>
+                        <select class="form-control" placeholder="" formControlName="status" required>
+                            <option value="" disabled>{{'common.status' | translate}}</option>
                             <option value="1">Not-Started</option>
                             <option value="2">In-Progress</option>
                             <option value="3">Completed</option>
@@ -116,7 +117,7 @@
                         </select>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('status').invalid && myForm.get('status').touched"
-                                class="text-danger">Status is required</span>
+                                class="text-danger">{{'common.status' | translate}} is required</span>
                         </h6>
                     </div>
                 </div>
@@ -124,10 +125,10 @@
         </div>
         <div class="card-footer text-end">
             <button (click)="sidebarOpenClose()" class="btn btn-outline-primary auth-cancel-outline">
-                Cancel
+                {{'common.cancel' | translate}}
             </button>
             <button class="btn btn-primary auth-buttons" type="submit">
-                {{ isEditing == true ? 'Edit' : 'Add' }} Task
+                {{isEditing == true ? ('common.edit' | translate) : 'common.add' | translate}} Task
             </button>
         </div>
     </form>

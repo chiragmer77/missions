@@ -54,3 +54,9 @@
 .setting-submenu {
   margin-left: 25px;
 }
+.text-overflow-ellips {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 160px;
+}

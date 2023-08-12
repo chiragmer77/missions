@@ -6,6 +6,7 @@ import { AddMissionComponent } from '../add-mission/add-mission.component';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { Router } from '@angular/router';
 import { debounceTime } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-missions-list',
@@ -39,7 +40,8 @@ export class MissionsListComponent {
     private toaster: ToastrService,
     private spinner: NgxSpinnerService,
     public sharedService: SharedService,
-    private router: Router
+    private router: Router,
+    public translate: TranslateService,
   ) {
     this.sharedService.searchSubject.pipe(debounceTime(500)).subscribe((query) => {
       this.onSearch(query);

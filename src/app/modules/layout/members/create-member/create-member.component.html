@@ -1,12 +1,12 @@
 <a id="sideFormOpen" class="cr_mission">
     <button class="btn btn-primary auth-buttons" (click)="sidebarOpenClose()">
-        Add Member
+        {{'common.addMember' | translate}}
     </button>
 </a>
 <!--Filter Code-->
 <div class="sideFormFields card mb-3 " [ngClass]="{'ShowFields' : isSidebarOpenClose}">
     <div class="card-header">
-        <span> {{isEditing == true ? 'Edit' : 'Add'}} Member </span>
+        <span> {{isEditing == true ? ('common.edit'| translate) : 'common.add' | translate}} Member </span>
         <button class="btn" aria-label="Close" (click)="sidebarOpenClose()">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -16,46 +16,46 @@
             <div class="container mt-3">
                 <div class="row">
                     <div class="col-md-12 mb-4">
-                        <input type="text" placeholder="First Name" class="form-control" id="firstName"
-                            formControlName="firstName" required>
+                        <input type="text" placeholder=" {{'common.firstName' | translate}}" class="form-control"
+                            id="firstName" formControlName="firstName" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('firstName').invalid && myForm.get('firstName').touched"
-                                class="text-danger">First Name is required</span>
+                                class="text-danger"> {{'common.firstName' | translate}} is required</span>
                         </h6>
                     </div>
                     <div class="col-md-12 mb-4">
-                        <input type="text" placeholder="Last Name" class="form-control" id="lastName"
-                            formControlName="lastName" required>
+                        <input type="text" placeholder=" {{'common.lastName' | translate}}" class="form-control"
+                            id="lastName" formControlName="lastName" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('lastName').invalid && myForm.get('lastName').touched"
-                                class="text-danger">Last Name is required</span>
+                                class="text-danger">{{'common.lastName' | translate}} is required</span>
                         </h6>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 mb-4">
-                        <input type="email" placeholder="Email Address" class="form-control" id="email"
-                            formControlName="email" required>
+                        <input type="email" placeholder="{{'common.emailAddress' | translate}}" class="form-control"
+                            id="email" formControlName="email" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('email').invalid && myForm.get('email').touched"
                                 class="text-danger">
-                                Valid Email Address is required</span>
+                                Valid {{'common.emailAddress' | translate}} is required</span>
                         </h6>
                     </div>
                     <div class="col-md-12 mb-4">
-                        <input type="tel" placeholder="Telephone" class="form-control" id="phoneNumber"
-                            formControlName="phoneNumber" required />
+                        <input type="tel" placeholder="{{'common.telephone' | translate}}" class="form-control"
+                            id="phoneNumber" formControlName="phoneNumber" required />
                         <h6 class="error-message">
                             <span
                                 *ngIf="myForm.get('phoneNumber').errors?.required && myForm.get('phoneNumber').touched"
                                 class="text-danger">
-                                Telephone is required
+                                {{'common.telephone' | translate}} is required
                             </span>
                             <span *ngIf="myForm.get('phoneNumber').errors?.minlength" class="text-danger">
-                                Telephone must be at least 10 characters long
+                                {{'common.telephone' | translate}} must be at least 10 characters long
                             </span>
                             <span *ngIf="myForm.get('phoneNumber').errors?.maxlength" class="text-danger">
-                                Telephone must not exceed 10 characters
+                                {{'common.telephone' | translate}} must not exceed 10 characters
                             </span>
                         </h6>
                     </div>
@@ -63,26 +63,27 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 mb-4">
-                        <input type="password" placeholder="Password" class="form-control" id="password"
-                            formControlName="password" required>
+                        <input type="password" placeholder="{{'common.password' | translate}}" class="form-control"
+                            id="password" formControlName="password" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('password').invalid && myForm.get('password').touched"
                                 class="text-danger">
-                                Password is required
+                                {{'common.password' | translate}} is required
                             </span>
                             <span *ngIf="myForm.get('password').errors?.pattern" class="text-danger">
-                                Password must be at least 8 characters long and contain at least one uppercase letter,
+                                {{'common.password' | translate}} must be at least 8 characters long and contain at
+                                least one uppercase letter,
                                 one lowercase letter, one digit, and one special character (e.g., !@#$%^&*)
                             </span>
                         </h6>
                     </div>
                     <div class="col-md-12 mb-4">
-                        <input type="password" placeholder="Confirm Password" class="form-control"
-                            id="ConfirmedPassword" formControlName="ConfirmedPassword" required>
+                        <input type="password" placeholder=" {{'common.confirmPassword' | translate}}"
+                            class="form-control" id="ConfirmedPassword" formControlName="ConfirmedPassword" required>
                         <h6 class="error-message"
                             *ngIf="myForm.get('ConfirmedPassword').invalid && (myForm.get('ConfirmedPassword').dirty || myForm.get('ConfirmedPassword').touched)">
-                            <span *ngIf="myForm.get('ConfirmedPassword').errors?.required" class="text-danger">Confirm
-                                Password is required</span>
+                            <span *ngIf="myForm.get('ConfirmedPassword').errors?.required" class="text-danger">
+                                {{'common.confirmPassword' | translate}} is required</span>
                             <span *ngIf="myForm.controls['ConfirmedPassword'].hasError('confirmedValidator')">Passwords
                                 do not
                                 match.
@@ -94,36 +95,36 @@
                     <div class="col-md-12 mb-4">
                         <select class="form-control" placeholder="Function" id="designationId"
                             formControlName="designationId" required>
-                            <option value="" disabled selected>Select a function</option>
+                            <option value="" disabled selected>{{'common.selectAFunction' | translate}}</option>
                             <option *ngFor="let data of functionList" value="{{data.id}}">{{data.name}}</option>
                         </select>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('designationId').invalid && myForm.get('designationId').touched"
-                                class="text-danger">Function is required</span>
+                                class="text-danger">{{'common.function' | translate}} is required</span>
                         </h6>
                     </div>
 
                     <div class="col-md-12 mb-4">
                         <select class="form-control" placeholder="Role" id="role" formControlName="role" required>
-                            <option value="" disabled selected>Select a Role</option>
+                            <option value="" disabled selected>{{'common.selectaRole' | translate}}</option>
                             <option *ngFor="let data of memberRole" value="{{data.id}}">{{data.name}}</option>
                         </select>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('role').invalid && myForm.get('role').touched"
-                                class="text-danger">Role is required</span>
+                                class="text-danger">{{'common.role' | translate}} is required</span>
                         </h6>
                     </div>
 
                     <div class="col-md-12 mb-4">
                         <div class="input-group">
-                            <input type="number" placeholder="Hourly Rate" class="form-control" id="hourlyRate"
-                                formControlName="hourlyRate" required>
+                            <input type="number" placeholder="{{'common.hourlyRate' | translate}}" class="form-control"
+                                id="hourlyRate" formControlName="hourlyRate" required>
                             <span class="input-group-text" id="basic-addon2">$/hr</span>
                         </div>
 
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('hourlyRate').invalid && myForm.get('hourlyRate').touched"
-                                class="text-danger">Hourly Rate is required</span>
+                                class="text-danger">{{'common.hourlyRate' | translate}} is required</span>
                         </h6>
                     </div>
                 </div>
@@ -135,7 +136,7 @@
                 Cancel
             </button>
             <button class="btn btn-primary auth-buttons" type="submit">
-                {{isEditing == true ? 'Edit' : 'Add'}} Member
+                {{isEditing == true ? ('common.edit'| translate) : 'common.add' | translate}} Member
             </button>
         </div>
     </form>

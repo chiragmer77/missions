@@ -3,7 +3,7 @@
     <div class="top_header float-start w-100">
         <div class="screen-heading">
             <h3 class="float-start">
-                Task Category
+                {{ 'sidebar.taskCategory' | translate }}
             </h3>
             <div class="top_action float-end">
                 <ul>
@@ -36,7 +36,7 @@
                     <tr>
                         <th scope="col"
                             (click)="pagePayload.IsDescending = !pagePayload.IsDescending == true ; getCategoryLists()">
-                            Name
+                            {{ 'common.name' | translate }}
                             <span>
                                 <i class="bi bi-caret-up-fill" *ngIf="pagePayload.IsDescending"></i>
                                 <i class="bi bi-caret-down-fill" *ngIf="!pagePayload.IsDescending"></i>

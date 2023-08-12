@@ -10,12 +10,12 @@
             <br>
             <div class="breadcrumb">
                 <a routerLink="/dashboard/missions/">
-                    Missions
+                    {{'common.mission' | translate}}
                 </a> &nbsp; &gt; &nbsp;
                 <a routerLink="/dashboard/missions/mission-detail/">
                     {{projectObj.title}}
                 </a> &nbsp; &gt; &nbsp;
-                <span>Tasks</span>
+                <span>{{'common.tasks' | translate}}</span>
             </div>
         </div>
     </div>
@@ -24,13 +24,13 @@
             <div class="col-md-8 col-sm-12">
                 <div class="description mt-4">
                     <h5>
-                        Description
+                        {{'common.description' | translate}}
                     </h5>
                     <p>
                         {{taskData.description}}
                     </p>
                     <h5 class="mt-5">
-                        Attachments <app-attechments (onClose)="handleChildComponentClose()"
+                        {{'common.attachments' | translate}} <app-attechments (onClose)="handleChildComponentClose()"
                             [from]="'projectTask'"></app-attechments>
                     </h5>
                     <div class="attachments-lists mt-4">
@@ -40,13 +40,14 @@
                         <ng-container *ngFor="let data of projectTaskDocumentLists">
                             <span>
                                 <i class="bi bi-file-earmark"></i> {{data.name}}
+                                <i class="bi bi-eye-fill" tooltip="View" (click)="viewDocuments(data)"></i>
                                 <i class="bi bi-x-circle" tooltip="Remove" (click)="removeDocument(data)"></i>
                             </span>
                         </ng-container>
                     </div>
 
                     <h5 class="mt-5">
-                        Comments
+                        {{'common.comments' | translate}}
                     </h5>
 
                     <div class="comment-section">
@@ -55,9 +56,10 @@
                                 <img class="user-image" src="./assets/Images/andrew.png">
                             </div>
                             <div class="user-details">
-                                <textarea class="form-control" placeholder="Type your comment here..." width="100"
-                                    rows="4" cols="100" (keydown.enter)="onEnterPressed($event)"></textarea>
-                                <div class="comment-description">Press Enter to add comment</div>
+                                <textarea class="form-control"
+                                    placeholder=" {{'common.typeYourCommentHere' | translate}}..." width="100" rows="4"
+                                    cols="100" (keydown.enter)="onEnterPressed($event)"></textarea>
+                                <div class="comment-description">{{'common.pleaseEnterToAddCommnet' | translate}}</div>
                             </div>
 
                         </div>
@@ -123,12 +125,12 @@
                                     </ul>
                                 </div>
                                 <p class="last-updated-name">
-                                    Last Changed by: <span>Samuel Bravo </span>
+                                    {{'common.lastChangedBy' | translate}}: <span>Samuel Bravo </span>
                                 </p>
                             </div>
                             <div class="col-md-4 description-md-4">
                                 <h6>
-                                    Last Changed
+                                    {{'common.lastChanged' | translate}}
                                 </h6>
                                 <p>
                                     12/2/2022 9:21 PM
@@ -140,11 +142,11 @@
 
                         <div class="row">
                             <div class="col-md-3 lables">
-                                <p>Assignee</p>
-                                <p>Category</p>
-                                <p>Hours Spent</p>
-                                <p>Priority</p>
-                                <p>Due Date</p>
+                                <p>{{'common.assignee' | translate}}</p>
+                                <p>{{'common.category' | translate}}</p>
+                                <p>{{'common.hoursSpend' | translate}}</p>
+                                <p>{{'common.priority' | translate}}</p>
+                                <p>{{'common.dueDate' | translate}}</p>
                             </div>
                             <div class="col-md-9 values">
                                 <p>{{taskData.member}}</p>

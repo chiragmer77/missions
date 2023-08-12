@@ -6,7 +6,7 @@
 <!--Filter Code-->
 <div class="sideFormFields card mb-3" [ngClass]="{'ShowFields' : isSidebarOpenClose}">
     <div class="card-header">
-        <span> {{isEditing == true ? 'Edit' : 'Add'}} Client </span>
+        <span> {{isEditing == true ? ('common.edit' | translate) : 'common.add' | translate}} Client </span>
         <button class="btn" aria-label="Close" (click)="sidebarOpenClose()">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -16,33 +16,33 @@
             <div class="container mt-3">
                 <div class="row">
                     <div class="col-md-12 mb-4">
-                        <input type="text" placeholder="Name" class="form-control" id="name" formControlName="name"
-                            required>
+                        <input type="text" placeholder="{{'common.name' | translate}}" class="form-control" id="name"
+                            formControlName="name" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('name').invalid && myForm.get('name').touched" class="text-danger">
-                                Name is required
+                                {{'common.name' | translate}} is required
                             </span>
                         </h6>
                     </div>
                     <div class="col-md-12 mb-4">
-                        <textarea class="form-control" placeholder="Address" rows="5" cols="33"
+                        <textarea class="form-control" placeholder="{{'common.address' | translate}}" rows="5" cols="33"
                             aria-label="With textarea" formControlName="address" required>
                         </textarea>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('address').invalid && myForm.get('address').touched"
                                 class="text-danger">
-                                Address is required
+                                {{'common.address' | translate}} is required
                             </span>
                         </h6>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 mb-4">
-                        <input type="tel" placeholder="Person of Contact Number" class="form-control" id="contact"
-                            formControlName="contact" required>
+                        <input type="tel" placeholder="{{'common.personOfContactNumber' | translate}}"
+                            class="form-control" id="contact" formControlName="contact" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('contact').invalid && myForm.get('contact').touched"
-                                class="text-danger">Person of Contact Number is required</span>
+                                class="text-danger">{{'common.personOfContactNumber' | translate}} is required</span>
                             <span *ngIf="myForm.get('contact').errors?.minlength" class="text-danger">
                                 Contact Number must be at least 10 characters long
                             </span>
@@ -53,27 +53,27 @@
                     </div>
 
                     <div class="col-md-12 mb-4">
-                        <input type="tel" placeholder="Telephone" class="form-control" id="telephone"
-                            formControlName="telephone" required>
+                        <input type="tel" placeholder=" {{'common.telephone' | translate}}" class="form-control"
+                            id="telephone" formControlName="telephone" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('telephone').invalid && myForm.get('telephone').touched"
-                                class="text-danger">Telephone is required</span>
+                                class="text-danger"> {{'common.telephone' | translate}} is required</span>
                             <span *ngIf="myForm.get('telephone').errors?.minlength" class="text-danger">
-                                Telephone must be at least 10 characters long
+                                {{'common.telephone' | translate}} must be at least 10 characters long
                             </span>
                             <span *ngIf="myForm.get('telephone').errors?.maxlength" class="text-danger">
-                                Telephone must not exceed 10 characters
+                                {{'common.telephone' | translate}} must not exceed 10 characters
                             </span>
                         </h6>
                     </div>
 
                     <div class="col-md-12 mb-4">
-                        <input type="email" placeholder="Email Address" class="form-control" id="email"
-                            formControlName="email" required>
+                        <input type="email" placeholder="{{'common.emailAddress' | translate}}" class="form-control"
+                            id="email" formControlName="email" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('email').invalid && myForm.get('email').touched"
                                 class="text-danger">
-                                Valid Email Address is required</span>
+                                Valid {{'common.emailAddress' | translate}} is required</span>
                         </h6>
                     </div>
 
@@ -86,7 +86,7 @@
                 Cancel
             </button>
             <button class="btn btn-primary auth-buttons" type="submit">
-                {{isEditing == true ? 'Edit' : 'Add'}} Client
+                {{isEditing == true ? ('common.edit' | translate) : 'common.add' | translate}} Client
             </button>
         </div>
     </form>

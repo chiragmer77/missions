@@ -3,7 +3,7 @@
     <div class="top_header float-start w-100">
         <div class="screen-heading">
             <h3 class="float-start">
-                Gant Chart
+                {{'common.gantChart' | translate}}
             </h3>
         </div>
     </div>
@@ -22,9 +22,10 @@
                             <input type="date" class="form-control" [(ngModel)]="toDate" placeholder="To">
                             <button (click)="toggleDatepicker()" type="button"
                                 class="btn btn-outline-primary auth-cancel-outline">
-                                Cancel
+                                {{'common.cancel' | translate}}
                             </button>
-                            <button class="btn btn-primary auth-buttons" (click)="search()">Search</button>
+                            <button class="btn btn-primary auth-buttons" (click)="search()"> {{'common.search' |
+                                translate}}</button>
                             <p class="text-danger">{{ dateError }}</p>
                         </div>
                     </div>

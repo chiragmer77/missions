@@ -3,7 +3,7 @@
     <div class="top_header float-start w-100">
         <div class="screen-heading">
             <h3 class="float-start">
-                Clients
+                {{'common.clients' | translate}}
             </h3>
             <div class="top_action float-end">
                 <ul>
@@ -36,16 +36,16 @@
                     <tr>
                         <th scope="col"
                             (click)="pagePayload.IsDescending = !pagePayload.IsDescending == true ; getClientsLists()">
-                            Company Name
+                            {{'common.name' | translate}}
                             <span>
                                 <i class="bi bi-caret-up-fill" *ngIf="pagePayload.IsDescending"></i>
                                 <i class="bi bi-caret-down-fill" *ngIf="!pagePayload.IsDescending"></i>
                             </span>
                         </th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Person of Contact</th>
-                        <th scope="col">Email Address</th>
-                        <th scope="col">Missions</th>
+                        <th scope="col">{{'common.address' | translate}}</th>
+                        <th scope="col">{{'common.personOfContactNumber' | translate}}</th>
+                        <th scope="col">{{'common.emailAddress' | translate}}</th>
+                        <th scope="col">{{'common.mission' | translate}}</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -70,12 +70,12 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li>
                                     <a class="dropdown-item update" (click)="editDetails(data)">
-                                        Update Details
+                                        {{'common.updateDetail' | translate}}
                                     </a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item delete" (click)="delete(data)">
-                                        Delete Client
+                                        {{'common.deleteClient' | translate}}
                                     </a>
                                 </li>
                             </ul>

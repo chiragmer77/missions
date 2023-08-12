@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import { GanttEditorComponent, GanttEditorOptions } from 'ng-gantt';
 
 @Component({
@@ -10,7 +11,9 @@ import { GanttEditorComponent, GanttEditorOptions } from 'ng-gantt';
 export class AppComponent {
   title = 'missions';
 
-  constructor(public fb: FormBuilder) {
+  constructor(
+    public translate: TranslateService
+  ) {
   }
 
   ngOnInit() {

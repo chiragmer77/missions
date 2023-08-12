@@ -180,3 +180,8 @@
   float: right;
   margin-top: 5px;
 }
+.bi-eye-fill {
+  margin-right: 10px;
+  font-size: 16px;
+  vertical-align: inherit;
+}

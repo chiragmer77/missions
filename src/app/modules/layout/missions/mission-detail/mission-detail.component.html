@@ -42,28 +42,35 @@
                         <button class="nav-link active" [ngClass]="{ 'active': previousTab === 'Overview-tab' }"
                             data-tab="Overview-tab" id="Overview-tab" data-bs-toggle="tab" data-bs-target="#Overview"
                             type="button" role="tab" aria-controls="Overview" aria-selected="true">
-                            Overview
+                            {{'common.overView' | translate}}
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" [ngClass]="{ 'active': previousTab === 'Tasks-tab' }"
                             data-tab="Tasks-tab" id="Tasks-tab" data-bs-toggle="tab" data-bs-target="#Tasks"
                             type="button" role="tab" aria-controls="Tasks" aria-selected="false">
-                            Tasks
+                            {{'common.tasks' | translate}}
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" [ngClass]="{ 'active': previousTab === 'Board-tab' }" id="Board-tab"
                             data-tab="Board-tab" data-bs-toggle="tab" data-bs-target="#Board" type="button" role="tab"
                             aria-controls="Board" aria-selected="false">
-                            Board
+                            {{'common.board' | translate}}
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" [ngClass]="{ 'active': previousTab === 'Timeline-tab' }"
                             id="Timeline-tab" data-tab="Timeline-tab" data-bs-toggle="tab" data-bs-target="#Timeline"
                             type="button" role="tab" aria-controls="Timeline" aria-selected="false">
-                            Timeline
+                            {{'common.timeline' | translate}}
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" [ngClass]="{ 'active': previousTab === 'Expense-tab' }"
+                            id="Expense-tab" data-tab="Expense-tab" data-bs-toggle="tab" data-bs-target="#Expense"
+                            type="button" role="tab" aria-controls="Expense" aria-selected="false">
+                            {{'common.expense' | translate}}
                         </button>
                     </li>
                 </ul>
@@ -88,7 +95,11 @@
                         aria-labelledby="Timeline-tab">
                         <app-timeline></app-timeline>
                     </div>
-
+                    <div class="tab-pane fade" *ngIf="previousTab === 'Expense-tab'"
+                        [ngClass]="{ 'show active': previousTab === 'Expense-tab' }" id="Expense" role="tabpanel"
+                        aria-labelledby="Expense-tab">
+                        <app-expense></app-expense>
+                    </div>
                 </div>
 
             </div>

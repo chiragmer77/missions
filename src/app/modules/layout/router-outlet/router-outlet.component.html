@@ -10,37 +10,43 @@
                 <a [routerLink]="['/dashboard/dashboard']" class="nav_link pe-auto" routerLinkActive="active">
                     <i class="bi bi-window-sidebar"></i>
                     <span class="nav_name">
-                        Dashboard
+                        {{ 'sidebar.dashboard' | translate }}
                     </span>
                 </a>
                 <a class="nav_link pe-auto" [routerLink]="['/dashboard/missions']" routerLinkActive="active">
                     <i class="bi bi-stack"></i>
                     <span class="nav_name">
-                        Mission
+                        {{ 'sidebar.mission' | translate }}
+                    </span>
+                </a>
+                <a class="nav_link pe-auto" [routerLink]="['/dashboard/budget']" routerLinkActive="active">
+                    <i class="bi bi-currency-bitcoin"></i>
+                    <span class="nav_name">
+                        {{ 'common.budget' | translate }}
                     </span>
                 </a>
                 <a [routerLink]="['/dashboard/member-list']" class="nav_link pe-auto" routerLinkActive="active">
                     <i class="bi bi-people"></i>
                     <span class="nav_name">
-                        Members
+                        {{ 'sidebar.members' | translate }}
                     </span>
                 </a>
                 <a class="nav_link pe-auto" [routerLink]="['/dashboard/clients']" routerLinkActive="active">
                     <i class="bi bi-person-square"></i>
                     <span class="nav_name">
-                        Clients
+                        {{ 'sidebar.clients' | translate }}
                     </span>
                 </a>
                 <a class="nav_link pe-auto" [routerLink]="['/dashboard/gant-chart']" routerLinkActive="active">
                     <i class="bi bi-calendar2"></i>
-                    <span class="nav_name">
-                        Gant chart/Calendar
+                    <span class="nav_name text-overflow-ellips">
+                        {{ 'sidebar.gantChart' | translate }}
                     </span>
                 </a>
                 <a class="nav_link pe-auto" [routerLink]="['/dashboard/document']" routerLinkActive="active">
                     <i class="bi bi-file-earmark"></i>
                     <span class="nav_name">
-                        Documents
+                        {{ 'sidebar.documents' | translate }}
                     </span>
                 </a>
 
@@ -48,7 +54,7 @@
                     (click)="menuSubmenu()">
                     <i class="bi bi-gear"></i>
                     <span class="nav_name">
-                        Settings
+                        {{ 'sidebar.settings' | translate }}
                     </span>
                     <i *ngIf="isMenuSubmenu" class="bi bi-caret-right"></i>
                     <i *ngIf="!isMenuSubmenu" class="bi bi-caret-down"></i>
@@ -59,28 +65,28 @@
                         routerLinkActive="active">
                         <i class="bi bi-person-fill-gear"></i>
                         <span class="nav_name">
-                            Project Category
+                            {{ 'sidebar.projectCategory' | translate }}
                         </span>
                     </a>
 
                     <a class="nav_link pe-auto mb-0" [routerLink]="['/dashboard/category']" routerLinkActive="active">
-                        <i class="bi bi-person-fill-gear"></i>
+                        <i class="bi bi-list-task"></i>
                         <span class="nav_name">
-                            Task Category
+                            {{ 'sidebar.taskCategory' | translate }}
                         </span>
                     </a>
 
                     <a class="nav_link pe-auto " [routerLink]="['/dashboard/designation']" routerLinkActive="active">
                         <i class="bi bi-grid-fill"></i>
                         <span class="nav_name">
-                            Designation
+                            {{ 'sidebar.designation' | translate }}
                         </span>
                     </a>
                 </div>
                 <a class="nav_link pe-auto" [routerLink]="['/dashboard/analytics']" routerLinkActive="active">
                     <i class="bi bi-graph-down"></i>
                     <span class="nav_name">
-                        Analytics
+                        {{ 'sidebar.analytics' | translate }}
                     </span>
                 </a>
                 <div class="exit_arrow" [ngClass]="{'exit-arrow-side-nav-open': isClassAdded}">

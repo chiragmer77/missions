@@ -3,18 +3,18 @@
     <div class="top_header float-start w-100">
         <div class="screen-heading">
             <h3 class="float-start mb-0">
-                <i class="bi bi-arrow-left-circle" routerLink="/dashboard/missions/mission-detail/"></i> Add Project
-                Role
+                <i class="bi bi-arrow-left-circle" routerLink="/dashboard/missions/mission-detail/"></i>
+                {{'common.addProjectRole' | translate}}
             </h3>
             <br>
             <br>
             <div class="breadcrumb">
                 <a routerLink="/dashboard/missions/">Missions</a> &nbsp; &gt; &nbsp;
                 <a routerLink="/dashboard/missions/mission-detail/">{{projectObj.title}}</a> &nbsp; &gt; &nbsp;
-                <span>Project Role</span>
+                <span>{{'common.projectRole' | translate}}</span>
                 <div class="top_action float-end">
                     <h6 class="float-start mb-0" (click)="showForm()">
-                        <i class="bi bi-plus-circle"></i> Add Project Role
+                        <i class="bi bi-plus-circle"></i> {{'common.addProjectRole' | translate}}
                     </h6>
                 </div>
             </div>
@@ -28,10 +28,10 @@
                     <table class="table mb-0">
                         <thead class="table-light">
                             <tr>
-                                <th>Role</th>
-                                <th>Member</th>
-                                <th>Hours to spend</th>
-                                <th colspan="2">Hourly Rate</th>
+                                <th>{{'common.role' | translate}}</th>
+                                <th>{{'common.members' | translate}}</th>
+                                <th>{{'common.hoursToSpend' | translate}}</th>
+                                <th colspan="2">{{'common.hourlyRate' | translate}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,7 +55,7 @@
                                 <td>
                                     <select class="form-control" placeholder="Select Member" id="memberId"
                                         formControlName="memberId" required>
-                                        <option value="" disabled>Select a Member</option>
+                                        <option value="" disabled>{{'common.selectaMember' | translate}}</option>
                                         <option *ngFor="let data of memberList" value="{{data.id}}">
                                             {{data.name}}
                                         </option>
@@ -64,32 +64,32 @@
                                         <span
                                             *ngIf="roleForm.get('memberId').invalid && roleForm.get('memberId').touched"
                                             class="text-danger">
-                                            Member is required
+                                            {{'common.member' | translate}} is required
                                         </span>
                                     </h6>
                                 </td>
                                 <td>
-                                    <input type="number" placeholder="Enter Hours" class="form-control"
-                                        id="hoursToSpend" formControlName="hoursToSpend" required>
+                                    <input type="number" placeholder="{{'common.enterHours' | translate}}"
+                                        class="form-control" id="hoursToSpend" formControlName="hoursToSpend" required>
                                     <h6 class="error-message">
                                         <span
                                             *ngIf="roleForm.get('hoursToSpend').invalid && roleForm.get('hoursToSpend').touched"
                                             class="text-danger">
-                                            Hours is required
+                                            {{'common.hours' | translate}} is required
                                         </span>
                                     </h6>
                                 </td>
                                 <td>
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon2">$</span>
-                                        <input type="number" placeholder="Enter Rate" class="form-control"
-                                            id="hourlyRate" formControlName="hourlyRate" required>
+                                        <input type="number" placeholder="{{'common.enterRate' | translate}}"
+                                            class="form-control" id="hourlyRate" formControlName="hourlyRate" required>
                                     </div>
                                     <h6 class="error-message">
                                         <span
                                             *ngIf="roleForm.get('hourlyRate').invalid && roleForm.get('hourlyRate').touched"
                                             class="text-danger">
-                                            Rate is required
+                                            {{'common.rate' | translate}} is required
                                         </span>
                                     </h6>
                                 <td>
@@ -133,10 +133,10 @@
     <!-- Sticky buttons -->
     <div class="sticky-buttons">
         <button class="btn btn-outline-primary auth-cancel-outline" routerLink="/dashboard/missions/mission-detail/">
-            Cancel
+            {{'common.cancel' | translate}}
         </button>
         <button class="btn btn-primary auth-buttons">
-            Save Roles
+            {{'common.saveRoles' | translate}}
         </button>
     </div>
 </div>

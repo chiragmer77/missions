@@ -3,7 +3,7 @@
 	<div class="top_header float-start w-100">
 		<div class="screen-heading">
 			<h3 class="float-start">
-				Members
+				{{'common.members' | translate}}
 			</h3>
 			<div class="top_action float-end">
 				<ul>
@@ -36,26 +36,26 @@
 					<tr>
 						<th scope="col"
 							(click)="pagePayload.IsDescending = !pagePayload.IsDescending == true ; getMemberLists()">
-							First Name
+							{{'common.firstName' | translate}}
 							<span>
 								<i class="bi bi-caret-up-fill" *ngIf="pagePayload.IsDescending"></i>
 								<i class="bi bi-caret-down-fill" *ngIf="!pagePayload.IsDescending"></i>
 							</span>
 						</th>
 						<th scope="col">
-							Last Name
+							{{'common.lastName' | translate}}
 						</th>
 						<th scope="col">
-							Telephone
+							{{'common.telephone' | translate}}
 						</th>
 						<th scope="col">
-							Email Address
+							{{'common.emailAddress' | translate}}
 						</th>
 						<th scope="col">
-							Function
+							{{'common.function' | translate}}
 						</th>
 						<th scope="col">
-							Hourly Rate
+							{{'common.hourlyRate' | translate}}
 						</th>
 						<th scope="col"></th>
 					</tr>
@@ -74,17 +74,17 @@
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 								<li (click)="editDetails(data)">
 									<a class="dropdown-item update">
-										Update Details
+										{{'common.updateDetail' | translate}}
 									</a>
 								</li>
 								<li (click)="delete(data)">
 									<a class="dropdown-item delete">
-										Delete Member
+										{{'common.deleteMember' | translate}}
 									</a>
 								</li>
 								<li>
 									<a class="dropdown-item delete">
-										Block Member
+										{{'common.blockMember' | translate}}
 									</a>
 								</li>
 							</ul>

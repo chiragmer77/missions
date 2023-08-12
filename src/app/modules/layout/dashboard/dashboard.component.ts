@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { EditProjectComponent } from './edit-project/edit-project.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -43,7 +44,7 @@ export class DashboardComponent {
     private apiService: ApiService,
     private toaster: ToastrService,
     private spinner: NgxSpinnerService,
-    private sharedService: SharedService
+    public translate: TranslateService,
   ) { }
 
 

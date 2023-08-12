@@ -6,3 +6,19 @@
   text-align: left;
   color: #53575c;
 }
+.document-detail p {
+  font-size: 20px;
+  font-weight: 500;
+}
+.document-detail small {
+  font-size: 16px;
+  font-weight: 400;
+  color: #53575c;
+}
+
+.document-detail i {
+  float: right;
+  vertical-align: middle;
+  font-size: 24px;
+  color: #0044aa;
+}

@@ -3,7 +3,7 @@
     <div class="top_header float-start w-100">
         <div class="screen-heading">
             <h3 class="float-start">
-                Analytics
+                {{'sidebar.analytics' | translate}}
             </h3>
         </div>
     </div>
@@ -11,7 +11,7 @@
     <div class="Container p-0">
         <div class="row p-0 rounded-2 border">
             <div class="hours_heading mt-3">
-                <h3 class="float-start">Total Hours Spent</h3>
+                <h3 class="float-start">{{'dashboard.totalHoursSpent' | translate}}</h3>
                 <div class="float-end mb-2">
                     <a class="text-right filter_icon pointer" (click)="toggleDatepicker('hours-chart')"
                         *ngIf="!showDatepickerChart">
@@ -22,9 +22,10 @@
                         <input type="date" class="form-control" [(ngModel)]="toDate" placeholder="To">
                         <button (click)="toggleDatepicker('hours-chart')" type="button"
                             class="btn btn-outline-primary auth-cancel-outline">
-                            Cancel
+                            {{'common.cancel' | translate}}
                         </button>
-                        <button class="btn btn-primary auth-buttons" (click)="search('hours-chart')">Search</button>
+                        <button class="btn btn-primary auth-buttons" (click)="search('hours-chart')">{{'common.search' |
+                            translate}}</button>
                         <p class="text-danger">{{ dateError }}</p>
                     </div>
                 </div>
@@ -36,7 +37,7 @@
 
         <div class="row rounded-2 border mt-5">
             <div class="hours_heading mt-3">
-                <h3 class="float-start">Mission stats</h3>
+                <h3 class="float-start">{{'common.missionStats' | translate}}</h3>
                 <div class="float-end mb-2">
                     <a class="text-right filter_icon pointer" (click)="toggleDatepicker('mission-stats')"
                         *ngIf="!showDatepickerMissionStats">
@@ -47,9 +48,10 @@
                         <input type="date" class="form-control" [(ngModel)]="toDate" placeholder="To">
                         <button (click)="toggleDatepicker('mission-stats')" type="button"
                             class="btn btn-outline-primary auth-cancel-outline">
-                            Cancel
+                            {{'common.cancel' | translate}}
                         </button>
-                        <button class="btn btn-primary auth-buttons" (click)="search('mission-stats')">Search</button>
+                        <button class="btn btn-primary auth-buttons" (click)="search('mission-stats')">{{'common.search'
+                            | translate}}</button>
                         <p class="text-danger">{{ dateError }}</p>
                     </div>
                 </div>
@@ -62,7 +64,7 @@
                         <span>No Records Found ! </span>
                     </div>
                     <canvas id="missionByFunctionChart"></canvas>
-                    <h6 class="mt-2">Mission by Function</h6>
+                    <h6 class="mt-2">{{'common.missionByFunction' | translate}}</h6>
                 </div>
             </div>
             <div class="col-md-4 d-flex flex-column text-center mt-2">
@@ -71,7 +73,7 @@
                         <span>No Records Found ! </span>
                     </div>
                     <canvas id="highNumberMissionsChart"></canvas>
-                    <h6 class="mt-2">High Number of Missions in a Month</h6>
+                    <h6 class="mt-2">{{'common.highNumberOfMissioninaMonth' | translate}}</h6>
                 </div>
             </div>
             <div class="col-md-4 d-flex flex-column text-center mt-2">
@@ -80,7 +82,7 @@
                         <span>No Records Found ! </span>
                     </div>
                     <canvas id="highestPaidClientChart"></canvas>
-                    <h6 class="mt-2">Highest Paid Client</h6>
+                    <h6 class="mt-2">{{'common.highestPaidClient' | translate}}</h6>
                 </div>
             </div>
         </div>

@@ -5,7 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreateMemberComponent } from './members/create-member/create-member.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { DocumentComponent } from './documents/document/document.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ApiService } from 'src/app/services/api.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClientsComponent } from './clients/clients.component';
@@ -25,6 +25,9 @@ import { AddProjectCategoryComponent } from './project-category/add/add.componen
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { MissionsModule } from './missions/missions.module';
 import { EditProjectComponent } from './dashboard/edit-project/edit-project.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpLoaderFactory } from 'src/app/app.module';
+import { BudgetComponent } from './budget/budget.component';
 
 
 @NgModule({
@@ -44,7 +47,8 @@ import { EditProjectComponent } from './dashboard/edit-project/edit-project.comp
     GantChartComponent,
     ProjectCategoryComponent,
     AddProjectCategoryComponent,
-    EditProjectComponent],
+    EditProjectComponent,
+    BudgetComponent],
   imports: [
     CommonModule,
     RouterOutletRoutingModule,
@@ -54,7 +58,14 @@ import { EditProjectComponent } from './dashboard/edit-project/edit-project.comp
     ReactiveFormsModule,
     NgxPaginationModule,
     NgGanttEditorModule,
-    MissionsModule
+    MissionsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
   ], schemas: [
     CUSTOM_ELEMENTS_SCHEMA
   ],

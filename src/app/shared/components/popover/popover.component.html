@@ -4,14 +4,14 @@
             <div class="modal-body">
                 <div class="row">
                     <h5>
-                        Filter By
+                        {{'common.filterBy' | translate}}
                     </h5>
                     <div class="col-md-12 mt-4">
                         <div class="dropdown">
                             <button class="btn" type="button" width="100%" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 <span>
-                                    Client Name
+                                    {{'common.clientName' | translate}}
                                 </span>
                                 <i class="bi bi-chevron-down"></i>
                             </button>
@@ -30,7 +30,7 @@
                             <button class="btn" type="button" width="100%" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 <span>
-                                    Status
+                                    {{'common.status' | translate}}
                                 </span>
                                 <i class="bi bi-chevron-down"></i>
                             </button>
@@ -49,7 +49,7 @@
                             <button class="btn" type="button" width="100%" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 <span>
-                                    Member
+                                    {{'common.members' | translate}}
                                 </span>
                                 <i class="bi bi-chevron-down"></i>
                             </button>
@@ -67,10 +67,10 @@
             </div>
             <div class="modal-footer">
                 <button (click)="onCancel()" class="btn btn-outline-primary auth-cancel-outline">
-                    Cancel
+                    {{'common.cancel' | translate}}
                 </button>
                 <button (click)="onConfirm()" class="btn btn-primary auth-cancel-outline">
-                    Apply Filter
+                    {{'common.applyFilter' | translate}}
                 </button>
             </div>
         </div>

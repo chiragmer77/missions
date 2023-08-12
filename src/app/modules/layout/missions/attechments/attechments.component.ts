@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import { NgxFileDropEntry } from 'ngx-file-drop';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -26,6 +27,7 @@ export class AttechmentsComponent {
     private toaster: ToastrService,
     private renderer: Renderer2,
     private spinner: NgxSpinnerService,
+    public translate: TranslateService
   ) {
     const storedData = localStorage.getItem('taskData');
     if (storedData) {

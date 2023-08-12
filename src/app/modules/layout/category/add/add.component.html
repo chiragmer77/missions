@@ -1,12 +1,12 @@
 <a class="cr_mission">
     <button class="btn btn-primary auth-buttons" (click)="sidebarOpenClose()">
-        Add Category
+        {{'common.addCategory' | translate}}
     </button>
 </a>
 <!--Filter Code-->
 <div class="sideFormFields card mb-3" [ngClass]="{'ShowFields' : isSidebarOpenClose}">
     <div class="card-header">
-        <span> {{isEditing == true ? 'Edit' : 'Add'}} Category </span>
+        <span> {{isEditing == true ? ('common.edit' | translate) : 'common.add' | translate }} Category </span>
         <button class="btn" aria-label="Close" (click)="sidebarOpenClose()">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -16,11 +16,11 @@
             <div class="container mt-3">
                 <div class="row">
                     <div class="col-md-12 mb-4">
-                        <input type="text" placeholder="Name" class="form-control" id="name" formControlName="name"
-                            required>
+                        <input type="text" placeholder="{{ 'common.name' | translate }}" class="form-control" id="name"
+                            formControlName="name" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('name').invalid && myForm.get('name').touched" class="text-danger">
-                                Name is required
+                                {{ 'common.name' | translate }} is required
                             </span>
                         </h6>
                     </div>
@@ -29,10 +29,10 @@
         </div>
         <div class="card-footer text-end">
             <button (click)="sidebarOpenClose()" class="btn btn-outline-primary auth-cancel-outline">
-                Cancel
+                {{'common.cancel' | translate}}
             </button>
             <button class="btn btn-primary auth-buttons" type="submit">
-                {{isEditing == true ? 'Edit' : 'Add'}} Category
+                {{isEditing == true ? ('common.edit' | translate) : 'common.add' | translate }} Category
             </button>
         </div>
     </form>

@@ -35,6 +35,8 @@ export class DetailComponent {
   modalTitle: string = '';
   modalMessage: string = '';
   data: any;
+  getDownloadFileUrl: any;
+
 
   constructor(
     public sharedService: SharedService,
@@ -182,5 +184,17 @@ export class DetailComponent {
       });
     }
     this.isConfirmationModalOpen = !this.isConfirmationModalOpen;
+  }
+
+  /** View Documents */
+  viewDocuments(data: any) {
+    this.spinner.show();
+    this.apiService.get(`ProjectDocument/download/${data.id}`).subscribe((response) => {
+      if (response.success) {
+        this.getDownloadFileUrl = decodeURIComponent(response.downloadUrl);
+        window.open(this.getDownloadFileUrl, '_blank');
+        this.spinner.hide();
+      }
+    });
   }
 }

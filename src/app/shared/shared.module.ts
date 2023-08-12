@@ -5,6 +5,9 @@ import { ConfirmationModalComponent } from './components/confirmation-modal/conf
 import { CommonModule } from '@angular/common';
 import { PopoverComponent } from './components/popover/popover.component';
 import { TooltipModule } from 'ng2-tooltip-directive';
+import { HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpLoaderFactory } from '../app.module';
 
 
 @NgModule({
@@ -16,7 +19,14 @@ import { TooltipModule } from 'ng2-tooltip-directive';
   imports: [
     CommonModule,
     ToastrModule.forRoot(),
-    TooltipModule
+    TooltipModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
 })
 export class SharedModule { }

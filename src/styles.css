@@ -853,7 +853,17 @@ span.gselected {
   vertical-align: middle;
 }
 .bi-x-circle {
-  vertical-align: top !important;
+  /* vertical-align: top !important; */
   font-size: 15px !important;
   color: red !important;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  text-decoration: none;
+  background-color: #0044aa !important;
+}
+
+.dropdown-menu li {
+  cursor: pointer;
 }
