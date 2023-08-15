@@ -26,6 +26,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { RouterOutletModule } from './modules/layout/router-outlet.module';
 import { SharedService } from './shared/services/shared.service';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -59,6 +60,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgGanttEditorModule,
     TooltipModule,
     RouterOutletModule,
+    NgxSkeletonLoaderModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

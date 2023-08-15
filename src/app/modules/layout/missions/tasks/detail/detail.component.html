@@ -29,7 +29,7 @@
                     <p>
                         {{taskData.description}}
                     </p>
-                    <h5 class="mt-5">
+                    <!-- <h5 class="mt-5">
                         {{'common.attachments' | translate}} <app-attechments (onClose)="handleChildComponentClose()"
                             [from]="'projectTask'"></app-attechments>
                     </h5>
@@ -44,6 +44,29 @@
                                 <i class="bi bi-x-circle" tooltip="Remove" (click)="removeDocument(data)"></i>
                             </span>
                         </ng-container>
+                    </div> -->
+                    <div class="row">
+                        <h5 class="mt-5">
+                            {{'common.attachments' | translate}}
+                            <app-attechments (onClose)="handleChildComponentClose()"
+                                [from]="'projectTask'"></app-attechments>
+                        </h5>
+                        <div class="col-md-3 col-sm-6 col-12" *ngFor="let data of projectTaskDocumentLists">
+                            <ol class="list-group ">
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <i class="bi bi-file-earmark"></i> {{data.name}}
+                                    <i class="bi bi-eye-fill" tooltip="View" (click)="viewDocuments(data)"></i>
+                                    <span class="badge  rounded-pill">
+                                        <i class="bi bi-x-circle" tooltip="Remove" (click)="removeDocument(data)"></i>
+                                    </span>
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="attachments-lists mt-4">
+                            <div class="no-records-found" *ngIf="projectTaskDocumentLists.length == 0">
+                                <span>No Attachments Found ! </span>
+                            </div>
+                        </div>
                     </div>
 
                     <h5 class="mt-5">

@@ -32,9 +32,10 @@ export class MissionsListComponent {
   }
   missionList: any = [];
   p: number = 1;
+  pe: number = 1;
   isSearchVisible = false;
-
-
+  projectTaskExpenseList: any = [];
+  skeletons: boolean = true;
   constructor(
     private apiService: ApiService,
     private toaster: ToastrService,
@@ -135,6 +136,18 @@ export class MissionsListComponent {
   // Call this function when the input value changes
   updateSearchQuery() {
     this.sharedService.searchSubject.next(this.pagePayload.Search);
+  }
+
+  /** Vew Project expnase */
+  viewProjectExpense(data: any) {
+    this.skeletons = true;
+    this.projectTaskExpenseList = [];
+    this.apiService.get(`ProjectTask/expense/${data.id}`).subscribe((res: any) => {
+      if (res.success) {
+        this.skeletons = false;
+        this.projectTaskExpenseList = res.data;
+      }
+    })
   }
 
 }

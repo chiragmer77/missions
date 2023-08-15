@@ -108,7 +108,9 @@
     "expense": "Expense",
     "addExpense": "Add Expense",
     "user": "User",
-    "amount": "Amount"
+    "amount": "Amount",
+    "actualHoursSpend": "Actual Hours Spend",
+    "taskTitle": "Task Title"
   },
   "sidebar": {
     "dashboard": "Dashboard",

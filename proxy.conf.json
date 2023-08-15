@@ -1,7 +1,6 @@
 {
-  "/connect": {
+  "/api": {
     "target": "http://50.116.33.87",
-    "secure": false,
-    "changeOrigin": true
+    "secure": false
   }
 }

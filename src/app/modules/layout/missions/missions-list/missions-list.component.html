@@ -38,70 +38,163 @@
         <div class="row p-0">
             <div class="mission_details">
                 <ul>
-                    <li *ngFor="let data of missionList | paginate: { itemsPerPage: 5, currentPage: p }">
-                        <div class="row">
-                            <div class="col-xl-4 col-md-4 col-sm-6 col-12 m_task_details"
-                                (click)="setProjectData(data)">
-                                <h4><a>{{data.title}} </a></h4>
-                                <p>{{data.startDate |date: 'M/d/yy, h:mm a'}} - {{data.endDate | date: 'M/d/yy, h:mm
-                                    a'}}</p>
-                            </div>
+                    <div class="accordion" id="accordionExample">
+                        <li *ngFor="let data of missionList | paginate: { itemsPerPage: 5, currentPage: p,id:'p' }">
+                            <div class="accordion-item">
+                                <div class="row" id="{{data.title}}">
+                                    <div class="col-xl-4 col-md-4 col-sm-6 col-12 m_task_details"
+                                        (click)="setProjectData(data)">
+                                        <h4><a>{{data.title}} </a></h4>
+                                        <p>{{data.startDate |date: 'M/d/yy, h:mm a'}} - {{data.endDate | date: 'M/d/yy,
+                                            h:mm
+                                            a'}}</p>
+                                    </div>
 
-                            <div class="col-xl-2 col-md-2 col-sm-3 col-6 m_task_status">
-                                <h4 class="not-started" *ngIf="data.status === 1"><a>Not-Started</a></h4>
-                                <h4 class="in-progress" *ngIf="data.status === 2"><a>In-progress</a></h4>
-                                <h4 class="completed" *ngIf="data.status === 3"><a>Completed</a></h4>
-                                <p>Status</p>
-                            </div>
+                                    <div class="col-xl-2 col-md-2 col-sm-3 col-12 m_task_status">
+                                        <h4 class="not-started" *ngIf="data.status === 1"><a>Not-Started</a></h4>
+                                        <h4 class="in-progress" *ngIf="data.status === 2"><a>In-progress</a></h4>
+                                        <h4 class="completed" *ngIf="data.status === 3"><a>Completed</a></h4>
+                                        <p>Status</p>
+                                    </div>
 
-                            <div class="col-xl-2 col-md-2 col-sm-3 col-6 m_client_name">
-                                <h4><a>{{data.client}}</a></h4>
-                                <p>{{'common.clientName' | translate}}</p>
-                            </div>
+                                    <div class="col-xl-2 col-md-2 col-sm-3 col-12 m_client_name">
+                                        <h4><a>{{data.client}}</a>
+                                        </h4>
+                                        <p>{{'common.clientName' | translate}}</p>
+                                    </div>
 
-                            <div class="col-xl-2 col-md-2 col-sm-3 col-6 m_task_persons">
-                                <div class="progress mt-3">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated"
-                                        role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
-                                        [style.width.%]="(data.totalTaskCompleted / data.totalTask) * 100">
-                                        {{(data.totalTaskCompleted / data.totalTask) * 100 | number:'1.0-0'}}
-                                        {{(data.totalTaskCompleted / data.totalTask) * 100 > 0 ? '%' : ''}}
+                                    <div class="col-xl-2 col-md-2 col-sm-3 col-12 m_task_persons">
+                                        <div class="progress mt-3">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                role="progressbar" aria-valuenow="75" aria-valuemin="0"
+                                                aria-valuemax="100"
+                                                [style.width.%]="(data.totalTaskCompleted / data.totalTask) * 100">
+                                                {{(data.totalTaskCompleted / data.totalTask) * 100 | number:'1.0-0'}}
+                                                {{(data.totalTaskCompleted / data.totalTask) * 100 > 0 ? '%' : ''}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-md-2 col-sm-3 col-12 m_task_progress">
+                                        <ng-container *ngIf="data.members.length > 0">
+                                            <span *ngFor="let member of data.members.slice(0, 3)"
+                                                class="m_img_thumbnail"
+                                                [style.background]="sharedService.getBackgroundColor(member)"
+                                                data-bs-toggle="tooltip" tooltip="{{member}}"
+                                                [options]="sharedService.toolTipOption">
+                                                {{sharedService.getFirstLetter(member)}}
+                                            </span>
+                                        </ng-container>
+                                        <!-- Show a count of the remaining members if more than 3 -->
+                                        <span *ngIf="data.members.length > 3" class="m_img_thumbnail"
+                                            data-bs-toggle="tooltip" tooltip="{{data.members.length - 3 + ' more'}}"
+                                            [options]="sharedService.toolTipOption">
+                                            +{{ data.members.length - 3 }}
+                                        </span>
+
+                                        <button type="button" class="btn float-end" (click)="deleteProject(data)">
+                                            <i class="bi bi-trash3"></i>
+                                        </button>
+                                        <button type="submit" class="btn float-end" (click)="editDetails(data)">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </button>
+                                        <button type="submit" class="btn float-end" tooltip="View Budget"
+                                            data-bs-toggle="collapse" [attr.data-bs-target]="'#'+data.id"
+                                            aria-expanded="true" [attr.aria-controls]="data.id"
+                                            (click)="viewProjectExpense(data)">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-2 col-md-2 col-sm-3 col-6 m_task_progress">
-                                <ng-container *ngIf="data.members.length > 0">
-                                    <span *ngFor="let member of data.members.slice(0, 3)" class="m_img_thumbnail"
-                                        [style.background]="sharedService.getBackgroundColor(member)"
-                                        data-bs-toggle="tooltip" tooltip="{{member}}"
-                                        [options]="sharedService.toolTipOption">
-                                        {{sharedService.getFirstLetter(member)}}
-                                    </span>
-                                </ng-container>
-                                <!-- Show a count of the remaining members if more than 3 -->
-                                <span *ngIf="data.members.length > 3" class="m_img_thumbnail" data-bs-toggle="tooltip"
-                                    tooltip="{{data.members.length - 3 + ' more'}}"
-                                    [options]="sharedService.toolTipOption">
-                                    +{{ data.members.length - 3 }}
-                                </span>
 
-                                <button type="button" class="btn float-end" (click)="deleteProject(data)">
-                                    <i class="bi bi-trash3"></i>
-                                </button>
-                                <button type="submit" class="btn float-end" (click)="editDetails(data)">
-                                    <i class="bi bi-pencil-square"></i>
-                                </button>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div [id]="data.id" class="accordion-collapse collapse"
+                                        [attr.aria-labelledby]="data.title" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <hr>
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
+                                                <table class="table mb-0 mission-tasks-table borderless">
+                                                    <thead class="table-light">
+                                                        <tr>
+                                                            <th class="planning">{{'common.taskTitle' | translate}}</th>
+                                                            <th>{{'common.name' | translate}}</th>
+                                                            <th>{{'common.actualHoursSpend' | translate}}</th>
+                                                            <th>{{'common.hourlyRate' | translate}}</th>
+                                                            <th>{{'common.status' | translate}}</th>
+                                                            <th>{{'common.endDate' | translate}}</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr
+                                                            *ngFor="let data of projectTaskExpenseList | paginate: { itemsPerPage: 5, currentPage: pe,id: 'pe' }">
+                                                            <td class="pointer go-to-taskDetail">
+                                                                {{data.title}}
+                                                            </td>
+                                                            <td>
+                                                                <span class="m_img_thumbnail"
+                                                                    [style.background]="sharedService.getBackgroundColor(data.member)">
+                                                                    {{sharedService.getFirstLetter(data.member)}}
+                                                                </span>
+                                                                {{data.member}}
+                                                            </td>
+                                                            <td>
+                                                                {{data.actualHours}}
+                                                            </td>
+                                                            <td>
+                                                                {{data.hourlyRate}}
+                                                            </td>
+                                                            <td>
+                                                                <span *ngIf="data.status == 1">
+                                                                    <i class="bi bi-dot to-do-dot"></i>
+                                                                    To-Do
+                                                                </span>
+                                                                <span *ngIf="data.status == 2">
+                                                                    <i class="bi bi-dot in-progress-dot"></i>
+                                                                    In-Progress
+                                                                </span>
+                                                                <span *ngIf="data.status == 3">
+                                                                    <i class="bi bi-dot complete-dot"></i>
+                                                                    Complete
+                                                                </span>
+                                                                <span *ngIf="data.status == 4">
+                                                                    <i class="bi bi-dot block-dot"></i>
+                                                                    Block
+                                                                </span>
+                                                            </td>
+                                                            <td>
+                                                                {{data.endDate | date: 'M/d/yy, h:mm a'}}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <ngx-skeleton-loader count="3" *ngIf="skeletons"
+                                                    [theme]="{ 'border-radius': '0', height: '50px',width:'100%' }"></ngx-skeleton-loader>
+                                                <div class="no-records-found mt-5 text-center"
+                                                    *ngIf="projectTaskExpenseList.length == 0 && !skeletons">
+                                                    <span>No Records Found ! </span>
+                                                </div>
+                                                <div class="text-end mt-4">
+                                                    <pagination-controls (pageChange)="pe = $event"
+                                                        id="pe"></pagination-controls>
+                                                </div>
 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </li>
+
+                        </li>
+                    </div>
                 </ul>
             </div>
             <div class="no-records-found mt-5 text-center" *ngIf="missionList.length == 0">
                 <span>No Records Found ! </span>
             </div>
             <div class="text-end mt-4">
-                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                <pagination-controls (pageChange)="p = $event" id="p"></pagination-controls>
             </div>
         </div>
     </div>

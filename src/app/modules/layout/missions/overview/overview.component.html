@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-8 col-sm-12">
+    <div class="col-md-8 col-sm-12 col-12">
         <div class="description mt-4">
             <h5>
                 {{'common.description' | translate}}
@@ -15,7 +15,7 @@
             </h5>
 
             <div class="row">
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-6 col-12">
                     <div class="project-role-list">
                         <span class="m_img_thumbnail"
                             [style.background]="sharedService.getBackgroundColor(dataFromParent.teamLead)">
@@ -26,7 +26,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6" *ngFor="let role of projectRoleLists">
+                <div class="col-md-4 col-sm-6 col-12" *ngFor="let role of projectRoleLists">
                     <div class="project-role-list">
                         <span class="m_img_thumbnail"
                             [style.background]="sharedService.getBackgroundColor(role.member)">{{
@@ -40,35 +40,38 @@
                 </div>
             </div>
 
-            <h5 class="mt-5">
-                {{'common.attachments' | translate}}
-                <!-- <i class="bi bi-plus-circle"></i>  -->
-                <app-attechments (onClose)="handleChildComponentClose()" [from]="'project'"></app-attechments>
-            </h5>
-            <div class="attachments-lists mt-4">
-                <div class="no-records-found" *ngIf="projectDocumentLists.length == 0">
-                    <span>No Attachments Found ! </span>
+            <div class="row">
+                <h5 class="mt-5">
+                    {{'common.attachments' | translate}}
+                    <app-attechments (onClose)="handleChildComponentClose()" [from]="'project'"></app-attechments>
+                </h5>
+                <div class="col-md-3 col-sm-6 col-12" *ngFor="let data of projectDocumentLists">
+                    <ol class="list-group ">
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <i class="bi bi-file-earmark"></i> {{data.name}}
+                            <i class="bi bi-eye-fill" tooltip="View" (click)="viewDocuments(data)"></i>
+                            <span class="badge  rounded-pill">
+                                <i class="bi bi-x-circle" tooltip="Remove" (click)="removeDocument(data)"></i>
+                            </span>
+                        </li>
+                    </ol>
                 </div>
-                <ng-container *ngFor="let data of projectDocumentLists">
-                    <span>
-                        <i class="bi bi-file-earmark"></i> {{data.name}}
-                        <i class="bi bi-eye-fill" tooltip="View" (click)="viewDocuments(data)"></i>
-                        <i class="bi bi-x-circle" tooltip="Remove" (click)="removeDocument(data)"></i>
-                    </span>
-                </ng-container>
-
+                <div class="attachments-lists mt-4">
+                    <div class="no-records-found" *ngIf="projectDocumentLists.length == 0">
+                        <span>No Attachments Found ! </span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-4 col-sm-12 right-side-section">
+    <div class="col-md-4 col-sm-12 right-side-section col-12 col-sm-6">
         <div class="other-details m-4">
             <div class="description mt-4">
                 <h5>
                     {{'common.description' | translate}}
                 </h5>
-
                 <div class="row mt-3">
-                    <div class="col-md-8">
+                    <div class="col-md-8 col-12 col-sm-6">
                         <div class="dropdown">
                             <button class="btn custom-dropdown" type="button" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -101,7 +104,7 @@
                             {{'common.lastChangedBy' | translate}}: <span> {{dataFromParent.client}} </span>
                         </p>
                     </div>
-                    <div class="col-md-4 description-md-4">
+                    <div class="col-md-4 description-md-4 col-12 col-sm-6">
                         <h6>
                             {{'common.lastChanged' | translate}}
                         </h6>
@@ -111,7 +114,7 @@
                     </div>
                 </div>
                 <div class="row mt-4">
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-12 col-sm-6">
                         <div class="project-role-list">
                             <i class="bi bi-calendar-date"></i>
                             <div class="startdate-enddate">
@@ -120,10 +123,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-12 col-sm-6">
                         <hr>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-12 col-sm-6">
                         <div class="project-role-list-endDate">
                             <i class="bi bi-calendar-date"></i>
                             <div class="startdate-enddate">
@@ -133,7 +136,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12 mt-4">
+                    <div class="col-md-12 mt-4 col-12 col-sm-6">
                         <div class="project-role-list">
                             <i class="bi bi-clock"></i>
                             <div class="startdate-enddate">
@@ -145,7 +148,7 @@
                 </div>
 
                 <div class="row mt-4">
-                    <div class="col-md-12 latest-activity">
+                    <div class="col-md-12 col-12 col-sm-6 latest-activity">
                         <h6>
                             {{'common.latestActivityOnThisProject' | translate}}
                         </h6>

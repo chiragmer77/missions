@@ -867,3 +867,8 @@ span.gselected {
 .dropdown-menu li {
   cursor: pointer;
 }
+.accordion-body ul li {
+  margin-bottom: 0 !important;
+  border: none !important;
+  border-radius: 0px !important;
+}

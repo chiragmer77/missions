@@ -26,6 +26,8 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { ExpenseComponent } from './expense/expense.component';
 import { AddExpenseComponent } from './expense/add-expense/add-expense.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 
 @NgModule({
@@ -55,8 +57,10 @@ import { AddExpenseComponent } from './expense/add-expense/add-expense.component
     NgxPaginationModule,
     SharedModule,
     NgxFileDropModule,
+    NgxSpinnerModule,
     NgDragDropModule.forRoot(),
     NgGanttEditorModule,
+    NgxSkeletonLoaderModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

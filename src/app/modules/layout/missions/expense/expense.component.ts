@@ -25,7 +25,7 @@ export class ExpenseComponent {
   projectExpanseList: any = [];
   projectObj: any;
   isEditing: boolean = false;
-
+  p: number = 1;
   isConfirmationModalOpen: boolean = false;
   modalTitle: string = '';
   modalMessage: string = '';
@@ -46,6 +46,7 @@ export class ExpenseComponent {
       this.projectObj = JSON.parse(storedData);
     }
     this.expenseForm = this.formBuilder.group({
+      id: [null],
       projectId: [this.projectObj.id],
       title: [''],
       description: ['', Validators.required],
@@ -77,6 +78,7 @@ export class ExpenseComponent {
             this.toaster.success('Project Expense Edit Successfully!');
             this.spinner.hide();
             this.hideForm();
+            this.getProjectExpense();
             this.resetForm(); // Reset the form after successful add or update
           }
         });
@@ -129,6 +131,7 @@ export class ExpenseComponent {
   editExpanse(data: any) {
     this.expenseForm.patchValue(data)
     this.isFormVisible = true;
+    this.isEditing = true;
   }
 
   // Delete
