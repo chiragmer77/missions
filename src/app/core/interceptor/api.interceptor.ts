@@ -49,7 +49,7 @@ export class ApiInterceptor implements HttpInterceptor {
     return next.handle(authRequest).pipe(
       catchError((error: HttpErrorResponse) => {
         this.spinner.hide();
-        this.spinner.hide('prBudget');
+        this.spinner.hide('spinner1')
         // Handle different types of errors here
         if (error.error instanceof ErrorEvent) {
           // A client-side error occurred

@@ -42,6 +42,13 @@
   .right-arrow {
     display: none;
   }
+
+  .exit_arrow {
+    display: none !important;
+  }
+  .smallScreen_sidenav {
+    left: 0;
+  }
 }
 
 /* Css code for flter responsive */

@@ -25,7 +25,8 @@ export class AddMissionComponent {
     private toaster: ToastrService,
     private renderer: Renderer2,
     private spinner: NgxSpinnerService,
-    public translate: TranslateService
+    public translate: TranslateService,
+
   ) {
   }
 
@@ -69,6 +70,7 @@ export class AddMissionComponent {
   // sidebar open close
   sidebarOpenClose() {
     this.isSidebarOpenClose = !this.isSidebarOpenClose;
+    this.isSidebarOpenClose == true ? this.spinner.show('spinner1') : this.spinner.hide('spinner1');
     this.isSidebarOpenClose == true ? this.renderer.setStyle(document.body, 'overflow', 'hidden') : this.renderer.setStyle(document.body, 'overflow', 'auto');
     this.isSidebarOpenClose == true ? this.renderer.setStyle(document.body, 'background-color', 'rgba(0, 0, 0, 0.5)') : this.renderer.setStyle(document.body, 'background-color', 'auto');
     if (!this.isSidebarOpenClose) {

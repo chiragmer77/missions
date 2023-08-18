@@ -41,6 +41,7 @@ export class DocumentDetailsComponent {
   // sidebar open close
   sidebarOpenClose() {
     this.isSidebarOpenClose = !this.isSidebarOpenClose;
+    this.isSidebarOpenClose == true ? this.spinner.show('spinner1') : this.spinner.hide('spinner1');
   }
 
   /** View doc detail */

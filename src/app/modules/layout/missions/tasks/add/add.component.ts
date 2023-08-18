@@ -59,6 +59,7 @@ export class AddComponent {
   // sidebar open close
   sidebarOpenClose() {
     this.isSidebarOpenClose = !this.isSidebarOpenClose;
+    this.isSidebarOpenClose == true ? this.spinner.show('spinner1') : this.spinner.hide('spinner1');
     this.isSidebarOpenClose == true ? this.renderer.setStyle(document.body, 'overflow', 'hidden') : this.renderer.setStyle(document.body, 'overflow', 'auto')
     if (!this.isSidebarOpenClose) {
       this.isEditing = false;

@@ -12,7 +12,7 @@ export class AppComponent {
   title = 'missions';
 
   constructor(
-    public translate: TranslateService
+    public translate: TranslateService,
   ) {
   }
 

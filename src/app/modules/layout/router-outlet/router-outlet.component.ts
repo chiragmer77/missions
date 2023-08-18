@@ -18,9 +18,36 @@ export class RouterOutletComponent {
 
 
 
+  // toggleClass() {
+  //   this.isClassAdded = !this.isClassAdded;
+  //   console.log(this.isClassAdded)
+  //   if (this.isClassAdded) {
+  //     this.renderer.setStyle(this.bigLogo?.nativeElement, 'display', 'block');
+  //     this.renderer.setStyle(this.smallLogo?.nativeElement, 'display', 'none');
+  //     this.renderer.setStyle(this.leftArrow?.nativeElement, 'display', 'block');
+  //     this.renderer.setStyle(this.rightArrow?.nativeElement, 'display', 'none');
+  //   } else {
+  //     this.renderer.setStyle(this.bigLogo?.nativeElement, 'display', 'none');
+  //     this.renderer.setStyle(this.smallLogo?.nativeElement, 'display', 'block');
+  //     this.renderer.setStyle(this.leftArrow?.nativeElement, 'display', 'none');
+  //     this.renderer.setStyle(this.rightArrow?.nativeElement, 'display', 'block');
+  //   }
+  // }
+
   toggleClass() {
+    // Get the current screen width
+    const screenWidth = window.innerWidth;
+
+    // Determine whether to reverse behavior based on screen width
+    const shouldReverse = screenWidth < 768;
+
+    console.log(shouldReverse)
+
+    // Toggle class logic
     this.isClassAdded = !this.isClassAdded;
+
     console.log(this.isClassAdded)
+
     if (this.isClassAdded) {
       this.renderer.setStyle(this.bigLogo?.nativeElement, 'display', 'block');
       this.renderer.setStyle(this.smallLogo?.nativeElement, 'display', 'none');
@@ -33,6 +60,7 @@ export class RouterOutletComponent {
       this.renderer.setStyle(this.rightArrow?.nativeElement, 'display', 'block');
     }
   }
+
 
   menuSubmenu() {
     this.isMenuSubmenu = !this.isMenuSubmenu;

@@ -5,6 +5,7 @@
 </a>
 <!--Filter Code-->
 <div class="sideFormFields card mb-3 " [ngClass]="{'ShowFields' : isSidebarOpenClose}">
+
     <div class="card-header">
         <span> {{isEditing == true ? ('common.edit'| translate) : 'common.add' | translate}} Member </span>
         <button class="btn" aria-label="Close" (click)="sidebarOpenClose()">

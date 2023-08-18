@@ -13,16 +13,16 @@
                 <table class="table mb-0">
                     <thead class="table-light">
                         <tr>
-                            <th class="w-25">{{'common.user' | translate}}</th>
                             <th class="w-25">{{'common.title' | translate}}</th>
                             <th class="w-25">{{'common.description' | translate}}</th>
-                            <th colspan="2" class="w-50">{{'common.amount' | translate}}</th>
+                            <th>{{'common.amount' | translate}}</th>
+                            <th colspan="2">{{'common.user' | translate}}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngIf="isFormVisible">
-                            <td class="w-25"></td>
-                            <td class="w-25">
+                            <td></td>
+                            <td>
                                 <input type="text" placeholder="{{'common.title' | translate}}" class="form-control"
                                     id="title" formControlName="title" required>
                                 <h6 class="error-message">
@@ -32,7 +32,7 @@
                                     </span>
                                 </h6>
                             </td>
-                            <td class="w-25">
+                            <td>
                                 <input type="text" placeholder="{{'common.description' | translate}}"
                                     class="form-control" id="description" formControlName="description" required>
                                 <h6 class="error-message">
@@ -43,7 +43,7 @@
                                     </span>
                                 </h6>
                             </td>
-                            <td class="w-25">
+                            <td>
                                 <div class="input-group">
                                     <span class="input-group-text" id="basic-addon2">$</span>
                                     <input type="number" placeholder="{{'common.amount' | translate}}"
@@ -65,15 +65,16 @@
                             </td>
                         </tr>
                         <tr *ngFor="let data of projectExpanseList | paginate: { itemsPerPage: 5, currentPage: p }">
+
+                            <td>{{data.title}}</td>
+                            <td>{{data.description}}</td>
+                            <td>{{data.amount}}</td>
                             <td>
                                 <span class="m_img_thumbnail"
                                     [style.background]="sharedService.getBackgroundColor(data.user)">
                                     {{sharedService.getFirstLetter(data.user)}}</span>
                                 {{data.user}}
                             </td>
-                            <td>{{data.title}}</td>
-                            <td>{{data.description}}</td>
-                            <td>{{data.amount}}</td>
                             <td>
                                 <button type="button" class="btn" (click)="editExpanse(data)">
                                     <i class="bi bi-pencil-square"></i>

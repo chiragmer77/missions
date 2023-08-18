@@ -20,19 +20,19 @@ export class HeaderComponent {
   ) { }
 
   ngOnInit(): void {
-    this.translate.addLangs(['en', 'fr']);
-    this.translate.setDefaultLang('en');
-    const browserLang: any = this.translate.getBrowserLang();
-    this.translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
-
-    setTimeout(() => {
-      // Set the default language in localStorage if not set before
-      const storedLanguage = localStorage.getItem('selectedLanguage');
-      if (storedLanguage) {
-        this.language.defualtLanguage = storedLanguage;
-        this.changeLanguage(storedLanguage);
-      }
-    }, 500);
+    // Set the default language in localStorage if not set before
+    const storedLanguage = localStorage.getItem('selectedLanguage');
+    console.log(storedLanguage)
+    if (storedLanguage) {
+      this.language.defualtLanguage = storedLanguage;
+      this.changeLanguage(storedLanguage);
+    } else {
+      this.translate.addLangs(['en', 'fr']);
+      this.translate.setDefaultLang('en');
+      this.language.defualtLanguage = 'en'
+      const browserLang: any = this.translate.getBrowserLang();
+      this.translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
+    }
   }
 
   /** Change language */
