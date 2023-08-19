@@ -16,6 +16,26 @@ input::placeholder {
   text-align: left;
   color: #000000 !important;
 }
+
+/* CSS */
+.sideFormFields input {
+  color: #000000 !important;
+}
+
+.sideFormFields input::placeholder {
+  color: #0000005e !important;
+  font-size: 14px;
+}
+/* CSS */
+.sideFormFields option {
+  color: #000000 !important;
+}
+
+.sideFormFields option::placeholder {
+  color: #0000005e !important;
+  font-size: 14px;
+}
+
 a {
   text-decoration: none !important;
 }

@@ -6,9 +6,10 @@ import {
   HttpInterceptor,
   HttpErrorResponse,
   HttpHeaders,
-  HttpParams
+  HttpParams,
+  HttpResponse
 } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
@@ -46,10 +47,15 @@ export class ApiInterceptor implements HttpInterceptor {
       });
     }
     // Handle the request and catch any errors
-    return next.handle(authRequest).pipe(
+    return next.handle(authRequest).pipe(tap((event: HttpEvent<unknown>) => {
+      if (event instanceof HttpResponse) {
+        this.spinner.hide(); // Hide the loader for success responses
+        this.spinner.hide('spinner1');
+      }
+    }),
       catchError((error: HttpErrorResponse) => {
         this.spinner.hide();
-        this.spinner.hide('spinner1')
+        this.spinner.hide('spinner1');
         // Handle different types of errors here
         if (error.error instanceof ErrorEvent) {
           // A client-side error occurred
