@@ -21,17 +21,19 @@ export class RoleComponent {
     Search: '',
     IsDescending: true,
     Page: 1,
-    PageSize: 10,
+    PageSize: 5,
     OrderBy: ''
   }
   projectRoleList: any = [];
   projectObj: any;
   isEditing: boolean = false;
-
+  p: number = 1;
   isConfirmationModalOpen: boolean = false;
   modalTitle: string = '';
   modalMessage: string = '';
   data: any;
+  totalCount: any;
+  skeletons: boolean = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -61,11 +63,11 @@ export class RoleComponent {
 
   // Get Project Role
   getProjectRole() {
-    this.spinner.show();
     this.apiService.getWithParams('ProjectRole',
       `ProjectId=${this.projectObj.id}&IsHideCount=${this.pagePayload.IsHideCount}&Search=${this.pagePayload.Search}&IsDescending=${this.pagePayload.IsDescending}&Page=${this.pagePayload.Page}&PageSize=${this.pagePayload.PageSize}`).subscribe((response) => {
         this.projectRoleList = response.data;
-        this.spinner.hide();
+        this.totalCount = response.count;
+        this.skeletons = false;
       });
   }
 
@@ -168,5 +170,14 @@ export class RoleComponent {
       });
     }
     this.isConfirmationModalOpen = !this.isConfirmationModalOpen;
+  }
+
+  /** Page change event */
+  getPage(event: any) {
+    this.projectRoleList = [];
+    this.skeletons = true;
+    this.p = event;
+    this.pagePayload.Page = event;
+    this.getProjectRole();
   }
 }

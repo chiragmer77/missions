@@ -38,7 +38,6 @@ export class AddDesignatinComponent {
     this.isSidebarOpenClose = !this.isSidebarOpenClose;
     this.isSidebarOpenClose == true ? this.spinner.show('spinner1') : this.spinner.hide('spinner1');
     this.isSidebarOpenClose == true ? this.renderer.setStyle(document.body, 'overflow', 'hidden') : this.renderer.setStyle(document.body, 'overflow', 'auto')
-    this.resetForm(); // Reset the form after successful add or update
   }
 
   onFormSubmit() {
@@ -56,6 +55,7 @@ export class AddDesignatinComponent {
             // Emit the event when the child component is closed
             this.onClose.emit();
             this.spinner.hide();
+            this.resetForm(); // Reset the form after successful add or update
           }
         });
       } else {
@@ -68,11 +68,10 @@ export class AddDesignatinComponent {
             // Emit the event when the child component is closed
             this.onClose.emit();
             this.spinner.hide();
+            this.resetForm(); // Reset the form after successful add or update
           }
         });
       }
-      this.resetForm(); // Reset the form after successful add or update
-
     }
   }
 

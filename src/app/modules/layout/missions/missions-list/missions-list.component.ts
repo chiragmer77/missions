@@ -27,7 +27,7 @@ export class MissionsListComponent {
     Search: '',
     IsDescending: true,
     Page: 1,
-    PageSize: 10,
+    PageSize: 5,
     OrderBy: ''
   }
   missionList: any = [];
@@ -36,6 +36,7 @@ export class MissionsListComponent {
   isSearchVisible = false;
   projectTaskExpenseList: any = [];
   skeletons: boolean = true;
+  projectToalCount: any;
   constructor(
     private apiService: ApiService,
     private toaster: ToastrService,
@@ -57,11 +58,11 @@ export class MissionsListComponent {
 
   // get mission list
   getMissionList() {
-    this.spinner.show();
     this.apiService.getWithParams('Project',
       `IsHideCount=${this.pagePayload.IsHideCount}&Search=${this.pagePayload.Search}&IsDescending=${this.pagePayload.IsDescending}&Page=${this.pagePayload.Page}&PageSize=${this.pagePayload.PageSize}`).subscribe((response) => {
         this.missionList = response.data;
-        this.spinner.hide();
+        this.projectToalCount = response.count;
+        this.skeletons = false;
       });
   }
 
@@ -135,6 +136,8 @@ export class MissionsListComponent {
 
   // Call this function when the input value changes
   updateSearchQuery() {
+    this.missionList = [];
+    this.skeletons = true;
     this.sharedService.searchSubject.next(this.pagePayload.Search);
   }
 
@@ -147,7 +150,16 @@ export class MissionsListComponent {
         this.skeletons = false;
         this.projectTaskExpenseList = res.data;
       }
-    })
+    });
+  }
+
+  /** Page change event */
+  getPage(event: any) {
+    this.missionList = [];
+    this.skeletons = true;
+    this.p = event;
+    this.pagePayload.Page = event;
+    this.getMissionList();
   }
 
 }

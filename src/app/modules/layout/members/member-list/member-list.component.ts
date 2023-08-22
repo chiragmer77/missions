@@ -33,10 +33,10 @@ export class MemberListComponent implements OnInit {
     OrderBy: ''
   }
   p: number = 1;
-
+  projectToalCount: number = 0;
   memberLists: any = [];
   isSearchVisible = false;
-
+  skeletons: boolean = true;
   constructor(
     private apiService: ApiService,
     private toaster: ToastrService,
@@ -56,11 +56,12 @@ export class MemberListComponent implements OnInit {
 
   /** Get Member lists */
   getMemberLists() {
-    this.spinner.show();
+    this.skeletons = true;
     this.apiService.getWithParams('Member',
       `IsHideCount=${this.pagePayload.IsHideCount}&Search=${this.pagePayload.Search}&IsDescending=${this.pagePayload.IsDescending}&Page=${this.pagePayload.Page}&PageSize=${this.pagePayload.PageSize}`).subscribe((response) => {
         this.memberLists = response.data;
-        this.spinner.hide();
+        this.projectToalCount = response.count;
+        this.skeletons = false;
       });
   }
 
@@ -122,7 +123,18 @@ export class MemberListComponent implements OnInit {
 
   // Call this function when the input value changes
   updateSearchQuery() {
+    this.memberLists = [];
+    this.skeletons = true;
     this.sharedService.searchSubject.next(this.pagePayload.Search);
+  }
+
+  /** Page change event */
+  getPage(event: any) {
+    this.memberLists = [];
+    this.skeletons = true;
+    this.p = event;
+    this.pagePayload.Page = event;
+    this.getMemberLists();
   }
 
 }

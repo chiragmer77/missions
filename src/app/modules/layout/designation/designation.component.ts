@@ -28,7 +28,8 @@ export class DesignationComponent {
   p: number = 1;
   isSearchVisible = false;
   designationList: any = [];
-
+  totalCount: any;
+  skeletons: boolean = true;
 
   constructor(
     private apiService: ApiService,
@@ -48,11 +49,11 @@ export class DesignationComponent {
 
   /** Get Member lists */
   getDesignationList() {
-    this.spinner.show();
     this.apiService.getWithParams('Designation',
       `IsHideCount=${this.pagePayload.IsHideCount}&Search=${this.pagePayload.Search}&IsDescending=${this.pagePayload.IsDescending}&Page=${this.pagePayload.Page}&PageSize=${this.pagePayload.PageSize}`).subscribe((response) => {
         this.designationList = response.data;
-        this.spinner.hide();
+        this.totalCount = response.count;
+        this.skeletons = false;
       });
   }
 
@@ -112,6 +113,17 @@ export class DesignationComponent {
 
   // Call this function when the input value changes
   updateSearchQuery() {
+    this.designationList = [];
+    this.skeletons = true;
     this.sharedService.searchSubject.next(this.pagePayload.Search);
+  }
+
+  /** Page change event */
+  getPage(event: any) {
+    this.designationList = [];
+    this.skeletons = true;
+    this.p = event;
+    this.pagePayload.Page = event;
+    this.getDesignationList();
   }
 }

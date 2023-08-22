@@ -50,7 +50,8 @@
                     <div class="col-md-12 mb-4">
                         <select class="form-control" placeholder="Assignee" formControlName="memberId" required>
                             <option value="" disabled>{{'common.assignee' | translate}}</option>
-                            <option *ngFor="let data of memberList" value="{{data.id}}">{{data.name}}</option>
+                            <option *ngFor="let data of memberList" value="{{data.id}}">{{data.name}}
+                                ({{data.designation}})</option>
                             <!-- Add options for members here -->
                         </select>
                         <h6 class="error-message">

@@ -28,6 +28,8 @@ export class CategoryComponent {
   p: number = 1;
   isSearchVisible = false;
   categoryLists: any = [];
+  totalCount: any;
+  skeletons: boolean = true;
 
 
   constructor(
@@ -48,11 +50,11 @@ export class CategoryComponent {
 
   /** Get Member lists */
   getCategoryLists() {
-    this.spinner.show();
     this.apiService.getWithParams('ProjectTaskCategory',
       `IsHideCount=${this.pagePayload.IsHideCount}&Search=${this.pagePayload.Search}&IsDescending=${this.pagePayload.IsDescending}&Page=${this.pagePayload.Page}&PageSize=${this.pagePayload.PageSize}`).subscribe((response) => {
         this.categoryLists = response.data;
-        this.spinner.hide();
+        this.totalCount = response.count;
+        this.skeletons = false;
       });
   }
 
@@ -112,6 +114,17 @@ export class CategoryComponent {
 
   // Call this function when the input value changes
   updateSearchQuery() {
+    this.categoryLists = [];
+    this.skeletons = true;
     this.sharedService.searchSubject.next(this.pagePayload.Search);
+  }
+
+  /** Page change event */
+  getPage(event: any) {
+    this.categoryLists = [];
+    this.skeletons = true;
+    this.p = event;
+    this.pagePayload.Page = event;
+    this.getCategoryLists();
   }
 }

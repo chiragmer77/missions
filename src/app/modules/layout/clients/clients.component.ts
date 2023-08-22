@@ -28,7 +28,8 @@ export class ClientsComponent {
   p: number = 1;
   isSearchVisible = false;
   clientsLists: any = [];
-
+  skeletons: boolean = true;
+  totalCount: any;
 
   constructor(
     private apiService: ApiService,
@@ -48,11 +49,11 @@ export class ClientsComponent {
 
   /** Get Member lists */
   getClientsLists() {
-    this.spinner.show();
     this.apiService.getWithParams('AppClient',
       `IsHideCount=${this.pagePayload.IsHideCount}&Search=${this.pagePayload.Search}&IsDescending=${this.pagePayload.IsDescending}&Page=${this.pagePayload.Page}&PageSize=${this.pagePayload.PageSize}`).subscribe((response) => {
         this.clientsLists = response.data;
-        this.spinner.hide();
+        this.totalCount = response.count
+        this.skeletons = false;
       });
   }
 
@@ -112,11 +113,23 @@ export class ClientsComponent {
 
   // Call this function when the input value changes
   updateSearchQuery() {
+    this.clientsLists = [];
+    this.skeletons = true;
     this.sharedService.searchSubject.next(this.pagePayload.Search);
   }
 
   /** Mission Page Redirection */
   goToMissionPage(data: any) {
     console.log(data)
+  }
+
+
+  /** Page change event */
+  getPage(event: any) {
+    this.clientsLists = [];
+    this.skeletons = true;
+    this.p = event;
+    this.pagePayload.Page = event;
+    this.getClientsLists();
   }
 }

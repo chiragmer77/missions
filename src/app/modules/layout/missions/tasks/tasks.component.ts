@@ -22,12 +22,14 @@ export class TasksComponent {
     Search: '',
     IsDescending: true,
     Page: 1,
-    PageSize: 10,
+    PageSize: 5,
     OrderBy: ''
   }
   projectObj: any;
   projectTasksLists: any = [];
   p: number = 1
+  totalCount: any;
+  skeletons: boolean = true;
 
   constructor(
     private apiService: ApiService,
@@ -56,11 +58,11 @@ export class TasksComponent {
 
   /** Get Project tasks lists */
   getProjectTasksLists() {
-    this.spinner.show();
     this.apiService.getWithParams('ProjectTask',
       `ProjectId=${this.projectObj.id}&IsHideCount=${this.pagePayload.IsHideCount}&Search=${this.pagePayload.Search}&IsDescending=${this.pagePayload.IsDescending}&Page=${this.pagePayload.Page}&PageSize=${this.pagePayload.PageSize}`).subscribe((response) => {
         this.projectTasksLists = response.data;
-        this.spinner.hide();
+        this.totalCount = response.count;
+        this.skeletons = false;
       });
   }
 
@@ -150,6 +152,15 @@ export class TasksComponent {
       purpose: 'Edit'
     }
     this.sharedService.taskAddSideWindowEvent.emit(payload);
+  }
+
+  /** Page change event */
+  getPage(event: any) {
+    this.projectTasksLists = [];
+    this.skeletons = true;
+    this.p = event;
+    this.pagePayload.Page = event;
+    this.getProjectTasksLists();
   }
 
 }

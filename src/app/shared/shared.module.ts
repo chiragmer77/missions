@@ -8,18 +8,22 @@ import { TooltipModule } from 'ng2-tooltip-directive';
 import { HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../app.module';
+import { SkeletonComponent } from './components/skeleton/skeleton.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 
 @NgModule({
   declarations: [
     ConfirmationModalComponent,
-    PopoverComponent
+    PopoverComponent,
+    SkeletonComponent
   ],
-  exports: [ConfirmationModalComponent, TooltipModule, PopoverComponent],
+  exports: [ConfirmationModalComponent, TooltipModule, PopoverComponent, SkeletonComponent],
   imports: [
     CommonModule,
     ToastrModule.forRoot(),
     TooltipModule,
+    NgxSkeletonLoaderModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

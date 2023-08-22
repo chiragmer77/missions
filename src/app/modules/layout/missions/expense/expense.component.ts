@@ -19,10 +19,11 @@ export class ExpenseComponent {
     Search: '',
     IsDescending: true,
     Page: 1,
-    PageSize: 10,
+    PageSize: 5,
     OrderBy: ''
   }
   projectExpanseList: any = [];
+  projectToalCount: number = 0;
   projectObj: any;
   isEditing: boolean = false;
   p: number = 1;
@@ -30,6 +31,8 @@ export class ExpenseComponent {
   modalTitle: string = '';
   modalMessage: string = '';
   data: any;
+  totalCount: any;
+  skeletons: boolean = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -57,11 +60,11 @@ export class ExpenseComponent {
 
   // Get Project Role
   getProjectExpense() {
-    this.spinner.show();
     this.apiService.getWithParams('ProjectExpense',
       `ProjectId=${this.projectObj.id}&IsHideCount=${this.pagePayload.IsHideCount}&Search=${this.pagePayload.Search}&IsDescending=${this.pagePayload.IsDescending}&Page=${this.pagePayload.Page}&PageSize=${this.pagePayload.PageSize}`).subscribe((response) => {
         this.projectExpanseList = response.data;
-        this.spinner.hide();
+        this.totalCount = response.count;
+        this.skeletons = false;
       });
   }
 
@@ -153,5 +156,14 @@ export class ExpenseComponent {
       });
     }
     this.isConfirmationModalOpen = !this.isConfirmationModalOpen;
+  }
+
+  /** Page change event */
+  getPage(event: any) {
+    this.projectExpanseList = [];
+    this.skeletons = true;
+    this.p = event;
+    this.pagePayload.Page = event;
+    this.getProjectExpense();
   }
 }

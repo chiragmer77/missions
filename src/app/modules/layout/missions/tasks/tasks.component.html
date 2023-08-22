@@ -1,6 +1,6 @@
 <div class="row p-0 mt-5">
     <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
-        <table class="table mb-0 mission-tasks-table borderless">
+        <table class="table mb-0 mission-tasks-table borderless table-striped table-hover">
             <thead class="table-light">
                 <tr>
                     <th class="planning">{{'common.planning' | translate}}</th>
@@ -13,7 +13,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let data of projectTasksLists | paginate: { itemsPerPage: 5, currentPage: p }">
+                <tr
+                    *ngFor="let data of projectTasksLists | paginate: { itemsPerPage: 5, currentPage: p,totalItems: totalCount }">
                     <td class="pointer go-to-taskDetail" (click)="setTaskData(data)">
                         {{data.title}}
                     </td>
@@ -25,7 +26,7 @@
                         {{data.member}}
                     </td>
                     <td>
-                        {{data.hoursToSpend}}
+                        {{data.actualHours}}
                     </td>
                     <td>
                         {{data.endDate | date: 'M/d/yy, h:mm a'}}
@@ -222,12 +223,14 @@
                 </tr> -->
             </tbody>
         </table>
-        <div class="text-end mt-4">
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>
-        </div>
-        <div class="no-records-found mt-5 text-center" *ngIf="projectTasksLists.length == 0">
+        <app-skeleton [count]="'5'" *ngIf="skeletons"></app-skeleton>
+        <div class="no-records-found mt-5 text-center" *ngIf="projectTasksLists.length == 0 && !skeletons">
             <span>No Records Found ! </span>
         </div>
+        <div class="text-end mt-4">
+            <pagination-controls (pageChange)="getPage($event)"></pagination-controls>
+        </div>
+
     </div>
 </div>
 

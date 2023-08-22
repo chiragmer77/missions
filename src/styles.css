@@ -665,12 +665,16 @@ a {
   outline: 0;
   box-shadow: inset 0 0 0;
 }
-
+/* 
 .table > :not(caption) > * > * {
   padding: 0.71rem !important;
 }
 .table > :not(caption) > * > * {
   padding: 1rem !important;
+} */
+
+.table thead tr th {
+  padding: 1rem;
 }
 
 /* Breadcrumb styles */
