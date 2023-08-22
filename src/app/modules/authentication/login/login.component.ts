@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent {
     private fb: FormBuilder,
     private toastr: ToastrService,
     private apiService: ApiService,
-    private router: Router
+    private router: Router,
+    private jwtHelper: JwtHelperService
   ) { }
 
   ngOnInit() {
@@ -40,6 +42,8 @@ export class LoginComponent {
         scope: 'openid email profile offline_access roles'
       }
       this.apiService.connectAuth('connect/token', payload).subscribe((res: any) => {
+        const token = this.jwtHelper.decodeToken(res.id_token);
+        localStorage.setItem('decode-IdToken',JSON.stringify(token));
         // Handle the successful response here
         localStorage.setItem('authToken', res.access_token);
         this.isLoading = false;
