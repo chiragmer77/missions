@@ -27,6 +27,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { RouterOutletModule } from './modules/layout/router-outlet.module';
 import { SharedService } from './shared/services/shared.service';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { JwtModule } from "@auth0/angular-jwt";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -68,6 +69,11 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter:  () => localStorage.getItem('access_token')
+      }
+    })
   ],
   providers: [
     {
