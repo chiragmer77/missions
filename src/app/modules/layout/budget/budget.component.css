@@ -1,3 +1,13 @@
 /* tbody.collapse.in {
     display: table-row-group;
   } */
+.nav-tabs .nav-link.active {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #0044aa;
+  border: 0;
+  border-bottom: 3px solid #0044aa;
+}

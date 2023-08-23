@@ -4,10 +4,14 @@
         <div class="dropdown">
             <button class=" btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
                 aria-expanded="false">
-                <span>
-                    Andrew Smith
+                <span class="userName">
+                    {{loggedUserData.fullName[0]}}
                 </span>
-                <img class="header_img" src="./assets/Images/andrew.png" alt="">
+                <!-- <img class="header_img" src="./assets/Images/andrew.png" alt=""> -->
+                <span class="m_img_thumbnail"
+                    [style.background]="sharedService.getBackgroundColor(loggedUserData.fullName[0])">
+                    {{sharedService.getFirstLetter(loggedUserData.fullName[0])}}
+                </span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li (click)="logoutUser()">

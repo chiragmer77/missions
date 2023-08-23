@@ -24,7 +24,7 @@
   width: 40px;
 }
 
-.andrew_profile span {
+.andrew_profile .userName {
   font-size: 18px;
   font-weight: 500;
   line-height: 22px;

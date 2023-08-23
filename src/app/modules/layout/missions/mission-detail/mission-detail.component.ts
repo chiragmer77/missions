@@ -65,6 +65,5 @@ export class MissionDetailComponent {
       // Store the active tab ID in local storage
       localStorage.setItem('previousTab', currentTabId);
     }
-
   }
 }

@@ -45,12 +45,16 @@
                                 <div class="row" id="{{data.title}}">
                                     <div class="col-xl-4 col-md-4 col-sm-6 col-12 m_task_details"
                                         (click)="setProjectData(data)">
-                                        <h4><a>{{data.title}} </a></h4>
-                                        <p>{{data.startDate |date: 'M/d/yy, h:mm a'}} - {{data.endDate | date: 'M/d/yy,
-                                            h:mm
-                                            a'}}</p>
+                                        <h4>
+                                            <a>
+                                                {{data.title}}
+                                            </a>
+                                        </h4>
+                                        <p>
+                                            {{data.startDate |date: 'M/d/yy, h:mm a'}} - {{data.endDate | date:
+                                            'M/d/yy,h:mm a'}}
+                                        </p>
                                     </div>
-
                                     <div class="col-xl-2 col-md-2 col-sm-3 col-12 m_task_status">
                                         <h4 class="not-started" *ngIf="data.status === 1"><a>Not-Started</a></h4>
                                         <h4 class="in-progress" *ngIf="data.status === 2"><a>In-progress</a></h4>

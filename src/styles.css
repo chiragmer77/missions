@@ -99,6 +99,17 @@ thead tr th {
   background: #e6ebf1;
 }
 
+/* styles.css or styles.scss */
+
+.table-hover th,
+.table-hover td {
+  width: 200px; /* Set your desired width here */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 0;
+}
+
 .bi-pencil-square {
   color: #0044aa;
 }
@@ -895,4 +906,8 @@ span.gselected {
   margin-bottom: 0 !important;
   border: none !important;
   border-radius: 0px !important;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: none !important;
 }

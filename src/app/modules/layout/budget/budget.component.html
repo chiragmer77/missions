@@ -1,116 +1,187 @@
 <!--Container Main start-->
 <div class="p-3">
-    <div class="top_header float-start w-100">
-        <div class="screen-heading">
-            <h3 class="float-start">
-                {{'common.budget' | translate}}
-            </h3>
-        </div>
-    </div>
-<div class="accordion" id="accordionExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        Accordion Item #1
-      </button>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-       test 3
-      </div>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingTwo">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-        Accordion Item #2
-      </button>
-    </h2>
-    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-     test 2
-      </div>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingThree">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-        Accordion Item #3
-      </button>
-    </h2>
-    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-      test
-      </div>
-    </div>
-  </div>
-</div>
-    <!-- <div class="Container p-0">
-        <div class="row p-0">
-            <table class="table table-striped table-hover mb-0 border-primary">
+	<div class="top_header float-start w-100 mb-4">
+		<div class="screen-heading">
+			<h3 class="float-start">
+				{{'common.budget' | translate}}
+			</h3>
+		</div>
+	</div>
+	<div class="Container p-0">
+		<div class="row p-0">
+			<div class="accordion" id="accordionExample">
+				<div class="accordion-item" *ngFor="let budget of budgetList">
+					<h2 class="accordion-header" id="{{budget.title}}">
+						<button class="accordion-button" type="button" data-bs-toggle="collapse"
+							[attr.data-bs-target]="'#'+budget.id" aria-expanded="true" [attr.aria-controls]="budget.id">
+							{{budget.title}}
+						</button>
+					</h2>
+					<div [id]="budget.id" class="accordion-collapse collapse" [attr.aria-labelledby]="budget.title"
+						data-bs-parent="#accordionExample">
+						<hr>
+						<div class="accordion-body">
+							<div class="row">
+								<div class="col-xl-4 col-md-4 col-sm-6 col-12 m_task_details">
+									<h4>
+										<a>
+											{{budget.title}}
+										</a>
+									</h4>
+									<p>
+										{{budget.startDate |date: 'M/d/yy, h:mm a'}} - {{budget.endDate | date:
+										'M/d/yy,h:mm a'}}
+									</p>
+								</div>
+								<div class="col-xl-4 col-md-4 col-sm-6 col-12 m_task_status">
+									<h4 class="not-started" *ngIf="budget.status === 1"><a>Not-Started</a></h4>
+									<h4 class="in-progress" *ngIf="budget.status === 2"><a>In-progress</a></h4>
+									<h4 class="completed" *ngIf="budget.status === 3"><a>Completed</a></h4>
+									<p>Status</p>
+								</div>
 
-            </table>
-            <div class="text-end mt-4">
-				<pagination-controls (pageChange)="p = $event"></pagination-controls>
+								<div class="col-xl-2 col-md-2 col-sm-3 col-12 m_client_name">
+									<h4><a>{{budget.client}}</a>
+									</h4>
+									<p>{{'common.clientName' | translate}}</p>
+								</div>
+
+								<div class="col-xl-2 col-md-2 col-sm-3 col-12">
+									<h4><a>$ {{budget.budget}}</a>
+									</h4>
+									<p>{{'common.budget' | translate}}</p>
+								</div>
+							</div>
+
+							<hr>
+
+							<div class="row mt-4">
+								<ul class="nav nav-tabs m-3">
+									<li class="nav-item">
+										<button class="nav-link" [ngClass]="{'active' : clickedTab === 'tasks'}"
+											(click)="tabActive('tasks')">
+											{{'common.tasks' | translate}}
+										</button>
+									</li>
+									<li class="nav-item">
+										<button class="nav-link" [ngClass]="{'active' : clickedTab === 'expense'}"
+											(click)="tabActive('expense')">
+											{{'common.expense' | translate}}
+										</button>
+									</li>
+								</ul>
+								<div class="row">
+									<div class="col-12" *ngIf="clickedTab === 'tasks'">
+										<table
+											class="table mb-0 mission-tasks-table  table-striped border-primary table-hover">
+											<thead class="table-light">
+												<tr>
+													<th class="planning">{{'common.planning' | translate}}</th>
+													<th>{{'common.assignee' | translate}}</th>
+													<th>{{'common.hoursToSpend' | translate}}</th>
+													<th>{{'common.dueDate' | translate}}</th>
+													<th>{{'common.priority' | translate}}</th>
+													<th>{{'common.taskProgress' | translate}}</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr *ngFor="let data of budget.tasks">
+													<td class="pointer go-to-taskDetail">
+														{{data.title}}
+													</td>
+													<td>
+														<span class="m_img_thumbnail"
+															[style.background]="sharedService.getBackgroundColor(data.member)">
+															{{sharedService.getFirstLetter(data.member)}}
+														</span>
+														{{data.member}}
+													</td>
+													<td>
+														{{data.actualHours}}
+													</td>
+													<td>
+														{{data.endDate | date: 'M/d/yy, h:mm a'}}
+													</td>
+													<td>
+														<span class="badge bg-primary" *ngIf="data.priority == 1">
+															Low
+														</span>
+														<span class="badge bg-warning" *ngIf="data.priority == 2">
+															Medium
+														</span>
+														<span class="badge bg-danger" *ngIf="data.priority == 3">
+															High
+														</span>
+													</td>
+													<td class="action-menus">
+														<div class="dropdown">
+															<button class="btn" type="button" id="dropdownMenuButton1"
+																data-bs-toggle="dropdown" aria-expanded="false">
+																<span *ngIf="data.status == 1">
+																	<i class="bi bi-dot to-do-dot"></i>
+																	To-Do
+																</span>
+																<span *ngIf="data.status == 2">
+																	<i class="bi bi-dot in-progress-dot"></i>
+																	In-Progress
+																</span>
+																<span *ngIf="data.status == 3">
+																	<i class="bi bi-dot complete-dot"></i>
+																	Complete
+																</span>
+																<span *ngIf="data.status == 4">
+																	<i class="bi bi-dot block-dot"></i>
+																	Block
+																</span>
+															</button>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+										<div class="no-records-found mt-5 text-center" *ngIf="budget.tasks.length == 0">
+											<span>No Records Found ! </span>
+										</div>
+									</div>
+									<div class="col-12" *ngIf="clickedTab === 'expense'">
+										<table class="table table-striped table-hover mb-0 border-primary">
+											<thead class="table-light">
+												<tr>
+													<th class="w-25">{{'common.title' | translate}}</th>
+													<th class="w-25">{{'common.description' | translate}}</th>
+													<th>{{'common.amount' | translate}}</th>
+													<th colspan="2">{{'common.user' | translate}}</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr *ngFor="let data of budget.expenses">
+													<td>{{data.title}}</td>
+													<td>{{data.description}}</td>
+													<td>{{data.amount}}</td>
+													<td>
+														<span class="m_img_thumbnail"
+															[style.background]="sharedService.getBackgroundColor(data.user)">
+															{{sharedService.getFirstLetter(data.user)}}</span>
+														{{data.user}}
+													</td>
+												</tr>
+											</tbody>
+										</table>
+										<div class="no-records-found mt-5 text-center"
+											*ngIf="budget.expenses.length == 0">
+											<span>No Records Found ! </span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="no-records-found mt-5 text-center" *ngIf="memberLists.length == 0">
+			<app-skeleton [count]="'10'" *ngIf="skeletons"></app-skeleton>
+			<div class="no-records-found mt-5 text-center" *ngIf="budgetList.length == 0 && !skeletons">
 				<span>No Records Found ! </span>
 			</div>
-        </div>
-    </div> -->
+		</div>
+	</div>
 </div>
-<!--Container Main end-->
-<!-- <table class="table table-bordered table-sm ">
-    <thead class="thead-dark">
-        <tr>
-            <th>Column</th>
-            <th>Column</th>
-            <th>Column</th>
-            <th>Column</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="clickable" data-toggle="collapse" data-target="#group-of-rows-1" aria-expanded="false" aria-controls="group-of-rows-1">
-            <td><i class="fa fa-folder"></i></td>
-            <td>data</td>
-            <td>data</td>
-            <td>data</td>
-        </tr>
-    </tbody>
-    <tbody id="group-of-rows-1" class="collapse">
-        <tr class="table-warning">
-            <td><i class="fa fa-folder-open"></i> child row</td>
-            <td>data 1</td>
-            <td>data 1</td>
-            <td>data 1</td>
-        </tr>
-        <tr class="table-warning">
-            <td><i class="fa fa-folder-open"></i> child row</td>
-            <td>data 1</td>
-            <td>data 1</td>
-            <td>data 1</td>
-        </tr>
-    </tbody>
-    <tbody>
-        <tr class="clickable" data-toggle="collapse" data-target="#group-of-rows-2" aria-expanded="false" aria-controls="group-of-rows-2">
-            <td><i class="fa fa-folder"></i></td>
-            <td>data</td>
-            <td>data</td>
-            <td>data</td>
-        </tr>
-    </tbody>
-    <tbody id="group-of-rows-2" class="collapse">
-        <tr class="table-warning">
-            <td>123</td>
-            <td>data 2</td>
-            <td>data 2</td>
-            <td>data 2</td>
-        </tr>
-        <tr class="table-warning">
-            <td><i class="fa fa-folder-open"></i> child row</td>
-            <td>data 2</td>
-            <td>data 2</td>
-            <td>data 2</td>
-        </tr>
-    </tbody>
-</table> -->
