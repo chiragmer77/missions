@@ -110,7 +110,8 @@
     "user": "User",
     "amount": "Amount",
     "actualHoursSpend": "Actual Hours Spend",
-    "taskTitle": "Task Title"
+    "taskTitle": "Task Title",
+    "cost": "Cost"
   },
   "sidebar": {
     "dashboard": "Dashboard",

@@ -76,12 +76,12 @@
 											class="table mb-0 mission-tasks-table  table-striped border-primary table-hover">
 											<thead class="table-light">
 												<tr>
-													<th class="planning">{{'common.planning' | translate}}</th>
+													<th class="planning">{{'common.taskTitle' | translate}}</th>
 													<th>{{'common.assignee' | translate}}</th>
-													<th>{{'common.hoursToSpend' | translate}}</th>
-													<th>{{'common.dueDate' | translate}}</th>
-													<th>{{'common.priority' | translate}}</th>
-													<th>{{'common.taskProgress' | translate}}</th>
+													<th>{{'common.hours' | translate}}</th>
+													<!-- <th>{{'common.dueDate' | translate}}</th> -->
+													<!-- <th>{{'common.priority' | translate}}</th> -->
+													<th>{{'common.cost' | translate}}</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -100,9 +100,12 @@
 														{{data.actualHours}}
 													</td>
 													<td>
-														{{data.endDate | date: 'M/d/yy, h:mm a'}}
+														{{data.expectedHours}}
 													</td>
-													<td>
+													<!-- <td>
+														{{data.endDate | date: 'M/d/yy, h:mm a'}}
+													</td> -->
+													<!-- <td>
 														<span class="badge bg-primary" *ngIf="data.priority == 1">
 															Low
 														</span>
@@ -112,8 +115,8 @@
 														<span class="badge bg-danger" *ngIf="data.priority == 3">
 															High
 														</span>
-													</td>
-													<td class="action-menus">
+													</td> -->
+													<!-- <td class="action-menus">
 														<div class="dropdown">
 															<button class="btn" type="button" id="dropdownMenuButton1"
 																data-bs-toggle="dropdown" aria-expanded="false">
@@ -135,7 +138,7 @@
 																</span>
 															</button>
 														</div>
-													</td>
+													</td> -->
 												</tr>
 											</tbody>
 										</table>

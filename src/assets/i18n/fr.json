@@ -104,7 +104,8 @@
     "highNumberOfMissioninaMonth": "Nombre Élevé de Missions dans un Mois",
     "highestPaidClient": "Client le Mieux Payé",
     "logout": "Déconnexion",
-    "add": "Ajouter"
+    "add": "Ajouter",
+    "cost": "Cost"
   },
   "sidebar": {
     "dashboard": "Tableau de Bord",
