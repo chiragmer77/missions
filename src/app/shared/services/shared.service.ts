@@ -36,7 +36,7 @@ export class SharedService {
       case 'D':
         return '#FFA500'; // Orange
       case 'E':
-        return '#FFFF00'; // Yellow
+        return '#b9b535'; // Yellow
       case 'F':
         return '#FFC0CB'; // Pink
       case 'G':

@@ -589,13 +589,14 @@ a {
   height: 35px;
   line-height: 35px;
   border-radius: 50px;
-  background: linear-gradient(0deg, #d9d9d9, #d9d9d9),
+  background: linear-gradient(0deg, #957d7d, #957d7d),
     linear-gradient(0deg, #ffffff, #ffffff);
   display: inline-block;
   text-align: center;
   margin-left: -20px;
   box-shadow: 0 0 4px #fff;
   position: relative;
+  color: white;
 }
 .m_img_thumbnail:first-child {
   margin: 0;
