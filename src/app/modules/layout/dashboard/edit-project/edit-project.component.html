@@ -16,7 +16,7 @@
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('title').invalid && myForm.get('title').touched"
                                 class="text-danger">
-                                Title of Project is required
+                                Title of Project {{'common.required'| translate}}
                             </span>
                         </h6>
                     </div>
@@ -27,7 +27,7 @@
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('description').invalid && myForm.get('description').touched"
                                 class="text-danger">
-                                Description is required
+                                Description {{'common.required'| translate}}
                             </span>
                         </h6>
                     </div>
@@ -40,7 +40,7 @@
                         <h6 class="error-message">
                             <span
                                 *ngIf="myForm.get('projectCategoryId').invalid && myForm.get('projectCategoryId').touched"
-                                class="text-danger">Category is required</span>
+                                class="text-danger">Category {{'common.required'| translate}}</span>
                         </h6>
                     </div>
                     <div class="col-md-12 mb-4">
@@ -51,7 +51,7 @@
                         </select>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('clientId').invalid && myForm.get('clientId').touched"
-                                class="text-danger">Client is required</span>
+                                class="text-danger">Client {{'common.required'| translate}}</span>
                         </h6>
                     </div>
                     <div class="col-md-12 mb-4">
@@ -62,7 +62,7 @@
                         </select>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('teamLeadId').invalid && myForm.get('teamLeadId').touched"
-                                class="text-danger">Team Lead is required</span>
+                                class="text-danger">Team Lead {{'common.required'| translate}}</span>
                         </h6>
                     </div>
                     <div class="col-md-12 mb-4">
@@ -73,7 +73,7 @@
                         </div>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('budget').invalid && myForm.get('budget').touched"
-                                class="text-danger">Budget is required</span>
+                                class="text-danger">Budget {{'common.required'| translate}}</span>
                         </h6>
                     </div>
                     <div class="col-md-12 mb-4">
@@ -85,7 +85,7 @@
                         </select>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('status').invalid && myForm.get('status').touched"
-                                class="text-danger">Status is required</span>
+                                class="text-danger">Status {{'common.required'| translate}}</span>
                         </h6>
                     </div>
 
@@ -98,7 +98,7 @@
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('startDate').invalid && myForm.get('startDate').touched"
                                 class="text-danger">
-                                Start Date is required
+                                Start Date {{'common.required'| translate}}
                             </span>
                             <span *ngIf="myForm.hasError('dateRangeInvalid') && myForm.get('endDate').touched"
                                 class="text-danger">
@@ -115,7 +115,7 @@
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('endDate').invalid && myForm.get('endDate').touched"
                                 class="text-danger">
-                                End Date is required
+                                End Date {{'common.required'| translate}}
                             </span>
                             <span *ngIf="myForm.hasError('dateRangeInvalid') && myForm.get('endDate').touched"
                                 class="text-danger">

@@ -20,7 +20,7 @@
                             formControlName="name" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('name').invalid && myForm.get('name').touched" class="text-danger">
-                                {{'common.name' | translate}} is required
+                                {{'common.name' | translate}} {{'common.required'| translate}}
                             </span>
                         </h6>
                     </div>
@@ -31,7 +31,7 @@
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('address').invalid && myForm.get('address').touched"
                                 class="text-danger">
-                                {{'common.address' | translate}} is required
+                                {{'common.address' | translate}} {{'common.required'| translate}}
                             </span>
                         </h6>
                     </div>
@@ -42,7 +42,8 @@
                             class="form-control" id="contact" formControlName="contact" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('contact').invalid && myForm.get('contact').touched"
-                                class="text-danger">{{'common.personOfContactNumber' | translate}} is required</span>
+                                class="text-danger">{{'common.personOfContactNumber' | translate}} {{'common.required'|
+                                translate}}</span>
                             <span *ngIf="myForm.get('contact').errors?.minlength" class="text-danger">
                                 Contact Number must be at least 10 characters long
                             </span>
@@ -57,7 +58,8 @@
                             id="telephone" formControlName="telephone" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('telephone').invalid && myForm.get('telephone').touched"
-                                class="text-danger"> {{'common.telephone' | translate}} is required</span>
+                                class="text-danger"> {{'common.telephone' | translate}} {{'common.required'|
+                                translate}}</span>
                             <span *ngIf="myForm.get('telephone').errors?.minlength" class="text-danger">
                                 {{'common.telephone' | translate}} must be at least 10 characters long
                             </span>
@@ -73,7 +75,7 @@
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('email').invalid && myForm.get('email').touched"
                                 class="text-danger">
-                                Valid {{'common.emailAddress' | translate}} is required</span>
+                                Valid {{'common.emailAddress' | translate}} {{'common.required'| translate}}</span>
                         </h6>
                     </div>
 

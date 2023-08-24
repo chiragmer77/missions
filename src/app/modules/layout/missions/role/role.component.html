@@ -48,7 +48,7 @@
                                         <span
                                             *ngIf="roleForm.get('designation').invalid && roleForm.get('designation').touched"
                                             class="text-danger">
-                                            Role is required
+                                            Role {{'common.required'| translate}}
                                         </span>
                                     </h6> -->
                                 </td>
@@ -64,7 +64,7 @@
                                         <span
                                             *ngIf="roleForm.get('memberId').invalid && roleForm.get('memberId').touched"
                                             class="text-danger">
-                                            {{'common.member' | translate}} is required
+                                            {{'common.member' | translate}} {{'common.required'| translate}}
                                         </span>
                                     </h6>
                                 </td>
@@ -75,7 +75,7 @@
                                         <span
                                             *ngIf="roleForm.get('hoursToSpend').invalid && roleForm.get('hoursToSpend').touched"
                                             class="text-danger">
-                                            {{'common.hours' | translate}} is required
+                                            {{'common.hours' | translate}} {{'common.required'| translate}}
                                         </span>
                                     </h6>
                                 </td>
@@ -89,7 +89,7 @@
                                         <span
                                             *ngIf="roleForm.get('hourlyRate').invalid && roleForm.get('hourlyRate').touched"
                                             class="text-danger">
-                                            {{'common.rate' | translate}} is required
+                                            {{'common.rate' | translate}} {{'common.required'| translate}}
                                         </span>
                                     </h6>
                                 <td>

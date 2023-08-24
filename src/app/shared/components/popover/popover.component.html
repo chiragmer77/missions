@@ -11,14 +11,15 @@
                             <button class="btn" type="button" width="100%" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 <span>
-                                    {{'common.clientName' | translate}}
+                                    {{ selectedClient ? selectedClient : 'common.clientName' | translate}}
                                 </span>
                                 <i class="bi bi-chevron-down"></i>
                             </button>
 
                             <ul class="dropdown-menu">
                                 <li *ngFor="let client of clientList">
-                                    <a class="dropdown-item">
+                                    <a class="dropdown-item" (click)="selectedClient = client.name"
+                                        [ngClass]="{'active':selectedClient == client.name}">
                                         {{ client.name }}
                                     </a>
                                 </li>
@@ -30,14 +31,15 @@
                             <button class="btn" type="button" width="100%" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 <span>
-                                    {{'common.status' | translate}}
+                                    {{selectedStatus ? selectedStatus :'common.status' | translate}}
                                 </span>
                                 <i class="bi bi-chevron-down"></i>
                             </button>
 
                             <ul class="dropdown-menu">
                                 <li *ngFor="let status of ['Not-Started','In-Progress','Completed']">
-                                    <a class="dropdown-item">
+                                    <a class="dropdown-item" (click)="selectedStatus = status"
+                                        [ngClass]="{'active':selectedStatus == status}">
                                         {{ status }}
                                     </a>
                                 </li>
@@ -49,14 +51,15 @@
                             <button class="btn" type="button" width="100%" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 <span>
-                                    {{'common.members' | translate}}
+                                    {{ selectedMember ? selectedMember : 'common.members' | translate}}
                                 </span>
                                 <i class="bi bi-chevron-down"></i>
                             </button>
 
                             <ul class="dropdown-menu">
                                 <li *ngFor="let member of memberList">
-                                    <a class="dropdown-item">
+                                    <a class="dropdown-item" (click)="selectedMember = member.name"
+                                        [ngClass]="{'active':selectedMember == member.name}">
                                         {{ member.name }}
                                     </a>
                                 </li>
@@ -66,10 +69,10 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button (click)="onCancel()" class="btn btn-outline-primary auth-cancel-outline">
-                    {{'common.cancel' | translate}}
+                <button (click)="onCancel()" type="submit" class="btn btn-outline-primary auth-cancel-outline">
+                    {{'common.clear' | translate}}
                 </button>
-                <button (click)="onConfirm()" class="btn btn-primary auth-cancel-outline">
+                <button (click)="onConfirm()" type="submit" class="btn btn-primary auth-cancel-outline">
                     {{'common.applyFilter' | translate}}
                 </button>
             </div>

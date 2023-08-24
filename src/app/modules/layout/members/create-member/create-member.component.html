@@ -21,7 +21,8 @@
                             id="firstName" formControlName="firstName" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('firstName').invalid && myForm.get('firstName').touched"
-                                class="text-danger"> {{'common.firstName' | translate}} is required</span>
+                                class="text-danger"> {{'common.firstName' | translate}} {{'common.required'|
+                                translate}}</span>
                         </h6>
                     </div>
                     <div class="col-md-12 mb-4">
@@ -29,7 +30,8 @@
                             id="lastName" formControlName="lastName" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('lastName').invalid && myForm.get('lastName').touched"
-                                class="text-danger">{{'common.lastName' | translate}} is required</span>
+                                class="text-danger">{{'common.lastName' | translate}} {{'common.required'|
+                                translate}}</span>
                         </h6>
                     </div>
                 </div>
@@ -40,7 +42,7 @@
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('email').invalid && myForm.get('email').touched"
                                 class="text-danger">
-                                Valid {{'common.emailAddress' | translate}} is required</span>
+                                Valid {{'common.emailAddress' | translate}} {{'common.required'| translate}}</span>
                         </h6>
                     </div>
                     <div class="col-md-12 mb-4">
@@ -50,7 +52,7 @@
                             <span
                                 *ngIf="myForm.get('phoneNumber').errors?.required && myForm.get('phoneNumber').touched"
                                 class="text-danger">
-                                {{'common.telephone' | translate}} is required
+                                {{'common.telephone' | translate}} {{'common.required'| translate}}
                             </span>
                             <span *ngIf="myForm.get('phoneNumber').errors?.minlength" class="text-danger">
                                 {{'common.telephone' | translate}} must be at least 10 characters long
@@ -69,7 +71,7 @@
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('password').invalid && myForm.get('password').touched"
                                 class="text-danger">
-                                {{'common.password' | translate}} is required
+                                {{'common.password' | translate}} {{'common.required'| translate}}
                             </span>
                             <span *ngIf="myForm.get('password').errors?.pattern" class="text-danger">
                                 {{'common.password' | translate}} must be at least 8 characters long and contain at
@@ -84,7 +86,7 @@
                         <h6 class="error-message"
                             *ngIf="myForm.get('ConfirmedPassword').invalid && (myForm.get('ConfirmedPassword').dirty || myForm.get('ConfirmedPassword').touched)">
                             <span *ngIf="myForm.get('ConfirmedPassword').errors?.required" class="text-danger">
-                                {{'common.confirmPassword' | translate}} is required</span>
+                                {{'common.confirmPassword' | translate}} {{'common.required'| translate}}</span>
                             <span *ngIf="myForm.controls['ConfirmedPassword'].hasError('confirmedValidator')">Passwords
                                 do not
                                 match.
@@ -101,7 +103,8 @@
                         </select>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('designationId').invalid && myForm.get('designationId').touched"
-                                class="text-danger">{{'common.function' | translate}} is required</span>
+                                class="text-danger">{{'common.function' | translate}} {{'common.required'|
+                                translate}}</span>
                         </h6>
                     </div>
 
@@ -112,7 +115,8 @@
                         </select>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('role').invalid && myForm.get('role').touched"
-                                class="text-danger">{{'common.role' | translate}} is required</span>
+                                class="text-danger">{{'common.role' | translate}} {{'common.required'|
+                                translate}}</span>
                         </h6>
                     </div>
 
@@ -125,7 +129,8 @@
 
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('hourlyRate').invalid && myForm.get('hourlyRate').touched"
-                                class="text-danger">{{'common.hourlyRate' | translate}} is required</span>
+                                class="text-danger">{{'common.hourlyRate' | translate}} {{'common.required'|
+                                translate}}</span>
                         </h6>
                     </div>
                 </div>

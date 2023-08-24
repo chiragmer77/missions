@@ -111,7 +111,9 @@
     "amount": "Amount",
     "actualHoursSpend": "Actual Hours Spend",
     "taskTitle": "Task Title",
-    "cost": "Cost"
+    "cost": "Cost",
+    "required": "is required",
+    "clear": "Clear"
   },
   "sidebar": {
     "dashboard": "Dashboard",

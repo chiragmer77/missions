@@ -20,7 +20,7 @@
                             formControlName="name" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('name').invalid && myForm.get('name').touched" class="text-danger">
-                                {{ 'common.name' | translate }} is required
+                                {{ 'common.name' | translate }} {{'common.required'| translate}}
                             </span>
                         </h6>
                     </div>

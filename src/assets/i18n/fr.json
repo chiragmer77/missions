@@ -105,7 +105,9 @@
     "highestPaidClient": "Client le Mieux Payé",
     "logout": "Déconnexion",
     "add": "Ajouter",
-    "cost": "Cost"
+    "cost": "Cost",
+    "required": "est requis",
+    "clear": "Claire"
   },
   "sidebar": {
     "dashboard": "Tableau de Bord",

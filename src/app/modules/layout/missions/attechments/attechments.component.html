@@ -17,7 +17,7 @@
                             id="Name" formControlName="Name" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('Name').invalid && myForm.get('Name').touched" class="text-danger">
-                                {{'common.nameOfDocument' | translate}} is required
+                                {{'common.nameOfDocument' | translate}} {{'common.required'| translate}}
                             </span>
                         </h6>
                     </div>
@@ -29,7 +29,8 @@
                         </select>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('status').invalid && myForm.get('status').touched"
-                                class="text-danger">{{'common.status' | translate}} is required</span>
+                                class="text-danger">{{'common.status' | translate}} {{'common.required'|
+                                translate}}</span>
                         </h6>
                     </div>
                     <div class="col-md-12">
@@ -44,7 +45,7 @@
                         </ngx-file-drop>
                         <h6 class="error-message">
                             <span *ngIf="!attechments.file" class="text-danger">
-                                {{'common.file' | translate}} is required
+                                {{'common.file' | translate}} {{'common.required'| translate}}
                             </span>
                         </h6>
 

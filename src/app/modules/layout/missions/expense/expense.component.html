@@ -27,7 +27,7 @@
                                 <h6 class="error-message">
                                     <span *ngIf="expenseForm.get('title').invalid && expenseForm.get('title').touched"
                                         class="text-danger">
-                                        {{'common.title' | translate}} is required
+                                        {{'common.title' | translate}} {{'common.required'| translate}}
                                     </span>
                                 </h6>
                             </td>
@@ -38,7 +38,7 @@
                                     <span
                                         *ngIf="expenseForm.get('description').invalid && expenseForm.get('description').touched"
                                         class="text-danger">
-                                        {{'common.description' | translate}} is required
+                                        {{'common.description' | translate}} {{'common.required'| translate}}
                                     </span>
                                 </h6>
                             </td>
@@ -51,7 +51,7 @@
                                 <h6 class="error-message">
                                     <span *ngIf="expenseForm.get('amount').invalid && expenseForm.get('amount').touched"
                                         class="text-danger">
-                                        {{'common.amount' | translate}} is required
+                                        {{'common.amount' | translate}} {{'common.required'| translate}}
                                     </span>
                                 </h6>
                             </td>

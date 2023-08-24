@@ -31,6 +31,7 @@ export class MissionsListComponent {
     OrderBy: ''
   }
   missionList: any = [];
+  missionListStored: any = [];
   p: number = 1;
   pe: number = 1;
   isSearchVisible = false;
@@ -61,6 +62,7 @@ export class MissionsListComponent {
     this.apiService.getWithParams('Project',
       `IsHideCount=${this.pagePayload.IsHideCount}&Search=${this.pagePayload.Search}&IsDescending=${this.pagePayload.IsDescending}&Page=${this.pagePayload.Page}&PageSize=${this.pagePayload.PageSize}`).subscribe((response) => {
         this.missionList = response.data;
+        this.missionListStored = response.data;
         this.projectToalCount = response.count;
         this.skeletons = false;
       });
@@ -111,6 +113,29 @@ export class MissionsListComponent {
 
   //** On Close Filter Event */
   onCloseFilterEvent(event: any) {
+    if (event.action) {
+      const filteredMissions = this.missionListStored.filter((mission: any) => {
+        let match = true;
+        if (event.clientName) {
+          match = match && (mission.client === event.clientName);
+        }
+        if (event.status) {
+          match = match && (mission.status === event.status);
+        }
+        if (event.member) {
+          match = match && mission.members.includes(event.member);
+        }
+        return match;
+      });
+
+      // Update the mission list with the filtered results
+      this.missionList = filteredMissions;
+      this.projectToalCount = this.missionList.length;
+
+    } else {
+      // Update the mission list with the filtered results
+      this.getMissionList();
+    }
     this.isFilterModal = false;
   }
 

@@ -8,9 +8,12 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class PopoverComponent {
   @Input() isOpenFilter: boolean | undefined;
-  @Output() onCloseFilter: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onClose: EventEmitter<any> = new EventEmitter<any>();
   clientList: any = [];
   memberList: any = [];
+  selectedClient: any;
+  selectedStatus: any;
+  selectedMember: any;
 
   constructor(private apiService: ApiService) {
 
@@ -22,13 +25,25 @@ export class PopoverComponent {
   }
 
   onCancel() {
+    this.selectedClient = null;
+    this.selectedStatus = null;
+    this.selectedMember = null;
+    const result = {
+      action: false
+    }
+    this.onClose.emit(result);
     this.isOpenFilter = false;
-    this.onCloseFilter.emit(false);
   }
 
   onConfirm() {
     // Emit an event or perform any specific action here
-    this.onCloseFilter.emit(true);
+    const result = {
+      clientName: this.selectedClient,
+      status: this.selectedStatus == 'Not-Started' ? 1 : this.selectedStatus == 'In-Progress' ? 2 : this.selectedStatus == 'Completed' ? 3 : null,
+      member: this.selectedMember,
+      action: true
+    }
+    this.onClose.emit(result);
     this.isOpenFilter = false;
   }
 

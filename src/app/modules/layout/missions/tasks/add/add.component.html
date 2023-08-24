@@ -25,7 +25,7 @@
                             <span
                                 *ngIf="myForm.get('projectTaskCategoryId').invalid && myForm.get('projectTaskCategoryId').touched"
                                 class="text-danger">
-                                {{'common.category' | translate}} is required
+                                {{'common.category' | translate}} {{'common.required'| translate}}
                             </span>
                         </h6>
                     </div>
@@ -34,7 +34,8 @@
                             formControlName="title" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('title').invalid && myForm.get('title').touched"
-                                class="text-danger">{{'common.title' | translate}} is required</span>
+                                class="text-danger">{{'common.title' | translate}} {{'common.required'|
+                                translate}}</span>
                         </h6>
                     </div>
 
@@ -43,7 +44,8 @@
                             cols="33" formControlName="description" required></textarea>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('description').invalid && myForm.get('description').touched"
-                                class="text-danger">{{'common.description' | translate}} is required</span>
+                                class="text-danger">{{'common.description' | translate}} {{'common.required'|
+                                translate}}</span>
                         </h6>
                     </div>
 
@@ -57,7 +59,7 @@
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('memberId').invalid && myForm.get('memberId').touched"
                                 class="text-danger">
-                                {{'common.assignee' | translate}} is required
+                                {{'common.assignee' | translate}} {{'common.required'| translate}}
                             </span>
                         </h6>
                     </div>
@@ -69,7 +71,8 @@
                             formControlName="actualHours" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('actualHours').invalid && myForm.get('actualHours').touched"
-                                class="text-danger"> {{'common.hoursToSpend' | translate}} is required</span>
+                                class="text-danger"> {{'common.hoursToSpend' | translate}} {{'common.required'|
+                                translate}}</span>
                         </h6>
                     </div>
 
@@ -92,7 +95,8 @@
                         </select>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('priority').invalid && myForm.get('priority').touched"
-                                class="text-danger">{{'common.priority' | translate}} is required</span>
+                                class="text-danger">{{'common.priority' | translate}} {{'common.required'|
+                                translate}}</span>
                         </h6>
                     </div>
                 </div>
@@ -104,7 +108,8 @@
                             class="form-control" formControlName="endDate" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('endDate').invalid && myForm.get('endDate').touched"
-                                class="text-danger">{{'common.endDate' | translate}} is required</span>
+                                class="text-danger">{{'common.endDate' | translate}} {{'common.required'|
+                                translate}}</span>
                         </h6>
                     </div>
                     <div class="col-md-12 mb-4">
@@ -118,7 +123,8 @@
                         </select>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('status').invalid && myForm.get('status').touched"
-                                class="text-danger">{{'common.status' | translate}} is required</span>
+                                class="text-danger">{{'common.status' | translate}} {{'common.required'|
+                                translate}}</span>
                         </h6>
                     </div>
                 </div>

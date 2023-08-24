@@ -69,6 +69,8 @@ export class AddMissionComponent {
 
   // sidebar open close
   sidebarOpenClose() {
+    window.scrollTo(0, 0);
+
     this.isSidebarOpenClose = !this.isSidebarOpenClose;
     this.isSidebarOpenClose == true ? this.spinner.show('spinner1') : this.spinner.hide('spinner1');
     this.isSidebarOpenClose == true ? this.renderer.setStyle(document.body, 'overflow', 'hidden') : this.renderer.setStyle(document.body, 'overflow', 'auto');
@@ -79,6 +81,8 @@ export class AddMissionComponent {
     if (!this.isEditing) {
       this.resetForm();
     }
+    console.log("test")
+    // Scroll to the top of the page
   }
 
   onFormSubmit() {
