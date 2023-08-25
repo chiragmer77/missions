@@ -103,11 +103,15 @@ thead tr th {
 
 .table-hover th,
 .table-hover td {
-  width: 200px; /* Set your desired width here */
+  /* width: 200px;
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; */
   max-width: 0;
+}
+
+.table-hover .bi {
+  font-size: 18px;
 }
 
 .bi-pencil-square {

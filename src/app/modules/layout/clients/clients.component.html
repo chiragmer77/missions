@@ -52,11 +52,11 @@
                 <tbody>
                     <tr
                         *ngFor="let data of clientsLists | paginate: { itemsPerPage: 10, currentPage: p,totalItems: totalCount }">
-                        <td>{{data.name}}</td>
-                        <td>{{data.address}}</td>
-                        <td>{{data.contact}}</td>
-                        <td>{{data.email}}</td>
-                        <td>
+                        <td class="text-truncate">{{data.name}}</td>
+                        <td class="text-truncate">{{data.address}}</td>
+                        <td class="text-truncate">{{data.contact}}</td>
+                        <td class="text-truncate">{{data.email}}</td>
+                        <td class="text-truncate">
                             <span class="go-to-mission pointer" (click)="goToMissionPage(data)">
                                 {{data.projects}}
                             </span>

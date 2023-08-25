@@ -16,7 +16,8 @@
                             <th class="w-25">{{'common.title' | translate}}</th>
                             <th class="w-25">{{'common.description' | translate}}</th>
                             <th>{{'common.amount' | translate}}</th>
-                            <th colspan="2">{{'common.user' | translate}}</th>
+                            <th>{{'common.user' | translate}}</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -68,16 +69,16 @@
                         <tr
                             *ngFor="let data of projectExpanseList | paginate: { itemsPerPage: 5, currentPage: p,totalItems: totalCount}">
 
-                            <td>{{data.title}}</td>
-                            <td>{{data.description}}</td>
-                            <td>{{data.amount}}</td>
-                            <td>
+                            <td class="text-truncate">{{data.title}}</td>
+                            <td class="text-truncate">{{data.description}}</td>
+                            <td class="text-truncate">{{data.amount}}</td>
+                            <td class="text-truncate">
                                 <span class="m_img_thumbnail"
                                     [style.background]="sharedService.getBackgroundColor(data.user)">
                                     {{sharedService.getFirstLetter(data.user)}}</span>
                                 {{data.user}}
                             </td>
-                            <td>
+                            <td class="text-truncate">
                                 <button type="button" class="btn" (click)="editExpanse(data)">
                                     <i class="bi bi-pencil-square"></i>
                                 </button>

@@ -86,20 +86,20 @@
 											</thead>
 											<tbody>
 												<tr *ngFor="let data of budget.tasks">
-													<td class="pointer go-to-taskDetail">
+													<td class="text-truncate">
 														{{data.title}}
 													</td>
-													<td>
+													<td class="text-truncate">
 														<span class="m_img_thumbnail"
 															[style.background]="sharedService.getBackgroundColor(data.member)">
 															{{sharedService.getFirstLetter(data.member)}}
 														</span>
 														{{data.member}}
 													</td>
-													<td>
+													<td class="text-truncate">
 														{{data.actualHours}}
 													</td>
-													<td>
+													<td class="text-truncate">
 														{{data.actualHours * data.hourlyRate}}
 													</td>
 													<!-- <td>
@@ -158,10 +158,10 @@
 											</thead>
 											<tbody>
 												<tr *ngFor="let data of budget.expenses">
-													<td>{{data.title}}</td>
-													<td>{{data.description}}</td>
-													<td>{{data.amount}}</td>
-													<td>
+													<td class="text-truncate">{{data.title}}</td>
+													<td class="text-truncate">{{data.description}}</td>
+													<td class="text-truncate">{{data.amount}}</td>
+													<td class="text-truncate">
 														<span class="m_img_thumbnail"
 															[style.background]="sharedService.getBackgroundColor(data.user)">
 															{{sharedService.getFirstLetter(data.user)}}</span>
