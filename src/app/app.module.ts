@@ -6,8 +6,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './modules/authentication/login/login.component';
 import { ForgotPasswordComponent } from './modules/authentication/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './modules/authentication/reset-password/reset-password.component';
-import { TestDirective } from './shared/directives/test.directive';
-import { TestPipe } from './shared/pipe/test.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -42,8 +40,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoginComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    TestDirective,
-    TestPipe,
     HeaderComponent,
     RouterOutletComponent
   ],
@@ -71,7 +67,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     JwtModule.forRoot({
       config: {
-        tokenGetter:  () => localStorage.getItem('access_token')
+        tokenGetter: () => localStorage.getItem('access_token')
       }
     })
   ],
