@@ -38,6 +38,7 @@ export class MissionsListComponent {
   projectTaskExpenseList: any = [];
   skeletons: boolean = true;
   projectToalCount: any;
+  filterField: any;
   constructor(
     private apiService: ApiService,
     private toaster: ToastrService,
@@ -112,6 +113,7 @@ export class MissionsListComponent {
 
   //** On Close Filter Event */
   onCloseFilterEvent(event: any) {
+    this.filterField = event;
     if (event.action) {
       const filteredMissions = this.missionListStored.filter((mission: any) => {
         let match = true;
@@ -136,6 +138,12 @@ export class MissionsListComponent {
       this.getMissionList();
     }
     this.isFilterModal = false;
+  }
+
+  /** Clear filter */
+  clearAllAppliedFields() {
+    this.filterField = null;
+    this.getMissionList();
   }
 
   /** Edit Client details */

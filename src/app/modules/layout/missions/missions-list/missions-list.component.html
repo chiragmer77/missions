@@ -7,16 +7,28 @@
             </h3>
             <div class="top_action float-end">
                 <ul>
+                    <li *ngIf="filterField?.status || filterField?.clientName || filterField?.member" (click)="clearAllAppliedFields()">
+                        clear All
+                    </li>
+                    <li>
+                        {{filterField?.status}} 
+                    </li>
+                    <li>
+                        {{filterField?.clientName}} 
+                    </li>
+                    <li>
+                        {{filterField?.member}} 
+                    </li>
                     <li *ngIf="isSearchVisible" class="search-input">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Search..."
                                 [(ngModel)]="pagePayload.Search" (input)="updateSearchQuery()" />
                             <span class="input-group-text" (click)="closeSearchInput()">
-                                <i class="bi bi-x"></i>
+                               <i class="bi bi-x"></i>
                             </span>
                         </div>
                     </li>
-                    <li *ngIf="!isSearchVisible">
+                     <li *ngIf="!isSearchVisible">
                         <a class="m_slider" (click)="toggleSearchInput()">
                             <i class="bi bi-search"></i>
                         </a>
