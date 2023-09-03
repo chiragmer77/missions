@@ -22,7 +22,6 @@ export class MissionDetailComponent {
   ) {
 
     this.sharedService.taskAddSideWindowEvent.subscribe((priority: any) => {
-      console.log(priority)
       // Do something when priority changes
       if (priority.purpose) {
         this.childComponent!.handleEventInChild(priority);
@@ -58,7 +57,6 @@ export class MissionDetailComponent {
       // Check if there was a previous active tab
       if (this.previousTab !== null) {
         // Here you can perform any actions related to the previous tab if needed
-        console.log(`Previous active tab: ${this.previousTab}`);
       }
       // Update the previousTab variable to the ID of the current tab
       this.previousTab = currentTabId;

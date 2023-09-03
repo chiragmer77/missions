@@ -32,7 +32,6 @@ export class AddComponent {
 
 
   ngOnInit(): void {
-    console.log(this.from)
     const storedData = localStorage.getItem('projectData');
     if (storedData) {
       this.projectObj = JSON.parse(storedData);

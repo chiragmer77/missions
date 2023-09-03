@@ -41,7 +41,7 @@ export class CreateMemberComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      phoneNumber: ['', [Validators.required]],
       designationId: ['', Validators.required],
       hourlyRate: ['', Validators.required],
       role: ['', Validators.required],

@@ -32,6 +32,7 @@
     "ng-gantt": "^2.5.0",
     "ng2-tooltip-directive": "^2.10.3",
     "ngx-file-drop": "^15.0.0",
+    "ngx-mask": "^13.1.15",
     "ngx-pagination": "^6.0.3",
     "ngx-skeleton-loader": "^6.0.0",
     "ngx-spinner": "^15.0.1",

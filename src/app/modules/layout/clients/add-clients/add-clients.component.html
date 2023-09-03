@@ -39,23 +39,23 @@
                 <div class="row">
                     <div class="col-md-12 mb-4">
                         <input type="tel" placeholder="{{'common.personOfContactNumber' | translate}}"
-                            class="form-control" id="contact" formControlName="contact" required>
+                            class="form-control" id="contact" formControlName="contact" mask="(000) 000-0000" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('contact').invalid && myForm.get('contact').touched"
                                 class="text-danger">{{'common.personOfContactNumber' | translate}} {{'common.required'|
                                 translate}}</span>
-                            <span *ngIf="myForm.get('contact').errors?.minlength" class="text-danger">
+                            <!-- <span *ngIf="myForm.get('contact').errors?.minlength" class="text-danger">
                                 Contact Number must be at least 10 characters long
                             </span>
                             <span *ngIf="myForm.get('contact').errors?.maxlength" class="text-danger">
                                 Contact Number must not exceed 10 characters
-                            </span>
+                            </span> -->
                         </h6>
                     </div>
 
-                    <div class="col-md-12 mb-4">
+                    <!-- <div class="col-md-12 mb-4">
                         <input type="tel" placeholder=" {{'common.telephone' | translate}}" class="form-control"
-                            id="telephone" formControlName="telephone" required>
+                            id="telephone" formControlName="telephone" mask="(000) 000-0000" required>
                         <h6 class="error-message">
                             <span *ngIf="myForm.get('telephone').invalid && myForm.get('telephone').touched"
                                 class="text-danger"> {{'common.telephone' | translate}} {{'common.required'|
@@ -67,7 +67,7 @@
                                 {{'common.telephone' | translate}} must not exceed 10 characters
                             </span>
                         </h6>
-                    </div>
+                    </div> -->
 
                     <div class="col-md-12 mb-4">
                         <input type="email" placeholder="{{'common.emailAddress' | translate}}" class="form-control"

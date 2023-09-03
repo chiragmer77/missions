@@ -83,7 +83,7 @@
     "addClient": "Add Client",
     "name": "Name",
     "address": "Address",
-    "personOfContactNumber": "Person of Contact Number",
+    "personOfContactNumber": "Name Of Person of Contact",
     "personOfContact": "Person of Contact",
     "deleteClient": "Delete Client",
     "editClient": "Edit Client",

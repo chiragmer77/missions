@@ -36,7 +36,6 @@ export class ResetPasswordComponent {
     if (this.resetPasswordForm.valid) {
       const newPassword = this.resetPasswordForm.get('newPassword').value;
       // Perform password reset logic here
-      console.log('New Password:', newPassword);
     }
   }
 }

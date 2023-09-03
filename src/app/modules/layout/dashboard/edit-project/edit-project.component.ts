@@ -101,7 +101,6 @@ export class EditProjectComponent {
           }
         });
       } else {
-        console.log(payload);
         delete payload.id;
         this.apiService.post('Project', payload).subscribe((response) => {
           if (response.success) {

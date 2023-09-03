@@ -86,7 +86,6 @@ export class DetailComponent {
     }
     // Call your API function here
     this.apiService.post('ProjectTaskComment', payload).subscribe((res: any) => {
-      console.log(res)
       if (res.success) {
         this.toaster.success('Task Comment added successfully!');
         this.getTaskCommentList();
@@ -104,7 +103,6 @@ export class DetailComponent {
     this.apiService.getWithParams('ProjectDocument',
       `ProjectId=${this.projectObj.id}&taskData=${this.taskData.id}&IsHideCount=${this.pagePayload.IsHideCount}&Search=${this.pagePayload.Search}&IsDescending=${this.pagePayload.IsDescending}&Page=${this.pagePayload.Page}&PageSize=${this.pagePayload.PageSize}`).subscribe((response) => {
         this.projectTaskDocumentLists = response.data;
-        console.log(this.projectTaskDocumentLists)
         this.spinner.hide();
       });
   }

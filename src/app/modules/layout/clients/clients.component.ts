@@ -104,6 +104,10 @@ export class ClientsComponent {
   /** Close search input */
   closeSearchInput() {
     this.isSearchVisible = false;
+    if (this.pagePayload.Search) {
+      this.pagePayload.Search = '';
+      this.updateSearchQuery();
+    }
   }
 
   /** search the client */
@@ -120,7 +124,6 @@ export class ClientsComponent {
 
   /** Mission Page Redirection */
   goToMissionPage(data: any) {
-    console.log(data)
   }
 
 

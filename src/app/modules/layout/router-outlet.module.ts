@@ -28,6 +28,8 @@ import { EditProjectComponent } from './dashboard/edit-project/edit-project.comp
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { BudgetComponent } from './budget/budget.component';
+import { IConfig, NgxMaskModule } from 'ngx-mask';
+export const options: Partial<IConfig> | (() => Partial<IConfig>) | null = null;
 
 
 @NgModule({
@@ -59,6 +61,7 @@ import { BudgetComponent } from './budget/budget.component';
     NgxPaginationModule,
     NgGanttEditorModule,
     MissionsModule,
+    NgxMaskModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

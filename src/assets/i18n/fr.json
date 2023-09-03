@@ -83,7 +83,7 @@
     "addClient": "Ajouter un Client",
     "name": "Nom",
     "address": "Adresse",
-    "personOfContactNumber": "Numéro de la Personne de Contact",
+    "personOfContactNumber": "Nom de la personne à contacter",
     "personOfContact": "Personne de Contact",
     "deleteClient": "Supprimer le Client",
     "editClient": "Modifier le Client",

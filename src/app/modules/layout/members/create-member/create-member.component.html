@@ -47,7 +47,7 @@
                     </div>
                     <div class="col-md-12 mb-4">
                         <input type="tel" placeholder="{{'common.telephone' | translate}}" class="form-control"
-                            id="phoneNumber" formControlName="phoneNumber" required />
+                            id="phoneNumber" formControlName="phoneNumber" mask="(000) 000-0000" />
                         <h6 class="error-message">
                             <span
                                 *ngIf="myForm.get('phoneNumber').errors?.required && myForm.get('phoneNumber').touched"

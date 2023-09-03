@@ -691,6 +691,7 @@ a {
 
 .table thead tr th {
   padding: 1rem;
+  padding-left: 8px;
 }
 
 /* Breadcrumb styles */

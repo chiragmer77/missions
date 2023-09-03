@@ -79,7 +79,6 @@ export class MissionsListComponent {
     localStorage.setItem('projectData', JSON.stringify(data));
     this.router.navigate(['/dashboard/missions/mission-detail/']);
     localStorage.setItem('previousTab', 'Overview-tab');
-    console.log(data);
   }
 
   /** Delete Mission */
@@ -152,6 +151,10 @@ export class MissionsListComponent {
   /** Close search input */
   closeSearchInput() {
     this.isSearchVisible = false;
+    if (this.pagePayload.Search) {
+      this.pagePayload.Search = '';
+      this.updateSearchQuery();
+    }
   }
 
   /** search the client */

@@ -26,14 +26,13 @@ import { RouterOutletModule } from './modules/layout/router-outlet.module';
 import { SharedService } from './shared/services/shared.service';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { JwtModule } from "@auth0/angular-jwt";
+import { IConfig, NgxMaskModule } from 'ngx-mask';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
-
-
-
+export const options: Partial<IConfig> | (() => Partial<IConfig>) | null = null;
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +57,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     TooltipModule,
     RouterOutletModule,
     NgxSkeletonLoaderModule,
+    NgxMaskModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

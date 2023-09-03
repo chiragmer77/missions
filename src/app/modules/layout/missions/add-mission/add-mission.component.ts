@@ -81,7 +81,6 @@ export class AddMissionComponent {
     if (!this.isEditing) {
       this.resetForm();
     }
-    console.log("test")
     // Scroll to the top of the page
   }
 
@@ -107,7 +106,6 @@ export class AddMissionComponent {
           }
         });
       } else {
-        console.log(payload);
         delete payload.id;
         this.apiService.post('Project', payload).subscribe((response) => {
           if (response.success) {

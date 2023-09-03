@@ -28,7 +28,8 @@ import { ExpenseComponent } from './expense/expense.component';
 import { AddExpenseComponent } from './expense/add-expense/add-expense.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-
+import { IConfig, NgxMaskModule } from 'ngx-mask';
+export const options: Partial<IConfig> | (() => Partial<IConfig>) | null = null;
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     NgDragDropModule.forRoot(),
     NgGanttEditorModule,
     NgxSkeletonLoaderModule,
+    NgxMaskModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

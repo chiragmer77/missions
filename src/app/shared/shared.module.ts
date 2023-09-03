@@ -10,15 +10,17 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../app.module';
 import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { PhonePipe } from './pipe/us.formate.pipe';
 
 
 @NgModule({
   declarations: [
     ConfirmationModalComponent,
     PopoverComponent,
-    SkeletonComponent
+    SkeletonComponent,
+    PhonePipe
   ],
-  exports: [ConfirmationModalComponent, TooltipModule, PopoverComponent, SkeletonComponent],
+  exports: [ConfirmationModalComponent, TooltipModule, PopoverComponent, SkeletonComponent, PhonePipe],
   imports: [
     CommonModule,
     ToastrModule.forRoot(),

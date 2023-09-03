@@ -114,6 +114,10 @@ export class MemberListComponent implements OnInit {
   /** Close search input */
   closeSearchInput() {
     this.isSearchVisible = false;
+    if (this.pagePayload.Search) {
+      this.pagePayload.Search = '';
+      this.updateSearchQuery();
+    }
   }
 
   /** search the client */

@@ -40,14 +40,8 @@ export class RouterOutletComponent {
 
     // Determine whether to reverse behavior based on screen width
     const shouldReverse = screenWidth < 768;
-
-    console.log(shouldReverse)
-
     // Toggle class logic
     this.isClassAdded = !this.isClassAdded;
-
-    console.log(this.isClassAdded)
-
     if (this.isClassAdded) {
       this.renderer.setStyle(this.bigLogo?.nativeElement, 'display', 'block');
       this.renderer.setStyle(this.smallLogo?.nativeElement, 'display', 'none');

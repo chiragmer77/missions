@@ -33,8 +33,8 @@ export class AddClientsComponent {
       name: ['', Validators.required],
       address: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      telephone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-      contact: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      // telephone: ['', [Validators.required]],
+      contact: ['', [Validators.required]],
     });
   }
 
@@ -53,7 +53,7 @@ export class AddClientsComponent {
       this.spinner.show();
       this.myForm!.value.contact = this.myForm!.value.contact.toString();
       var payload: any = this.myForm.value;
-      delete payload.telephone;
+      // delete payload.telephone;
       if (this.isEditing) {
         this.apiService.put(`AppClient/${payload.id}`, payload).subscribe((response) => {
           if (response.success) {

@@ -118,7 +118,6 @@ export class TasksComponent {
   setTaskData(data: any) {
     localStorage.setItem('taskData', JSON.stringify(data));
     this.router.navigate(['/dashboard/missions/mission-task-details/']);
-    console.log(data);
   }
 
   /** Delete Mission */

@@ -63,8 +63,6 @@ export class BoardComponent {
         this.inProgressList = this.projectTasksLists.filter((task: any) => task.status === 2);
         this.completeList = this.projectTasksLists.filter((task: any) => task.status === 3);
         this.blockedList = this.projectTasksLists.filter((task: any) => task.status === 4);
-
-        console.log(this.todoList, this.inProgressList, this.completeList, this.blockedList);
         this.spinner.hide();
       });
   }
@@ -125,6 +123,5 @@ export class BoardComponent {
   setTaskData(data: any) {
     localStorage.setItem('taskData', JSON.stringify(data));
     this.router.navigate(['/dashboard/missions/mission-task-details/']);
-    console.log(data);
   }
 }
