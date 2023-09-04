@@ -60,7 +60,7 @@
             <div class="col-md-4 d-flex flex-column text-center mt-2">
                 <div class="chart-container flex-grow-1">
                     <div class="no-records-found mt-5 text-center"
-                        *ngIf="missionStatsData.projectByCategory.length == 0">
+                        *ngIf="missionStatsData.projectByCategory?.length == 0">
                         <span>No Records Found ! </span>
                     </div>
                     <canvas id="missionByFunctionChart"></canvas>
@@ -69,7 +69,7 @@
             </div>
             <div class="col-md-4 d-flex flex-column text-center mt-2">
                 <div class="chart-container flex-grow-1">
-                    <div class="no-records-found mt-5 text-center" *ngIf="missionStatsData.projectByMonth.length == 0">
+                    <div class="no-records-found mt-5 text-center" *ngIf="missionStatsData.projectByMonth?.length == 0">
                         <span>No Records Found ! </span>
                     </div>
                     <canvas id="highNumberMissionsChart"></canvas>
@@ -78,7 +78,7 @@
             </div>
             <div class="col-md-4 d-flex flex-column text-center mt-2">
                 <div class="chart-container flex-grow-1">
-                    <div class="no-records-found mt-5 text-center" *ngIf="missionStatsData.projectByClient.length == 0">
+                    <div class="no-records-found mt-5 text-center" *ngIf="missionStatsData.projectByClient?.length == 0">
                         <span>No Records Found ! </span>
                     </div>
                     <canvas id="highestPaidClientChart"></canvas>

@@ -141,9 +141,34 @@ export class MissionsListComponent {
   }
 
   /** Clear filter */
-  clearAllAppliedFields() {
-    this.filterField = null;
-    this.getMissionList();
+  clearAllAppliedFields(filterField:any) {
+    const filteredMissions = this.missionListStored.filter((mission: any) => {
+      let match = true;
+      if (mission.client) {
+        match = match && (mission.client === filterField);
+      }
+      // if (mission.client) {
+      //   match = match && (mission.client === filterField);
+      // }
+      console.log("filterField",filterField);
+      console.log("mission",mission);
+
+      return match;
+    });
+    this.missionList = filteredMissions;
+      if(filterField == this.filterField?.clientName) {
+        this.filterField.clientName = null;
+      }
+      if(filterField == this.filterField?.member) {
+        this.filterField.member = null;
+      }
+      if(filterField == this.filterField?.status) {
+        this.filterField.status = null;
+      }
+      if(filterField == this.filterField) {
+        this.filterField = null;
+      }
+      this.getMissionList();
   }
 
   /** Edit Client details */

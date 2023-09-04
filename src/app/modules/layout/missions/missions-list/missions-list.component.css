@@ -46,3 +46,12 @@
 .accordion-item {
   border: 0px !important;
 }
+.m_slider_budge {
+  width: 48px;
+  height: 48px;
+  display: table;
+  text-align: center;
+  line-height: 41px;
+  font-size: 24px;
+}
+

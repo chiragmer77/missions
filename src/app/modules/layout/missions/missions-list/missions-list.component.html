@@ -7,17 +7,29 @@
             </h3>
             <div class="top_action float-end">
                 <ul>
-                    <li *ngIf="filterField?.status || filterField?.clientName || filterField?.member" (click)="clearAllAppliedFields()">
-                        clear All
+                    <li *ngIf="filterField?.status || filterField?.clientName || filterField?.member">
+                        <a class="m_slider_budge">
+                            <span class="badge rounded-pill text-bg-secondary p-3">
+                            Clear All <i class="bi bi-x" (click)="clearAllAppliedFields(filterField)"></i></span>
+                        </a>
                     </li>
-                    <li>
-                        {{filterField?.status}} 
+                    <li *ngIf="filterField?.status">
+                        <a class="m_slider_budge" >
+                            <span class="badge rounded-pill text-bg-secondary p-3" >
+                                {{filterField?.status}}  <i class="bi bi-x" (click)="clearAllAppliedFields(filterField.status)"></i></span>
+                        </a>
                     </li>
-                    <li>
-                        {{filterField?.clientName}} 
+                    <li   *ngIf="filterField?.clientName">
+                        <a class="m_slider_budge" >
+                            <span class="badge rounded-pill text-bg-secondary p-3">
+                                {{filterField?.clientName}}  <i class="bi bi-x" (click)="clearAllAppliedFields(filterField.clientName)"></i></span>
+                        </a>
                     </li>
-                    <li>
-                        {{filterField?.member}} 
+                    <li *ngIf="filterField?.member">
+                        <a class="m_slider_budge" >
+                            <span class="badge rounded-pill text-bg-secondary p-3" >
+                                {{filterField?.member}}  <i class="bi bi-x" (click)="clearAllAppliedFields(filterField.member)"></i></span>
+                        </a>
                     </li>
                     <li *ngIf="isSearchVisible" class="search-input">
                         <div class="input-group">
