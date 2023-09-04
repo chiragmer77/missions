@@ -16,6 +16,9 @@ input::placeholder {
   text-align: left;
   color: #000000 !important;
 }
+img {
+  cursor: pointer;
+}
 
 /* CSS */
 .sideFormFields input {
@@ -99,6 +102,30 @@ thead tr th {
   background: #e6ebf1;
 }
 
+.table-active {
+  --bs-table-bg-state: #e6ebf1 !important;
+  height: 52px;
+  vertical-align: middle !important;
+}
+thead tr th:first-child {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  padding-left: 20px !important;
+}
+
+thead tr th:last-child {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  padding-right: 20px !important;
+}
+
+tbody tr td:first-child {
+  padding-left: 18px !important;
+}
+
+tbody tr td:last-child {
+  padding-right: 18px !important;
+}
 /* styles.css or styles.scss */
 
 .table-hover th,

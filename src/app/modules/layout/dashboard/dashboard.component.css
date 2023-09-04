@@ -1,7 +1,6 @@
 /* dashboard css start*/
 .mission_card {
   border: 1px solid #d7d7d7;
-  box-shadow: 1px 1px 11px #d7d7d7;
   border-radius: 6px;
   padding: 15px;
 }
@@ -47,12 +46,14 @@
 .hours_chart_block,
 .recent_mission_block {
   padding: 25px;
+  border: 1px solid #d7d7d7 !important;
+  border-radius: 6px;
 }
 .hours_heading .table > :not(caption) > * > * {
-  padding: 0.71rem;
+  /* padding: 0.71rem; */
 }
 .recent_mission_block .table > :not(caption) > * > * {
-  padding: 1rem;
+  /* padding: 1rem; */
 }
 /*.recent_mission_block table td:nth-child(2) {margin: 5PX 0;border-radius: 50px;padding: 20px;color: #10BE2C;background: rgba(16,190,44,0.2);width: 100px;line-height: 4px;text-align: center;height: 20px;}*/
 .del_icon {
@@ -70,4 +71,23 @@
   font-family: "boxicons";
   font-size: 24px;
   cursor: pointer;
+}
+.custom-badge {
+  height: 39px !important;
+  border-radius: 47px;
+  line-height: 28px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.done {
+  color: #067719;
+  background: #096e1a1a;
+}
+.active {
+  color: #10be2c;
+  background: #10be2c1a;
+}
+.inactive {
+  color: #d71111;
+  background: #d711111a;
 }

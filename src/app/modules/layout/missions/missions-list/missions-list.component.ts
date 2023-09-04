@@ -65,6 +65,10 @@ export class MissionsListComponent {
         this.missionList = response.data;
         this.missionListStored = response.data;
         this.projectToalCount = response.count;
+        console.log(this.sharedService.clientMissionList)
+        if (this.sharedService.clientMissionList) {
+          this.filterByClient();
+        }
         this.skeletons = false;
       });
   }
@@ -109,6 +113,21 @@ export class MissionsListComponent {
   /** Open filter modal */
   openFilterModal() {
     this.isFilterModal = !this.isFilterModal;
+  }
+
+  /** Client mission filter */
+  filterByClient() {
+    const filteredMissions = this.missionListStored.filter((mission: any) => {
+      let match = true;
+      if (this.sharedService.clientMissionList) {
+        match = match && (mission.client === this.sharedService.clientMissionList);
+      }
+      return match;
+    });
+
+    // Update the mission list with the filtered results
+    this.missionList = filteredMissions;
+    this.projectToalCount = this.missionList.length;
   }
 
   //** On Close Filter Event */

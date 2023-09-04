@@ -64,7 +64,7 @@
                                         <span
                                             *ngIf="roleForm.get('memberId').invalid && roleForm.get('memberId').touched"
                                             class="text-danger">
-                                            {{'common.member' | translate}} {{'common.required'| translate}}
+                                            {{'common.members' | translate}} {{'common.required'| translate}}
                                         </span>
                                     </h6>
                                 </td>
@@ -101,6 +101,18 @@
                                         <i class="bi bi-x"></i>
                                     </button>
                                 </td>
+                            </tr>
+                            <tr>
+                                <td>Team Lead </td>
+                                <td>
+                                    <span class="m_img_thumbnail"
+                                        [style.background]="sharedService.getBackgroundColor(projectObj.teamLead)">
+                                        {{sharedService.getFirstLetter(projectObj.teamLead)}}</span>
+                                    {{projectObj.teamLead}}
+                                </td>
+                                <td> - </td>
+                                <td>-</td>
+                                <td></td>
                             </tr>
                             <tr
                                 *ngFor="let data of projectRoleList | paginate: { itemsPerPage: 5, currentPage: p,totalItems: totalCount }">
@@ -140,7 +152,7 @@
         <button class="btn btn-outline-primary auth-cancel-outline" routerLink="/dashboard/missions/mission-detail/">
             {{'common.cancel' | translate}}
         </button>
-        <button class="btn btn-primary auth-buttons">
+        <button class="btn btn-primary auth-buttons" (click)="onSubmit()">
             {{'common.saveRoles' | translate}}
         </button>
     </div>

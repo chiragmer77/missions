@@ -101,7 +101,16 @@
                     </div>
                 </div>
                 <div class="row">
-
+                    <div class="col-md-12 mb-4">
+                        <input [type]="isEditing ? 'datetime-local' : 'text'" onfocus="(this.type='datetime-local')"
+                            [value]="myForm.get('startDate').value" placeholder="{{'common.startDate' | translate}}"
+                            class="form-control" formControlName="startDate" required>
+                        <h6 class="error-message">
+                            <span *ngIf="myForm.get('startDate').invalid && myForm.get('startDate').touched"
+                                class="text-danger">{{'common.startDate' | translate}} {{'common.required'|
+                                translate}}</span>
+                        </h6>
+                    </div>
                     <div class="col-md-12 mb-4">
                         <input [type]="isEditing ? 'datetime-local' : 'text'" onfocus="(this.type='datetime-local')"
                             [value]="myForm.get('endDate').value" placeholder="{{'common.endDate' | translate}}"

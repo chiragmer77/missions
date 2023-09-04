@@ -48,6 +48,7 @@ export class AddComponent {
       priority: ['', Validators.required],
       description: ['', Validators.required],
       endDate: ['', Validators.required],
+      startDate: ['', Validators.required],
       status: ['', Validators.required]
     });
 
