@@ -53,9 +53,6 @@
 <div class="mission_details">
     <ul>
         <ng-container *ngFor="let data of getAllDocumentList">
-            <p class="document-heading" *ngIf="data.documents.length !== 0">
-                {{data.name}}
-            </p>
             <li (click)="sidebarOpenClose();viewDocDetail(data.name, doc)" *ngFor="let doc of data.documents">
                 <div class="row">
                     <div class="col-xl-4 col-md-4 col-sm-6 col-xs-12 m_task_details">

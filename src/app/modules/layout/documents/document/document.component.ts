@@ -8,7 +8,18 @@ declare var $: any;
 })
 export class DocumentComponent {
 
+  documentName: any = [];
+
   ngOnInit(): void {
+  }
+
+  /* show document name */
+  viewDocName(event: any) {
+    event.map((data: any) => {
+      if (data.documents?.length !== 0) {
+        this.documentName = data.name;
+      }
+    });
   }
 
 }

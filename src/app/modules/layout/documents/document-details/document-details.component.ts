@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
@@ -14,6 +14,7 @@ export class DocumentDetailsComponent {
   getAllDocumentList: any = [];
   detailDocument: any = {};
   getDownloadFileUrl: any;
+  @Output() sendDocName: EventEmitter<any> = new EventEmitter<any>();
 
 
   constructor(
@@ -33,6 +34,7 @@ export class DocumentDetailsComponent {
     this.apiService.get('ProjectDocument/detail').subscribe((res: any) => {
       if (res.success) {
         this.getAllDocumentList = res.data;
+        this.sendDocName.emit(this.getAllDocumentList)
         this.spinner.hide();
       }
     })

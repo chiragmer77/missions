@@ -23,12 +23,14 @@
                 <div class="accordion-item">
                   <h2 class="accordion-header">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        {{'sidebar.documents' | translate}}
+                        <p class="document-heading mb-0">
+                            {{documentName}}
+                        </p>
                     </button>
                   </h2>
                   <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <app-document-details></app-document-details>
+                        <app-document-details (sendDocName)="viewDocName($event)" ></app-document-details>
                     </div>
                   </div>
                 </div>
