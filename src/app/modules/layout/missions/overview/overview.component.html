@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-8 col-sm-12 col-12">
+    <div class="col-md-8 col-sm-12 col-12 mb-5">
         <div class="description mt-4">
             <h5>
                 {{'common.description' | translate}}
@@ -14,7 +14,7 @@
                 <i class="bi bi-plus-circle" routerLink="/dashboard/missions/mission-roles/"></i>
             </h5>
 
-            <div class="row">
+            <div class="row project-role-overview">
                 <div class="col-md-4 col-sm-6 col-12">
                     <div class="project-role-list">
                         <span class="m_img_thumbnail"
@@ -64,14 +64,14 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4 col-sm-12 right-side-section col-12 col-sm-6">
+    <div class="col-md-4 col-sm-12 right-side-section col-sm-12">
         <div class="other-details m-4">
             <div class="description mt-4">
                 <h5>
                     {{'common.description' | translate}}
                 </h5>
                 <div class="row mt-3">
-                    <div class="col-md-8 col-12 col-sm-6">
+                    <div class="col-md-8 col-sm-12 description-overview">
                         <div class="dropdown">
                             <button class="btn custom-dropdown" type="button" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -101,10 +101,10 @@
                             </ul>
                         </div>
                         <p class="last-updated-name">
-                            {{'common.lastChangedBy' | translate}}: <span> {{dataFromParent.client}} </span>
+                            {{'common.lastChangedBy' | translate}}: <span> {{dataFromParent.lastStatusUpdateBy}} </span>
                         </p>
                     </div>
-                    <div class="col-md-4 description-md-4 col-12 col-sm-6">
+                    <div class="col-md-4 description-md-4 col-12 col-sm-12 description-overview">
                         <h6>
                             {{'common.lastChanged' | translate}}
                         </h6>
@@ -114,7 +114,7 @@
                     </div>
                 </div>
                 <div class="row mt-4">
-                    <div class="col-md-4 col-12 col-sm-6">
+                    <div class="col-md-4 col-12 col-sm-12 description-overview">
                         <div class="project-role-list">
                             <i class="bi bi-calendar-date"></i>
                             <div class="startdate-enddate">
@@ -123,10 +123,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-12 col-sm-6">
+                    <div class="col-md-4 col-12 col-sm-12 description-overview">
                         <hr>
                     </div>
-                    <div class="col-md-4 col-12 col-sm-6">
+                    <div class="col-md-4 col-12 col-sm-12 description-overview">
                         <div class="project-role-list-endDate">
                             <i class="bi bi-calendar-date"></i>
                             <div class="startdate-enddate">
@@ -136,11 +136,11 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12 mt-4 col-12 col-sm-6">
+                    <div class="col-md-12 mt-4 col-12 col-sm-12 description-overview">
                         <div class="project-role-list">
                             <i class="bi bi-clock"></i>
                             <div class="startdate-enddate">
-                                <h5>103</h5>
+                                <h5>{{dataFromParent.totalHours}}</h5>
                                 <span> {{'common.totalHoursSpent' | translate}} </span>
                             </div>
                         </div>

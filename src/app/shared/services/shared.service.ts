@@ -14,7 +14,7 @@ export class SharedService {
     'placement': 'bottom',
     'showDelay': 200
   }
-
+  clientMissionList: any;
 
   constructor() { }
 

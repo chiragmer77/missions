@@ -100,13 +100,15 @@ export class AnalyticsComponent {
         }
         const labels = this.hoursSpendByMembersList.map((member: any) => member.fullName); // Array of full names
         const dataHours = this.hoursSpendByMembersList.map((member: any) => member.totalHours); // Array of total hours
-
+        // Set the background color for the bars
+        const barColor = '#0044AA'; // Your desired background color
         // Sample data for the chart
         const data: any = {
           labels: labels,
           datasets: [{
             label: '# Hours Spent',
             data: dataHours,
+            backgroundColor: barColor, // Set the background color here
             borderWidth: 1
           }]
         };
@@ -173,7 +175,11 @@ export class AnalyticsComponent {
           data: functionData,
           backgroundColor: functionColors
         }]
+      },
+      options: {
+        cutout: 200
       }
+
     });
 
     // Create Doughnut Chart for High Number of Missions
@@ -194,6 +200,9 @@ export class AnalyticsComponent {
           data: monthData,
           backgroundColor: monthColors
         }]
+      },
+      options: {
+        cutout: 200
       }
     });
 
@@ -211,6 +220,9 @@ export class AnalyticsComponent {
           data: clientData,
           backgroundColor: clientColors
         }]
+      },
+      options: {
+        cutout: 200
       }
     });
   }

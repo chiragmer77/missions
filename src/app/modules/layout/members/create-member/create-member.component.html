@@ -5,7 +5,6 @@
 </a>
 <!--Filter Code-->
 <div class="sideFormFields card mb-3 " [ngClass]="{'ShowFields' : isSidebarOpenClose}">
-
     <div class="card-header">
         <span> {{isEditing == true ? ('common.edit'| translate) : 'common.add' | translate}} Member </span>
         <button class="btn" aria-label="Close" (click)="sidebarOpenClose()">
@@ -114,9 +113,9 @@
                             <option *ngFor="let data of memberRole" value="{{data.id}}">{{data.name}}</option>
                         </select>
                         <h6 class="error-message">
-                            <span *ngIf="myForm.get('role').invalid && myForm.get('role').touched"
-                                class="text-danger">{{'common.role' | translate}} {{'common.required'|
-                                translate}}</span>
+                            <span *ngIf="myForm.get('role').invalid && myForm.get('role').touched" class="text-danger">
+                                {{'common.role' | translate}} {{'common.required'| translate}}
+                            </span>
                         </h6>
                     </div>
 

@@ -5,7 +5,7 @@
         </h3>
     </div>
     <div class="row p-0">
-        <div class="col-xs-12 col-xl-3 col-sm-6 col-md-6">
+        <div class="col-xs-12 col-xl-3 col-sm-6 col-md-6 mb-2">
             <div class="mission_card">
                 <div class="m_count tm_icon">
                     <h3>{{kpiData?.totalMissions}}</h3>
@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        <div class="col-xs-12 col-xl-3 col-sm-6 col-md-6">
+        <div class="col-xs-12 col-xl-3 col-sm-6 col-md-6 mb-2">
             <div class="mission_card">
                 <div class="m_count cm_icon">
                     <h3>{{kpiData?.completedMission}}</h3>
@@ -23,7 +23,7 @@
             </div>
         </div>
 
-        <div class="col-xs-12 col-xl-3 col-sm-6 col-md-6">
+        <div class="col-xs-12 col-xl-3 col-sm-6 col-md-6 mb-2">
             <div class="mission_card">
                 <div class="m_count om_icon">
                     <h3>{{kpiData?.completedMission}}</h3>
@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <div class="col-xs-12 col-xl-3 col-sm-6 col-md-6">
+        <div class="col-xs-12 col-xl-3 col-sm-6 col-md-6 mb-2">
             <div class="mission_card">
                 <div class="m_count hs_icon">
                     <h3>{{kpiData?.totalHours}}</h3>
@@ -73,7 +73,7 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-xl-6 d-flex flex-column">
-            <div class="hours_member_block rounded-2 border flex-grow-1">
+            <div class="hours_member_block flex-grow-1">
                 <div class="hours_heading table-responsive">
                     <h3 class="float-start">{{ 'dashboard.hoursSpentByMembers' | translate }}</h3>
                     <div class="float-end mb-2">
@@ -93,8 +93,8 @@
                             <p class="text-danger">{{ dateError }}</p>
                         </div>
                     </div>
-                    <table class="table table-striped table-hover mb-0  ">
-                        <thead class="table-light">
+                    <table class="table table-hover mb-0  ">
+                        <thead class="table-active">
                             <tr>
                                 <th>
                                     {{'common.members' | translate}}
@@ -129,7 +129,7 @@
     </div>
     <div class="row p-0">
         <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12">
-            <div class="recent_mission_block rounded-2 border mb-5">
+            <div class="recent_mission_block  mb-5">
                 <div class="hours_heading table-responsive">
                     <h3 class="float-start">
                         {{'dashboard.recentMissions' | translate}}
@@ -152,8 +152,8 @@
                             <p class="text-danger">{{ dateError }}</p>
                         </div>
                     </div>
-                    <table class="table table-striped table-hover mb-0 ">
-                        <thead class="table-light">
+                    <table class="table  table-hover mb-0 ">
+                        <thead class="table-active">
                             <tr>
                                 <th>{{'common.mission' | translate}}</th>
                                 <th>{{'common.status' | translate}}</th>
@@ -165,12 +165,9 @@
                             <tr *ngFor="let data of missionList">
                                 <td>{{data.title}}</td>
                                 <td>
-                                    <span *ngIf="data.status == 3"
-                                        class="badge bg-success text-uppercase">Completed</span>
-                                    <span *ngIf="data.status == 2"
-                                        class="badge bg-primary text-uppercase">In-Progress</span>
-                                    <span *ngIf="data.status == 1"
-                                        class="badge bg-info text-uppercase">Not-Started</span>
+                                    <span *ngIf="data.status == 3" class="badge custom-badge done">Done</span>
+                                    <span *ngIf="data.status == 2" class="badge custom-badge active">Active</span>
+                                    <span *ngIf="data.status == 1" class="badge custom-badge inactive">Inactive</span>
                                 </td>
                                 <td>{{data.members.length}}</td>
                                 <td>{{data.startDate | date: 'M/d/yy, h:mm a'}}</td>

@@ -31,8 +31,8 @@
 
     <div class="Container p-0">
         <div class="row p-0">
-            <table class="table table-striped table-hover mb-0 ">
-                <thead class="table-light">
+            <table class="table table-hover mb-0 ">
+                <thead class="table-active">
                     <tr>
                         <th scope="col"
                             (click)="pagePayload.IsDescending = !pagePayload.IsDescending == true ; getClientsLists()">
@@ -62,13 +62,14 @@
                             </span>
                         </td>
                         <td class="action-menus">
-                            <button class="btn m-0 p-0 mr-2" type="submit" data-bs-toggle="tooltip"
-                                data-bs-placement="left"
+                            <button class="btn m-0 p-0" type="submit" data-bs-toggle="tooltip" data-bs-placement="left"
                                 tooltip="<span>Telephone:</span><p>{{data.contact}}</p><span>Client Name:</span><p>{{data.name}}</p>">
-                                <i class="bi bi-eye"></i>
+                                <img src="/assets/icons/eye.svg" />
                             </button>
-                            <i class="bi bi-three-dots-vertical" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                aria-expanded="false"></i>
+
+                            <img src="/assets/icons/more-vertical.svg" class="ml-3" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false" />
+
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li>
                                     <a class="dropdown-item update" (click)="editDetails(data)">

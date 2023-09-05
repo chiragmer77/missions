@@ -185,3 +185,18 @@
   font-size: 16px;
   vertical-align: inherit;
 }
+
+@media only screen and (max-width: 1500px) and (min-width: 768px) {
+  .project-role-overview .project-role-list {
+    display: block !important;
+  }
+  .user-details {
+    margin-left: 0px !important;
+  }
+  .description-overview {
+    width: 100% !important;
+  }
+  .project-role-list-endDate {
+    float: left !important;
+  }
+}
