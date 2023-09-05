@@ -19,7 +19,20 @@
 
     <div class="Container p-0">
         <div class="row p-0">
-            <app-document-details></app-document-details>
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        {{'sidebar.documents' | translate}}
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <app-document-details></app-document-details>
+                    </div>
+                  </div>
+                </div>
+              </div>
         </div>
     </div>
 </div>
