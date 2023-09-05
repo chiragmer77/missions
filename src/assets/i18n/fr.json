@@ -107,7 +107,8 @@
     "add": "Ajouter",
     "cost": "Cost",
     "required": "est requis",
-    "clear": "Claire"
+    "clear": "Claire",
+    "clearAll": "Tout effacer"
   },
   "sidebar": {
     "dashboard": "Tableau de Bord",

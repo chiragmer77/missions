@@ -44,6 +44,9 @@ export class PopoverComponent {
       action: true
     }
     this.onClose.emit(result);
+    this.selectedClient = null;
+    this.selectedStatus = null;
+    this.selectedMember = null;
     this.isOpenFilter = false;
   }
 

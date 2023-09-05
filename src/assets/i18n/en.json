@@ -113,7 +113,8 @@
     "taskTitle": "Task Title",
     "cost": "Cost",
     "required": "is required",
-    "clear": "Clear"
+    "clear": "Clear",
+    "clearAll": "Clear All"
   },
   "sidebar": {
     "dashboard": "Dashboard",
