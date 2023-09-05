@@ -9,43 +9,44 @@
                 <ul>
                     <li *ngIf="filterField?.status || filterField?.clientName || filterField?.member">
                         <a class="m_slider_budge">
-                            <span class="badge rounded-pill" (click)="clearAllAppliedFields(filterField)">
+                            <span class="badge rounded-pill pill-filter-field p-2" (click)="clearAllAppliedFields(filterField)">
                                 {{'common.clearAll' | translate}}
                             </span>
                         </a>
                     </li>
                     <li *ngIf="filterField?.status">
                         <a class="m_slider_budge">
-                            <span class="badge rounded-pill text-bg-secondary p-3">
+                            <span class="badge rounded-pill pill-filter-field p-2">
                                 <span class="filter-label">
                                     {{'common.status' | translate}} :
                                 </span>
-                                {{filterField?.status}}
-                                <i class="bi bi-x" (click)="clearAllAppliedFields(filterField.status)"></i>
+                                <span class="pill-close">{{filterField?.status}}</span>
+                                <img src="/assets/icons/x.svg" width="20px"
+                                (click)="clearAllAppliedFields(filterField.status)" />
                             </span>
                         </a>
                     </li>
                     <li *ngIf="filterField?.clientName">
                         <a class="m_slider_budge">
-                            <span class="badge rounded-pill">
+                            <span class="badge rounded-pill pill-filter-field p-2">
                                 <span class="filter-label">
                                     {{'common.clients' | translate}} :
                                 </span>
-                                {{filterField?.clientName}}
-                                <img src="/assets/icons/x.svg"
+                                <span class="pill-close">{{filterField?.clientName}}</span>
+                                <img src="/assets/icons/x.svg" width="20px"
                                     (click)="clearAllAppliedFields(filterField.clientName)" />
                             </span>
                         </a>
                     </li>
                     <li *ngIf="filterField?.member">
                         <a class="m_slider_budge">
-                            <span class="badge rounded-pill text-bg-secondary p-3">
+                            <span class="badge rounded-pill pill-filter-field p-2">
                                 <span class="filter-label">
                                     {{'common.members' | translate}} :
                                 </span>
-                                {{filterField?.member}}
-                                <i class="bi bi-x" (click)="clearAllAppliedFields(filterField.member)">
-                                </i>
+                                <span class="pill-close">{{filterField?.member}}</span>
+                                <img src="/assets/icons/x.svg" width="20px"
+                                (click)="clearAllAppliedFields(filterField.member)" />
                             </span>
                         </a>
                     </li>

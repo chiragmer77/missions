@@ -55,3 +55,13 @@
   line-height: 41px;
   font-size: 24px;
 }
+.pill-filter-field {
+  background: #f0f0f0;
+  color: #212529;
+  font-size: 14px;
+}
+
+.pill-close {
+  font-weight: 400;
+  padding-right: 10px;
+}

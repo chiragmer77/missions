@@ -65,7 +65,6 @@ export class MissionsListComponent {
         this.missionList = response.data;
         this.missionListStored = response.data;
         this.projectToalCount = response.count;
-        console.log(this.sharedService.clientMissionList)
         if (this.sharedService.clientMissionList) {
           this.filterByClient();
         }
@@ -162,20 +161,6 @@ export class MissionsListComponent {
   /** Clear filter */
   /** Clear filter */
   clearAllAppliedFields(filterField: any) {
-    const filteredMissions = this.missionListStored.filter((mission: any) => {
-      let match = true;
-      if (mission.client) {
-        match = match && (mission.client === filterField);
-      }
-      // if (mission.client) {
-      //   match = match && (mission.client === filterField);
-      // }
-      console.log("filterField", filterField);
-      console.log("mission", mission);
-
-      return match;
-    });
-    this.missionList = filteredMissions;
     if (filterField == this.filterField?.clientName) {
       this.filterField.clientName = null;
     }
