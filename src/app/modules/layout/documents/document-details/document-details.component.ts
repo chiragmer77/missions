@@ -14,8 +14,6 @@ export class DocumentDetailsComponent {
   getAllDocumentList: any = [];
   detailDocument: any = {};
   getDownloadFileUrl: any;
-  @Output() sendDocName: EventEmitter<any> = new EventEmitter<any>();
-
 
   constructor(
     public sharedService: SharedService,
