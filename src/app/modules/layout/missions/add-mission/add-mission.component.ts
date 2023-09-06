@@ -149,8 +149,8 @@ export class AddMissionComponent {
   handleEventInChild(data: any) {
     this.isEditing = true;
     this.sidebarOpenClose();
-    data.startDate = new Date(data.startDate).toISOString().slice(0, 16);
-    data.endDate = new Date(data.endDate).toISOString().slice(0, 16);
+    data.startDate = new Date(data.startDate).toISOString().slice(0, 10);
+    data.endDate = new Date(data.endDate).toISOString().slice(0, 10);
     this.myForm.patchValue(data);
   }
 

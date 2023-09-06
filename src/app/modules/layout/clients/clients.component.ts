@@ -2,8 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { AddClientsComponent } from './add-clients/add-clients.component';
 import { ToastrService } from 'ngx-toastr';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { Subject, debounceTime } from 'rxjs';
+import { debounceTime } from 'rxjs';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { Router } from '@angular/router';
 
@@ -126,7 +125,7 @@ export class ClientsComponent {
   /** Mission Page Redirection */
   goToMissionPage(data: any) {
     if (data.projects != 0) {
-      this.sharedService.clientMissionList = data.name;
+      this.sharedService.clientMissionList = data;
       this.router.navigateByUrl('/dashboard/missions');
     }
   }

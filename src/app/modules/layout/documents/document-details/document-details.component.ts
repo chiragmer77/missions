@@ -34,7 +34,7 @@ export class DocumentDetailsComponent {
     this.apiService.get('ProjectDocument/detail').subscribe((res: any) => {
       if (res.success) {
         this.getAllDocumentList = res.data;
-        this.sendDocName.emit(this.getAllDocumentList)
+        this.getAllDocumentList = this.getAllDocumentList.filter((item: any) => item.documents.length > 0);
         this.spinner.hide();
       }
     })

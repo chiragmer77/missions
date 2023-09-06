@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-popover',
@@ -9,17 +10,33 @@ import { ApiService } from 'src/app/services/api.service';
 export class PopoverComponent {
   @Input() isOpenFilter: boolean | undefined;
   @Output() onClose: EventEmitter<any> = new EventEmitter<any>();
+  @Input() clearFilter: EventEmitter<any> = new EventEmitter<any>();
   clientList: any = [];
   memberList: any = [];
   selectedClient: any;
   selectedStatus: any;
   selectedMember: any;
 
-  constructor(private apiService: ApiService) {
-
+  constructor(
+    private apiService: ApiService,
+    public sharedService: SharedService) {
   }
 
   ngOnInit(): void {
+    this.sharedService.popoverClick$.subscribe((data: any) => {
+      if (data.type == 'Client') {
+        this.selectedClient = null;
+      } else if (data.type == 'Member') {
+        this.selectedMember = null;
+      } else if (data.type == 'Status') {
+        this.selectedStatus = null;
+      } else {
+        this.selectedClient = null;
+        this.selectedMember = null;
+        this.selectedStatus = null;
+      }
+    });
+
     this.getClientList();
     this.getMemberList();
   }
@@ -44,9 +61,9 @@ export class PopoverComponent {
       action: true
     }
     this.onClose.emit(result);
-    this.selectedClient = null;
-    this.selectedStatus = null;
-    this.selectedMember = null;
+    // this.selectedClient = null;
+    // this.selectedStatus = null;
+    // this.selectedMember = null;
     this.isOpenFilter = false;
   }
 

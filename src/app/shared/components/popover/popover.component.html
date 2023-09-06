@@ -11,14 +11,14 @@
                             <button class="btn" type="button" width="100%" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 <span>
-                                    {{ selectedClient ? selectedClient : 'common.clientName' | translate}}
+                                    {{ selectedClient?.name ? selectedClient?.name : 'common.clientName' | translate}}
                                 </span>
                                 <i class="bi bi-chevron-down"></i>
                             </button>
 
                             <ul class="dropdown-menu">
                                 <li *ngFor="let client of clientList">
-                                    <a class="dropdown-item" (click)="selectedClient = client.name"
+                                    <a class="dropdown-item" (click)="selectedClient = client"
                                         [ngClass]="{'active':selectedClient == client.name}">
                                         {{ client.name }}
                                     </a>
@@ -51,14 +51,14 @@
                             <button class="btn" type="button" width="100%" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 <span>
-                                    {{ selectedMember ? selectedMember : 'common.members' | translate}}
+                                    {{ selectedMember?.name ? selectedMember?.name : 'common.members' | translate}}
                                 </span>
                                 <i class="bi bi-chevron-down"></i>
                             </button>
 
                             <ul class="dropdown-menu">
                                 <li *ngFor="let member of memberList">
-                                    <a class="dropdown-item" (click)="selectedMember = member.name"
+                                    <a class="dropdown-item" (click)="selectedMember = member"
                                         [ngClass]="{'active':selectedMember == member.name}">
                                         {{ member.name }}
                                     </a>

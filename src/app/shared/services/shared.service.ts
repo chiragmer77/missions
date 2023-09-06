@@ -16,11 +16,20 @@ export class SharedService {
   }
   clientMissionList: any;
 
+  private popoverClickSubject = new Subject<void>();
+
+  popoverClick$ = this.popoverClickSubject.asObservable();
+
   constructor() { }
 
   /** Add the first later of name  */
   getFirstLetter(name: string): string {
     return name.charAt(0).toUpperCase();
+  }
+
+  /** Trigger popover click */
+  triggerPopoverClick(data: any) {
+    this.popoverClickSubject.next(data);
   }
 
   // Add background color

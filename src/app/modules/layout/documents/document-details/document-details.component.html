@@ -52,43 +52,53 @@
 
 <div class="mission_details">
     <ul>
-        <ng-container *ngFor="let data of getAllDocumentList">
-            <li (click)="sidebarOpenClose();viewDocDetail(data.name, doc)" *ngFor="let doc of data.documents">
-                <div class="row">
-                    <div class="col-xl-4 col-md-4 col-sm-6 col-xs-12 m_task_details">
-                        <h4>
-                            <a>
-                                {{doc.name}}
-                            </a>
-                        </h4>
-                        <p>
-                            {{'common.fileName' | translate}}
-                        </p>
-                    </div>
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item" *ngFor="let data of getAllDocumentList">
+                <h2 class="accordion-header" id="{{data.name}}">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        [attr.data-bs-target]="'#'+data.id" aria-expanded="true" [attr.aria-controls]="data.id">
+                        {{data.name}}
+                    </button>
+                </h2>
+                <div [id]="data.id" class="accordion-collapse collapse" [attr.aria-labelledby]="data.title"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <li (click)="sidebarOpenClose();viewDocDetail(data.name, doc)"
+                            *ngFor="let doc of data.documents">
+                            <div class="row">
+                                <div class="col-xl-4 col-md-4 col-sm-6 col-xs-12 m_task_details">
+                                    <h4>
+                                        <a>
+                                            {{doc.name}}
+                                        </a>
+                                    </h4>
+                                    <p>
+                                        {{'common.fileName' | translate}}
+                                    </p>
+                                </div>
 
-                    <div class="col-xl-4 col-md-4 col-sm-6 col-xs-12 m_task_details">
-                        <h4>
-                            <a>{{doc.uploadedBy}} </a>
-                        </h4>
-                        <p>
-                            {{'common.submittedBy' | translate}}
-                        </p>
-                    </div>
-                    <div class="col-xl-4 col-md-4 col-sm-6 col-xs-12 m_task_details">
-                        <h4>
-                            <a>
-                                {{data.createdDate | date: 'M/d/yy, h:mm a'}}
-                            </a>
-                        </h4>
-                        <p> {{'common.submittedOn' | translate}}</p>
+                                <div class="col-xl-4 col-md-4 col-sm-6 col-xs-12 m_task_details">
+                                    <h4>
+                                        <a>{{doc.uploadedBy}} </a>
+                                    </h4>
+                                    <p>
+                                        {{'common.submittedBy' | translate}}
+                                    </p>
+                                </div>
+                                <div class="col-xl-4 col-md-4 col-sm-6 col-xs-12 m_task_details">
+                                    <h4>
+                                        <a>
+                                            {{data.createdDate | date: 'M/d/yy, h:mm a'}}
+                                        </a>
+                                    </h4>
+                                    <p> {{'common.submittedOn' | translate}}</p>
+                                </div>
+                            </div>
+
+                        </li>
                     </div>
                 </div>
-
-            </li>
-
-            <!-- <div class="no-records-found mt-5 text-center" *ngIf="data.documents.length == 0">
-                <span>No Document Found ! </span>
-            </div> -->
-        </ng-container>
+            </div>
+        </div>
     </ul>
 </div>

@@ -23,6 +23,9 @@ export class MissionsListComponent {
   modalMessage: string = '';
   data: any;
   pagePayload: any = {
+    MemberId: '',
+    ClientId: '',
+    Status: '',
     IsHideCount: true,
     Search: '',
     IsDescending: true,
@@ -38,7 +41,11 @@ export class MissionsListComponent {
   projectTaskExpenseList: any = [];
   skeletons: boolean = true;
   projectToalCount: any;
-  filterField: any;
+  filterField: any = {
+    status: '',
+    clientName: '',
+    member: ''
+  };
   constructor(
     private apiService: ApiService,
     private toaster: ToastrService,
@@ -60,14 +67,17 @@ export class MissionsListComponent {
 
   // get mission list
   getMissionList() {
+    if (this.sharedService.clientMissionList) {
+      this.pagePayload.ClientId = this.sharedService.clientMissionList.id;
+      this.filterField.clientName = this.sharedService.clientMissionList;
+    }
+    this.skeletons = true;
     this.apiService.getWithParams('Project',
-      `IsHideCount=${this.pagePayload.IsHideCount}&Search=${this.pagePayload.Search}&IsDescending=${this.pagePayload.IsDescending}&Page=${this.pagePayload.Page}&PageSize=${this.pagePayload.PageSize}`).subscribe((response) => {
+      `IsHideCount=${this.pagePayload.IsHideCount}&Search=${this.pagePayload.Search}&IsDescending=${this.pagePayload.IsDescending}&Page=${this.pagePayload.Page}&PageSize=${this.pagePayload.PageSize}&ClientId=${this.pagePayload.ClientId}&Status=${this.pagePayload.Status}&MemberId=${this.pagePayload.MemberId}`).subscribe((response) => {
         this.missionList = response.data;
         this.missionListStored = response.data;
         this.projectToalCount = response.count;
-        if (this.sharedService.clientMissionList) {
-          this.filterByClient();
-        }
+
         this.skeletons = false;
       });
   }
@@ -114,66 +124,67 @@ export class MissionsListComponent {
     this.isFilterModal = !this.isFilterModal;
   }
 
-  /** Client mission filter */
-  filterByClient() {
-    const filteredMissions = this.missionListStored.filter((mission: any) => {
-      let match = true;
-      if (this.sharedService.clientMissionList) {
-        match = match && (mission.client === this.sharedService.clientMissionList);
-      }
-      return match;
-    });
-
-    // Update the mission list with the filtered results
-    this.missionList = filteredMissions;
-    this.projectToalCount = this.missionList.length;
-  }
-
   //** On Close Filter Event */
   onCloseFilterEvent(event: any) {
     this.filterField = event;
     if (event.action) {
-      const filteredMissions = this.missionListStored.filter((mission: any) => {
-        let match = true;
-        if (event.clientName) {
-          match = match && (mission.client === event.clientName);
-        }
-        if (event.status) {
-          match = match && (mission.status === event.status);
-        }
-        if (event.member) {
-          match = match && mission.members.includes(event.member);
-        }
-        return match;
-      });
-
-      // Update the mission list with the filtered results
-      this.missionList = filteredMissions;
-      this.projectToalCount = this.missionList.length;
-
+      if (event.clientName) {
+        this.pagePayload.ClientId = event.clientName.id;
+      }
+      if (event.status) {
+        this.pagePayload.Status = event.status;
+      }
+      if (event.member) {
+        this.pagePayload.MemberId = event.member.id;
+      }
+      this.getMissionList();
     } else {
       // Update the mission list with the filtered results
+      this.pagePayload.ClientId = '';
+      this.pagePayload.Status = '';
+      this.pagePayload.MemberId = '';
       this.getMissionList();
     }
     this.isFilterModal = false;
   }
 
   /** Clear filter */
-  /** Clear filter */
   clearAllAppliedFields(filterField: any) {
+    let filterType: any = {
+      type: ''
+    }
     if (filterField == this.filterField?.clientName) {
       this.filterField.clientName = null;
+      this.sharedService.clientMissionList = null;
+      this.pagePayload.ClientId = '';
+      this.getMissionList();
+      filterType.type = 'Client';
+      this.sharedService.triggerPopoverClick(filterType);
     }
     if (filterField == this.filterField?.member) {
       this.filterField.member = null;
+      this.pagePayload.MemberId = '';
+      this.getMissionList();
+      filterType.type = 'Member';
+      this.sharedService.triggerPopoverClick(filterType);
     }
     if (filterField == this.filterField?.status) {
       this.filterField.status = null;
+      this.pagePayload.Status = '';
+      this.getMissionList();
+      filterType.type = 'Status';
+      this.sharedService.triggerPopoverClick(filterType);
     }
     if (filterField == this.filterField) {
+      this.pagePayload.ClientId = '';
+      this.pagePayload.Status = '';
+      this.pagePayload.MemberId = '';
+      this.sharedService.clientMissionList = null;
       this.filterField = null;
+      filterType.type = 'All';
+      this.getMissionList();
+      this.sharedService.triggerPopoverClick(filterType);
     }
-    this.getMissionList();
   }
 
   /** Edit Client details */
